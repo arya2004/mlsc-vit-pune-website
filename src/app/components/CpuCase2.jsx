@@ -16,8 +16,9 @@ export function CPUcase2(props) {
   const fan = useRef();
 
   useFrame((state, delta) => {
+    if(fan.current.rotation.y % Math.PI*2 === 0)
+      fan.current.rotation.y = 0;
     fan.current.rotation.y += 0.005;
-  
   });
 
 
