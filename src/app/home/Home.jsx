@@ -12,7 +12,7 @@ const Home = () => {
 
   return (
     <div className='h-100vh w-100vh'>
-      <Canvas style={{'width':'100vw', 'height':'100vh'}} camera={{ position: [0, 0, 5], near: 0.1, far: 1000, fov: 10 }}>
+      <Canvas style={{'width':'100vw', 'height':'100vh'}} >
         {/* <OrbitControls enableZoom={false} /> */}
         
         <ScrollControls  pages={2} damping={0.1} >

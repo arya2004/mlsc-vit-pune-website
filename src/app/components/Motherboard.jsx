@@ -11,6 +11,7 @@ export function MotherBoard(props) {
   const { nodes, materials } = useGLTF("/models/chosen-motherboard.glb");
   return (
     <group {...props} dispose={null}>
+      {/* <axesHelper args={[50]} /> */}
       <group position={[0.446, 0, 0]}>
         <group
           position={[0.246, 1.89, 0.108]}
