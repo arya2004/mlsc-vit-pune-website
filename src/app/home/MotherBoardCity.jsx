@@ -3,7 +3,7 @@
 import { Canvas } from '@react-three/fiber'
 import React, { Suspense } from 'react'
 
-import { Box, MeshDistortMaterial, MeshReflectorMaterial, OrbitControls, ScrollControls } from '@react-three/drei'
+import { Box, Cloud, Clouds, MeshDistortMaterial, MeshReflectorMaterial, OrbitControls, ScrollControls, Sky } from '@react-three/drei'
 import { MotherBoard } from '../components/Motherboard'
 import { MeshStandardMaterial } from 'three'
 import ExploreCamera from './ExploreCamera'
@@ -17,6 +17,9 @@ const page = () => {
         <spotLight position={[10, 10, 10]} angle={0.15} color='red' penumbra={1} />
         <directionalLight position={[0, 10, 5]} intensity={5} />
 
+        <Sky sunPosition={[100, 20, 100]} turbidity={0.1} rayleigh={0.1} />
+
+        <Cloud />
 
         <axesHelper args={[50]} />
         <gridHelper args={[50, 50]} />

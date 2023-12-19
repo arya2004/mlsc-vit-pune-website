@@ -37,7 +37,7 @@ const ExploreCamera = () => {
         if (posIndex === 4 || posIndex >= 6) {
             target.set(4, 0.5, -1);
         } else if (posIndex === 5) {
-            target.set(-1, 0.5, 1);
+            target.set(1, 0.5, -1);
         } else {
             target.set(2.6, 0.5, 3);
         }

@@ -1,7 +1,7 @@
 import React, {useRef, useEffect, use} from 'react'
 
 import { useFrame } from '@react-three/fiber'
-import { PerspectiveCamera, ScrollControls, SpotLight, useScroll } from '@react-three/drei'
+import { PerspectiveCamera, ScrollControls, SpotLight, useScroll, Environment } from '@react-three/drei'
 
 import * as THREE from 'three'
 
@@ -19,15 +19,18 @@ const ScrollCamera = () => {
 
     useFrame((state, delta) => {
         camera.current.position.lerp(new THREE.Vector3(0, 0.04, 5 - scroll.offset*5), delta*24);
-        // lights.current.rotation.y += delta*0.05;
+        lights.current.rotation.y += delta*0.05;
     });
 
   return (
     
     <>
     
-        <ambientLight args={[50]} intensity={10} />
+        <ambientLight args={[100]} intensity={10} />
         <hemisphereLight args={[0xffffff, 0x080820, 1]} />
+        <directionalLight args={[0xffffff, 0.5]} intensity={10} position={[0, 5, 5]} />
+
+       {/* <Environment preset={'sunset'} blur={2} /> */}
 
         <group ref={center} position={[0, 0, 0] }/>
 
@@ -35,7 +38,7 @@ const ScrollCamera = () => {
          
 
           <SpotLight castShadow
-            position={[0, 0, 2]}
+            position={[-2, 1, 0.5]}
             color='purple'
             penumbra={0.8}
             radiusTop={0.01}
