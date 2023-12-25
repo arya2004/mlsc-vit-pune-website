@@ -9,9 +9,9 @@ const getATeamMember = async (req) => {
       }
     });
 
-    return new NextResponse.json(data);
+    return NextResponse.json(data);
   } catch (error) {
-    return new NextResponse.
+    return NextResponse.
       json({
         error: error,
         status: 404

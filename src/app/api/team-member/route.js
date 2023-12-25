@@ -2,9 +2,9 @@ import axios from "axios";
 import { NextResponse } from "next/server";
 import { PrismaClient as prisma } from "@prisma/client";
 
-const healthCheck = async (req) => {
-  return NextResponse.json({ status: "ok" });
-};
+// const healthCheck = async (req) => {
+//   return NextResponse.json({ status: "ok" });
+// };
 
 const getTeamAllMembers = async (req) => {
   try {
@@ -39,4 +39,4 @@ const addTeamMember = async (req) => {
   }
 };
 
-export { healthCheck as GET, getTeamAllMembers as GET, addTeamMember as POST };
+export { getTeamAllMembers as GET, addTeamMember as POST };
