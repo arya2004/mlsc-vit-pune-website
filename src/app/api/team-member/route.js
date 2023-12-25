@@ -2,11 +2,11 @@ import axios from "axios";
 import { NextResponse } from "next/server";
 import { PrismaClient as prisma } from "@prisma/client";
 
-const healthCheck = async (req, res) => {
+const healthCheck = async (req) => {
   return NextResponse.json({ status: "ok" });
 };
 
-const getTeamAllMembers = async (req, res) => {
+const getTeamAllMembers = async (req) => {
   try {
 
     const { data } = prisma.teamMember.findMany();
@@ -14,12 +14,15 @@ const getTeamAllMembers = async (req, res) => {
 
   } catch (error) {
 
-    return new NextResponse.error(error);
+    return NextResponse.json({
+      error: error,
+      status: 404
+    });
 
   }
 };
 
-const addTeamMember = async (req, res) => {
+const addTeamMember = async (req) => {
   try {
 
     const { data } = NextResponse.json(req.body);
@@ -28,7 +31,10 @@ const addTeamMember = async (req, res) => {
   } catch (error) {
 
     console.log(error);
-    return new NextResponse.error(error);
+    return NextResponse.json({
+      error: error,
+      status: 400
+    });
     
   }
 };
