@@ -41,6 +41,9 @@ const ExploreCamera = () => {
         } else {
             target.set(2.6, 0.7, 3);
         }
+        if(posIndex === 9) {
+            target.set(-4, 0.7, -2.65)
+        }
     
         targetQuaternion.setFromRotationMatrix(
             new THREE.Matrix4().lookAt(target, exploreCamera.current.position, exploreCamera.current.up)
