@@ -12,6 +12,7 @@
     "@react-three/drei": "^9.88.13",
     "@react-three/fiber": "^8.15.10",
     "@types/three": "^0.158.2",
+    "axios": "^1.6.2",
     "eslint-config-next": "^14.0.1",
     "leva": "^0.9.35",
     "next": "^14.0.1",
