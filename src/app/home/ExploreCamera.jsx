@@ -12,16 +12,16 @@ const ExploreCamera = () => {
     
     const skipPoints = useMemo(() => [
         
-        new THREE.Vector3(2.6, 0.5, 3),     // north   
-        new THREE.Vector3(2.6, 0.5, 2),     // north
-        new THREE.Vector3(2.6, 0.5, 1),     // north
-        new THREE.Vector3(2.6, 0.5, 0),     // north
-        new THREE.Vector3(2.6, 0.5, -1),    // north
-        new THREE.Vector3(1.5, 0.5, -1),    // west
-        new THREE.Vector3(0.5, 0.5, -1.65), // north-west
-        new THREE.Vector3(-1, 0.5, -1.65),  // west
-        new THREE.Vector3(-2, 0.5, -1.65),  // west
-        new THREE.Vector3(-3, 0.5, -1.65),  // west
+        new THREE.Vector3(2.6, 0.7, 3),     // 0 north   
+        new THREE.Vector3(2.6, 0.7, 2),     // 1 north
+        new THREE.Vector3(2.6, 0.7, 1),     // 2 north
+        new THREE.Vector3(2.6, 0.7, 0),     // 3 north
+        new THREE.Vector3(2.6, 0.7, -1),    // 4 north
+        new THREE.Vector3(1.5, 0.7, -1),    // 5 west
+        new THREE.Vector3(0.5, 0.7, -1.65), // 6 north-west
+        new THREE.Vector3(-1, 0.7, -1.65),  // 7 west
+        new THREE.Vector3(-2, 0.7, -1.65),  // 8 west
+        new THREE.Vector3(-3, 0.7, -1.65),  // 9 west
         
     ], []);
 
@@ -35,11 +35,11 @@ const ExploreCamera = () => {
 
 
         if (posIndex === 4 || posIndex >= 6) {
-            target.set(4, 0.5, -1);
+            target.set(4, 0.7, -1);
         } else if (posIndex === 5) {
-            target.set(1, 0.5, -1);
+            target.set(-0.5, 0.7, 1.65);
         } else {
-            target.set(2.6, 0.5, 3);
+            target.set(2.6, 0.7, 3);
         }
     
         targetQuaternion.setFromRotationMatrix(
@@ -54,7 +54,7 @@ const ExploreCamera = () => {
     });
   return (
     <>
-        <PerspectiveCamera ref={exploreCamera} makeDefault fov={50} near={0.01} far={100} />
+        <PerspectiveCamera ref={exploreCamera} makeDefault fov={50} near={0.00048} far={100} />
         {/* <cameraHelper args={[exploreCamera.current]} /> */}
         {/* <Box material-color='red' ref={exploreCamera} args={[0.1, 0.1, 0.1]}  /> */}
 

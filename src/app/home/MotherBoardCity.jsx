@@ -3,7 +3,7 @@
 import { Canvas } from '@react-three/fiber'
 import React, { Suspense } from 'react'
 
-import { Box, Cloud, Clouds, MeshDistortMaterial, MeshReflectorMaterial, OrbitControls, ScrollControls, Sky } from '@react-three/drei'
+import { Box, Cloud, Clouds, Environment, MeshDistortMaterial, MeshReflectorMaterial, OrbitControls, ScrollControls, Sky, SpotLight } from '@react-three/drei'
 import { MotherBoard } from '../components/Motherboard'
 import { MeshStandardMaterial } from 'three'
 import ExploreCamera from './ExploreCamera'
@@ -15,16 +15,19 @@ const page = () => {
 
         <ambientLight intensity={5} />
         <spotLight position={[10, 10, 10]} angle={0.15} color='red' penumbra={1} />
-        <directionalLight position={[0, 10, 5]} intensity={5} />
+        <directionalLight position={[0, 10, 5]} intensity={1} />
 
-        <Sky sunPosition={[100, 20, 100]} turbidity={0.1} rayleigh={0.1} />
+        {/* <Sky sunPosition={[100, 20, 100]} turbidity={0.1} rayleigh={0.1} /> */}
+        <SpotLight position={[0, 5, 10]} angle={Math.PI/6} color='red' penumbra={1} distance={12} />
 
-        <Cloud />
+        <Environment preset='city' />
+
+        <Cloud opacity={0.5} />
 
         <axesHelper args={[50]} />
         <gridHelper args={[50, 50]} />
 
-        <ScrollControls pages={5} damping={0.1} >
+        <ScrollControls pages={10} damping={0.3} >
           <ExploreCamera  />
         </ScrollControls>
         
