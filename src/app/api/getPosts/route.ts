@@ -14,7 +14,7 @@ interface Post {
 
 export async function GET() {
     const data = await prisma.post.findMany();
-    return Response.json(
+    return NextResponse.json(
       data,
       {
         status: 405
@@ -43,7 +43,7 @@ export async function GET() {
                 }
               );
     } catch (error) {
-      return Response.json(
+      return NextResponse.json(
         { error: error.message },
         {
           status: 500,

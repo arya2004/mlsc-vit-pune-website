@@ -20,7 +20,7 @@ model User {
   xLink String
   linkedinLink String
   githubLink String
-  aboutMe String
+  aboutMe String?
   imageLink String
   role    Role     @default(TEAM_MEMBER)
   projects Project[]
