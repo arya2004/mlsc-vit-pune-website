@@ -25,7 +25,10 @@ const getTeamAllMembers = async (req) => {
 const addTeamMember = async (req) => {
   try {
 
-    const { data } = NextResponse.json(req.body);
+    const req = await req.json();
+// req object will have the same data as sent in the body of the request.
+// Can be destructured as well.
+// const { data } = await req.json()
     prisma.teamMember.create({ data });
     
   } catch (error) {
