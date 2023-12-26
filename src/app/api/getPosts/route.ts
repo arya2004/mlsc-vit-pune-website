@@ -36,7 +36,7 @@ export async function GET() {
                     published: published
                 },
               })
-              return Response.json(
+              return NextResponse.json(
                 { error: "Ok" },
                 {
                   status: 200
