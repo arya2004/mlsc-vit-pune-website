@@ -9,3 +9,64 @@ datasource db {
   provider = "mongodb"
   url      = env("DATABASE_URL")
 }
+
+
+model User {
+  id      Int      @id @default(autoincrement())
+  fullName    String?
+  domain String
+  position String
+  year Int
+  xLink String
+  linkedinLink String
+  githubLink String
+  aboutMe String?
+  imageLink String
+  role    Role     @default(TEAM_MEMBER)
+  projects Project[]
+  blogs Blog[]
+  events Event[]  
+}
+
+
+model Blog {
+  id         Int        @id @default(autoincrement())
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+  title      String
+  published  Boolean    @default(false)
+  link      String?
+  content   String
+  imageUrl  String
+  authors    User[]
+}
+
+model Project {
+  id         Int        @id @default(autoincrement())
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+  title      String
+  gitUrl     String
+  imageLink       String?
+  description String
+  maintainer     User       @relation(fields: [maintainerId], references: [id])
+  maintainerId   Int
+
+
+}
+
+model Event {
+  id    Int    @id @default(autoincrement())
+  name  String
+  date  DateTime
+  description String
+  footfall String
+  eventSpan Int
+  link String
+  organisingPeople User[]
+}
+
+enum Role {
+  TEAM_MEMBER
+  ADMIN
+}
