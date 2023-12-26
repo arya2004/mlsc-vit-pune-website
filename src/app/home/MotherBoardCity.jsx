@@ -1,14 +1,30 @@
 'use client'
 
 import { Canvas } from '@react-three/fiber'
-import React, { Suspense } from 'react'
+import React, { Suspense, useState, useEffect } from 'react'
 
-import { Box, Cloud, Clouds, Environment, Loader, MeshDistortMaterial, MeshReflectorMaterial, OrbitControls, ScrollControls, Sky, SpotLight } from '@react-three/drei'
+import { Box, Cloud, Clouds, Environment, Loader, MeshDistortMaterial, MeshReflectorMaterial, OrbitControls, ScrollControls, Sky, Sparkles, SpotLight } from '@react-three/drei'
 import { MotherBoard } from '../components/Motherboard'
 import { MeshStandardMaterial } from 'three'
 import ExploreCamera from './ExploreCamera'
+import BeforeMotherBoard from './BeforeMotherBoard'
 
 const page = () => {
+
+  const [isCloudResourceAvailable, setIsCloudResourceAvailable] = useState(false);
+
+useEffect(() => {
+    fetch('https://rawcdn.githack.com/pmndrs/drei-assets/9225a9f1fbd449d9411125c2f419b843d0308c9f/cloud.png:')
+        .then(response => {
+            if (response.ok) {
+                setIsCloudResourceAvailable(true);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+}, []);
+
   return (
     <>
     <Canvas style={{'height':'100vh', 'width':'100vw'}}  camera={{ position: [0, 0, 30], near: 0.05, far: 1000, fov: 10 }} >
@@ -25,7 +41,8 @@ const page = () => {
 
         {/* <Environment preset='city' /> */}
 
-        {/* <Cloud color='grey' opacity={0.5} /> */}
+        {isCloudResourceAvailable && <Cloud color='grey' opacity={0.5} />}
+        <Sparkles scale={6} size={1} speed={0.5} noise={0.3}  color='purple' />
 
         <axesHelper args={[50]} />
         <gridHelper args={[50, 50]} />
@@ -34,7 +51,7 @@ const page = () => {
           <ExploreCamera  />
         </ScrollControls>
         
-        <Suspense >
+        <Suspense fallback={<BeforeMotherBoard />} >
           <MotherBoard rotation={[Math.PI/2, Math.PI, -Math.PI/2]} />
         </Suspense>
         
