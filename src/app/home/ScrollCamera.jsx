@@ -2,6 +2,7 @@ import React, {useRef, useEffect, use} from 'react'
 
 import { useFrame } from '@react-three/fiber'
 import { PerspectiveCamera, ScrollControls, SpotLight, useScroll, Environment } from '@react-three/drei'
+import { useMLSCStore } from '../store/MLSCStore'
 
 import * as THREE from 'three'
 
@@ -13,13 +14,25 @@ const ScrollCamera = () => {
 
     const scroll = useScroll();
 
+    const showMotherBoard = useMLSCStore(state => state.showMotherBoard);
+    const setShowMotherBoard = useMLSCStore(state => state.setShowMotherBoard);
+
     useEffect(() => {
         console.log(`Scroll offset: ${scroll.offset}`);
-    }, [scroll]);
+        if (scroll.offset > 0.2 && !showMotherBoard) {
+            setShowMotherBoard(true);
+        }
+    }, [scroll.offset]);
 
     useFrame((state, delta) => {
         camera.current.position.lerp(new THREE.Vector3(0, 0.04, 5 - scroll.offset*5), delta*24);
         lights.current.rotation.y += delta*0.05;
+
+        // console.log(`Scroll offset: ${scroll.offset}`);
+        if (scroll.offset > 0.92) {
+            setShowMotherBoard(true);
+            // console.log(`Show motherboard: ${showMotherBoard}`)
+        }
     });
 
   return (
