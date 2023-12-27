@@ -57,7 +57,7 @@ const ExploreCamera = () => {
     });
   return (
     <>
-        <PerspectiveCamera ref={exploreCamera} position={[2, 0.7, 2.4]} makeDefault fov={50} near={0.00048} far={100} />
+        <PerspectiveCamera ref={exploreCamera} position={[2.6, 0.7, 3]} makeDefault fov={50} near={0.00048} far={100} />
         {/* <cameraHelper args={[exploreCamera.current]} /> */}
         {/* <Box material-color='red' ref={exploreCamera} args={[0.1, 0.1, 0.1]}  /> */}
 

@@ -31,6 +31,7 @@ useEffect(() => {
       {/* <OrbitControls /> */}
 
         {/* <ambientLight intensity={5} /> */}
+        <color attach='background' args={['black']} />
         <spotLight position={[10, 10, 10]} angle={0.15} color='red' penumbra={1} />
         {/* <directionalLight position={[0, 10, 5]} intensity={1} /> */}
         <directionalLight position={[5, 5, -3]} color='purple' intensity={2} />

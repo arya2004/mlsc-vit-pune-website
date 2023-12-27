@@ -14,6 +14,8 @@ const Home = () => {
     <div className='h-100vh w-100vh'>
       <Canvas style={{'width':'100vw', 'height':'100vh'}} >
         {/* <OrbitControls enableZoom={false} /> */}
+        <color attach='background' args={['black']} />
+
         
         <ScrollControls  pages={3} damping={3} >
           <ScrollCamera />   
