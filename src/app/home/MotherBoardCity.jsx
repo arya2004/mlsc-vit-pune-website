@@ -8,6 +8,7 @@ import { MotherBoard } from '../components/Motherboard'
 import { MeshStandardMaterial } from 'three'
 import ExploreCamera from './ExploreCamera'
 import BeforeMotherBoard from './BeforeMotherBoard'
+import AboutMesh from './html-cards/About.card'
 
 const page = () => {
 
@@ -52,6 +53,7 @@ useEffect(() => {
           <ExploreCamera  />
         </ScrollControls>
         
+        <AboutMesh />
         <Suspense fallback={<BeforeMotherBoard />} >
           <MotherBoard rotation={[Math.PI/2, Math.PI, -Math.PI/2]} />
         </Suspense>
