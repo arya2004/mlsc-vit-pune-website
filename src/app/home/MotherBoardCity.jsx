@@ -55,9 +55,9 @@ useEffect(() => {
         </ScrollControls>
         
         <Suspense >
-        <AboutMesh />
+          <AboutMesh />
         </Suspense>
-        
+
         <Suspense fallback={<BeforeMotherBoard />} >
           <MotherBoard rotation={[Math.PI/2, Math.PI, -Math.PI/2]} />
         </Suspense>
@@ -65,9 +65,9 @@ useEffect(() => {
         {/* <Box material-color='red' args={[0.1, 0.1, 0.1]}  position={[-3.5, 0.05, -1.65]}  /> */}
 
 
-      <EffectComposer >
+      {/* <EffectComposer >
         <Bloom mipmapBlur intensity={0.8} />
-      </EffectComposer>
+      </EffectComposer> */}
     </Canvas>
     <Loader />
     </>

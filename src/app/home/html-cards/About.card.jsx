@@ -1,6 +1,5 @@
 import { Html, Text } from "@react-three/drei";
 import React from "react";
-import { Color } from "three";
 
 // const About = () => {
 //   return (
@@ -21,20 +20,21 @@ import { Color } from "three";
 //   );
 // };
 
-const bloomColor = new Color("#0078d4]");
-bloomColor.multiplyScalar(1);
-
 const AboutMesh = () => {
   return (
     <>
-      <group position={[2.6, 1, -3]} rotation={[0, -Math.PI / 6, 0]}>
-        <Text fontSize={0.11} position={[0, 0.5, 0]} scale={[1, 1, 1]}>
+      <group position={[2.6, 1.1, -3]} rotation={[0, -Math.PI / 6, 0]}>
+        <Text
+          fontSize={0.11}
+          position={[-.2, 0.5, 0]}
+          scale={[1, 1, 1]}
+          // color="#0078d4"
+        >
           Welcome to Microsoft Learn Student Club VIT, Pune:{"\n"}
-
-          <meshBasicMaterial color={bloomColor} toneMapped={false} />
+          <meshBasicMaterial color="#09151f" />
         </Text>
 
-        <Text anchorX='center' fontSize={0.1} scale={[1, 1, 1]} color="#0078d4">
+        <Text  position={[-.2, 0, 0]} fontSize={0.1} scale={[1, 1, 1]} color="#09151f">
           Join us on a journey of exploration and {"\n"} innovation at Microsoft
           Learn Student Club VIT, Pune! {"\n"} As passionate learners and tech
           enthusiasts, {"\n"}
