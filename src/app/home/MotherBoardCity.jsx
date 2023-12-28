@@ -54,7 +54,10 @@ useEffect(() => {
           <ExploreCamera  />
         </ScrollControls>
         
+        <Suspense >
         <AboutMesh />
+        </Suspense>
+        
         <Suspense fallback={<BeforeMotherBoard />} >
           <MotherBoard rotation={[Math.PI/2, Math.PI, -Math.PI/2]} />
         </Suspense>
