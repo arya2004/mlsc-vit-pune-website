@@ -9,6 +9,7 @@ import { MeshStandardMaterial } from 'three'
 import ExploreCamera from './ExploreCamera'
 import BeforeMotherBoard from './BeforeMotherBoard'
 import AboutMesh from './html-cards/About.card'
+import { EffectComposer, Bloom } from '@react-three/postprocessing'
 
 const page = () => {
 
@@ -60,6 +61,10 @@ useEffect(() => {
         
         {/* <Box material-color='red' args={[0.1, 0.1, 0.1]}  position={[-3.5, 0.05, -1.65]}  /> */}
 
+
+      <EffectComposer >
+        <Bloom mipmapBlur intensity={0.8} />
+      </EffectComposer>
     </Canvas>
     <Loader />
     </>

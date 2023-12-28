@@ -6,7 +6,7 @@ import GetInvolved from './GetInvolved.card'
 const page = () => {
   return (
     <div className='h-screen w-screen flex flex-row items-center justify-evenly'>
-        <About />
+        {/* <About /> */}
         <Offer />
         <GetInvolved />
     </div>
