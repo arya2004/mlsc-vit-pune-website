@@ -21,7 +21,9 @@ export async function GET(  request: Request,
         where: {
             id: Number(memberId),
         
-        },
+        },include: {
+            projects: true,
+          },
         
     });
     return NextResponse.json(
@@ -31,6 +33,78 @@ export async function GET(  request: Request,
       }
     );
   }
+
+  export async function PUT(  request: Request,
+    { params }: { params: { memberId: string } }
+    ) {
+
+    const memberId = params.memberId 
+    const res = await request.json();
+    const {  
+        fullName,
+        domain,
+        position, 
+        year,
+        xLink,
+        linkedinLink,
+        githubLink,
+        aboutMe,
+        imageLink,} = res;
+
+        const updatedUser = await prisma.user.update({
+            where: {
+                id: Number(memberId),
+            
+            },
+            data: {
+                fullName: fullName,
+                domain: domain,
+                position: position,
+                year: year,
+                xLink: xLink,
+                linkedinLink: linkedinLink,
+                githubLink: githubLink,
+                aboutMe: aboutMe,
+                imageLink: imageLink
+            },
+          })
+  
+        
+   
+    return NextResponse.json(
+    updatedUser,
+      {
+        status: 405
+      }
+    );
+  }
+  
+
+  export async function DELETE(  request: Request,
+    { params }: { params: { memberId: string } }
+    ) {
+
+    const memberId = params.memberId 
+    
+
+        const updatedUser = await prisma.user.delete({
+            where: {
+                id: Number(memberId),
+            
+            }
+          })
+  
+        
+   
+    return NextResponse.json(
+        { message: "Deleted" },
+      {
+        status: 405
+      }
+    );
+  
+  }
+  
   
   
 

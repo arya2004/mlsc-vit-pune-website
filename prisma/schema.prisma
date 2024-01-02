@@ -25,7 +25,7 @@ model User {
   role    Role     @default(TEAM_MEMBER)
   projects Project[]
   blogs Blog[]
-  events Event[]  
+  
 }
 
 
@@ -37,7 +37,8 @@ model Blog {
   description   String
   imageUrl  String
   domain   String
-  authors    User[]
+  author     User       @relation(fields: [authorId], references: [id])
+  authorId   Int
 }
 
 model Project {
@@ -61,7 +62,7 @@ model Event {
   footfall String
   eventSpan Int
   link String
-  organisingPeople User[]
+  organisingPeople Int
 }
 
 enum Role {

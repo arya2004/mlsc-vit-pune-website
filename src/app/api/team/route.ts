@@ -6,11 +6,7 @@ import prisma from '../../../../prisma/client'
 //Route handlers
 //https://nextjs.org/docs/app/building-your-application/routing/route-handlers
 
-interface Post {
-    title: string;
-    content: string | null;
-    published: boolean;
-}
+
 
 
 export async function GET(  request: Request,) {
@@ -32,7 +28,8 @@ export async function POST(req: Request) {
     console.log(res);
     
     try {
-        const {  fullName,
+        const {  
+            fullName,
             domain,
             position, 
             year,
@@ -41,7 +38,8 @@ export async function POST(req: Request) {
             githubLink,
             aboutMe,
             imageLink,} = res;
-             await prisma.user.create({
+
+            await prisma.user.create({
                 data: {
                     fullName: fullName,
                     domain: domain,
@@ -54,15 +52,17 @@ export async function POST(req: Request) {
                     imageLink: imageLink
                 },
               })
+
+
               return NextResponse.json(
-                { error: "Ok" },
+                { message: "Ok" },
                 {
                   status: 200
                 }
               );
     } catch (error) {
       return NextResponse.json(
-        { error: error.message },
+        { message: error.message },
         {
           status: 500,
         }
