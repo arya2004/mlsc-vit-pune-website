@@ -1,7 +1,15 @@
 import React from "react";
+import { Html, useScroll } from "@react-three/drei";
+import { useThree } from "@react-three/fiber";
 
 const GetInvolved = () => {
+
+  // const {scrollData} = useScroll();
+  const {gl} = useThree();
+
+
   return (
+    <Html style={{'position':'sticky'}} scale={[5, 5, 5]} position={[0, 1, -3]} portal={{current: gl.domElement.parentNode}} >
     <div className="align-center flex flex-col items-center justify-evenly w-[400px] h-[350px] p-3 bg-transparent border-[2px] border-[#0078d4] rounded-[8px]  text-center text-[#0078d4]">
       <div className="font-bold">Get Involved:</div>
       <div className="font-semibold">
@@ -14,6 +22,7 @@ const GetInvolved = () => {
         together!
       </div>
     </div>
+    </Html>
   );
 };
 

@@ -6,6 +6,7 @@ Command: npx gltfjsx@6.2.15 public/models/chosen-motherboard.glb
 
 import React, { useRef } from "react";
 import { useGLTF } from "@react-three/drei";
+// import GetInvolved from "../home/html-cards/GetInvolved.card";
 
 export function MotherBoard(props) {
   const { nodes, materials } = useGLTF("/models/chosen-motherboard.glb");
@@ -1909,7 +1910,9 @@ export function MotherBoard(props) {
           material={materials.lambert1}
           position={[0.179, 1.651, 0.059]}
           scale={[0.039, 0.083, 0.011]}
-        />
+        >
+          {/* <GetInvolved /> */}
+        </mesh>  
         <mesh
           geometry={nodes.pCube501_lambert1_0.geometry}
           material={materials.lambert1}

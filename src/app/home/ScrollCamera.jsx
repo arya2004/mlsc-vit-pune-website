@@ -50,7 +50,7 @@ const ScrollCamera = () => {
         <group position={[0, 0, 0]} ref={lights}>
          
 
-          <SpotLight castShadow
+          {/* <SpotLight castShadow
             position={[-2, 1, 0.5]}
             color='purple'
             penumbra={0.8}
@@ -76,10 +76,10 @@ const ScrollCamera = () => {
             anglePower={3}
             intensity={5}
             opacity={0.5}
-          />
+          /> */}
           {/* <spotLightHelper args={[lights.current.children[0]]} /> */}
-          {/* <directionalLight position={[10, 10, 5]} intensity={10} color='blue' />
-          <directionalLight position={[-1, 1, -5]} intensity={7} color='purple' /> */}
+          <directionalLight position={[10, 10, 5]} intensity={10} color='blue' />
+          <directionalLight position={[-1, 1, -5]} intensity={7} color='purple' />
         </group>
 
         {/* <axesHelper args={[50]} /> */}

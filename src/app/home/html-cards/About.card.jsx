@@ -31,10 +31,10 @@ const AboutMesh = () => {
           // color="#0078d4"
         >
           Welcome to Microsoft Learn Student Club VIT, Pune:{"\n"}
-          <meshBasicMaterial color="#09151f" />
+          <meshBasicMaterial color="#20151f" />
         </Text>
 
-        <Text  position={[-.2, 0, 0]} fontSize={0.1} scale={[1, 1, 1]} color="#09151f">
+        <Text  position={[-.2, 0, 0]} fontSize={0.1} scale={[1, 1, 1]} color="#20151f">
           Join us on a journey of exploration and {"\n"} innovation at Microsoft
           Learn Student Club VIT, Pune! {"\n"} As passionate learners and tech
           enthusiasts, {"\n"}

@@ -46,12 +46,12 @@ const ExploreCamera = () => {
         }
     
         targetQuaternion.setFromRotationMatrix(
-            new THREE.Matrix4().lookAt(target, exploreCamera.current.position, exploreCamera.current.up)
+            new THREE.Matrix4().lookAt(target, exploreCamera.current?.position, exploreCamera.current?.up)
         );
     
-        exploreCamera.current.quaternion.slerp(targetQuaternion, delta * 1); // Adjust the 2nd parameter to control the speed of the transition
+        exploreCamera.current?.quaternion.slerp(targetQuaternion, delta * 1); // Adjust the 2nd parameter to control the speed of the transition
 
-        exploreCamera.current.position.lerp(skipPoints[posIndex], delta);
+        exploreCamera.current?.position.lerp(skipPoints[posIndex], delta);
         // exploreCamera.current.position.lerp(skipPoints[0], delta);
         // exploreCamera.current?.lookAt(new THREE.Vector3(2.6, 0.5, -3), true);
     });
