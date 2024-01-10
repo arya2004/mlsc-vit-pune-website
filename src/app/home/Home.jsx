@@ -3,7 +3,7 @@ import React, { Suspense, useRef } from 'react'
 import { Canvas } from '@react-three/fiber'
 import { OrbitControls, Environment, Loader, ScrollControls } from '@react-three/drei'
 
-import { CPUcase2 } from '../components/CpuCase2'
+import { CPUcase2 } from '../components-3d/CpuCase2'
 import ScrollCamera from './ScrollCamera'
 
 
