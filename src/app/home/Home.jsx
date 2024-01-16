@@ -1,27 +1,38 @@
 'use client'
 import React, { Suspense, useRef } from 'react'
 import { Canvas } from '@react-three/fiber'
-import { OrbitControls, Environment, Loader, ScrollControls } from '@react-three/drei'
+import { OrbitControls, Environment, Loader, ScrollControls, MeshReflectorMaterial, Text } from '@react-three/drei'
 
 import { CPUcase2 } from '../components/CpuCase2'
 import ScrollCamera from './ScrollCamera'
 
 
 
-const Home = () => {    
+function Home() {    
 
   return (
     <div className='h-100vh w-100vh'>
       <Canvas style={{'width':'100vw', 'height':'100vh'}} >
-        <OrbitControls />
+        {/* <OrbitControls /> */}
         <color attach='background' args={['black']} />
+        <fog attach='fog' args={['black', 10, 50]} />
 
         
         <ScrollControls  pages={3} damping={3} >
           <ScrollCamera />   
         </ScrollControls>     
         
-        {/* <Environment preset="warehouse" /> */}
+        {/* <Environment preset="warehouse" background/> */}
+        <mesh rotation={[-Math.PI/2, 0, 0]} position={[0, -0.5, 0]} receiveShadow>
+          <planeGeometry args={[100, 100]} />
+          <meshStandardMaterial color="#010101" roughness={1} metalness={2} />
+          {/* <MeshReflectorMaterial color="#010101" roughness={1} metalness={2} /> */}
+        </mesh> 
+
+
+        <Text scale={0.2} position={[0, 0.5, 0]} anchorY='middle' anchorX='center'  >
+          {"MICROSOFT LEARN STUDENT CLUB \n                       VIT PUNE"}
+        </Text>
 
 
         <Suspense >

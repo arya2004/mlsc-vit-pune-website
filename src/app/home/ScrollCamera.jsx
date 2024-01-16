@@ -30,29 +30,29 @@ const ScrollCamera = () => {
     }
   }, [scroll.offset]);
 
-  // useFrame((state, delta) => {
-  //   camera.current.position.lerp(
-  //     new THREE.Vector3(0, 0.04, 5 - scroll.offset * 5),
-  //     delta * 24
-  //   );
-  //   lights.current.rotation.y += delta * 0.05;
+  useFrame((state, delta) => {
+    camera.current.position.lerp(
+      new THREE.Vector3(0, 0.04, 5 - scroll.offset * 5),
+      delta * 24
+    );
+    lights.current.rotation.y += delta * 0.05;
 
-  //   // console.log(`Scroll offset: ${scroll.offset}`);
-  //   if (scroll.offset > 0.92) {
-  //     setShowMotherBoard(true);
-  //     // console.log(`Show motherboard: ${showMotherBoard}`)
-  //   }
-  // });
+    // console.log(`Scroll offset: ${scroll.offset}`);
+    if (scroll.offset > 0.92) {
+      setShowMotherBoard(true);
+      // console.log(`Show motherboard: ${showMotherBoard}`)
+    }
+  });
 
   return (
     <>
       <ambientLight args={[100]} intensity={10} />
       <hemisphereLight args={[0xffffff, 0x080820, 1]} />
-      <directionalLight
+      {/* <directionalLight
         args={[0xffffff, 0.5]}
         intensity={10}
         position={[0, 5, 5]}
-      />
+      /> */}
 
       {/* <Environment preset={'sunset'} blur={2} /> */}
 
@@ -89,7 +89,7 @@ const ScrollCamera = () => {
           opacity={0.5}
         /> */}
 
-        <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.5, -0]}>
+        {/* <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.5, -0]}>
           <planeGeometry args={[5, 5]} />
           <MeshReflectorMaterial
             blur={[300, 100]}
@@ -103,22 +103,22 @@ const ScrollCamera = () => {
             color="#050505"
             metalness={0.5}
           />
-        </mesh>
+        </mesh> */}
 
         {/* <spotLightHelper args={[lights.current.children[0]]} /> */}
-        <directionalLight position={[10, 10, 5]} intensity={10} color='blue' />
-          <directionalLight position={[-1, 1, -5]} intensity={7} color='purple' />
+        <directionalLight position={[10, 1.5, 5]} intensity={10} color='blue' castShadow/>
+          <directionalLight position={[-1, 2, -5]} intensity={7} color='purple' castShadow />
       </group>
 
       {/* <axesHelper args={[50]} /> */}
-      {/* <PerspectiveCamera
+      <PerspectiveCamera
         ref={camera}
         makeDefault
-        lookAt={[0, 0.04, 0]}
+        // lookAt={[0, 0.04, 0]}
         fov={30}
         near={0.01}
         far={1000}
-      /> */}
+      />
     </>
   );
 };
