@@ -6,7 +6,7 @@ generator client {
 }
 
 datasource db {
-  provider = "mongodb"
+  provider = "postgres"
   url      = env("DATABASE_URL")
 }
 
@@ -25,26 +25,24 @@ model User {
   role    Role     @default(TEAM_MEMBER)
   projects Project[]
   blogs Blog[]
-  events Event[]  
+  
 }
 
 
 model Blog {
   id         Int        @id @default(autoincrement())
-  createdAt  DateTime   @default(now())
-  updatedAt  DateTime   @updatedAt
   title      String
   published  Boolean    @default(false)
   link      String?
-  content   String
+  description   String
   imageUrl  String
-  authors    User[]
+  domain   String
+  author     User       @relation(fields: [authorId], references: [id])
+  authorId   Int
 }
 
 model Project {
   id         Int        @id @default(autoincrement())
-  createdAt  DateTime   @default(now())
-  updatedAt  DateTime   @updatedAt
   title      String
   gitUrl     String
   imageLink       String?
@@ -58,12 +56,13 @@ model Project {
 model Event {
   id    Int    @id @default(autoincrement())
   name  String
+  tagline String
   date  DateTime
   description String
   footfall String
   eventSpan Int
   link String
-  organisingPeople User[]
+  organisingPeople Int
 }
 
 enum Role {
