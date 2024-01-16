@@ -35,7 +35,7 @@ const ScrollCamera = () => {
       new THREE.Vector3(0, 0.04, 5 - scroll.offset * 5),
       delta * 24
     );
-    lights.current.rotation.y += delta * 0.05;
+    lights.current.rotation.y += delta * 0.03;
 
     // console.log(`Scroll offset: ${scroll.offset}`);
     if (scroll.offset > 0.92) {
@@ -106,8 +106,8 @@ const ScrollCamera = () => {
         </mesh> */}
 
         {/* <spotLightHelper args={[lights.current.children[0]]} /> */}
-        <directionalLight position={[10, 1.5, 5]} intensity={10} color='blue' castShadow/>
-          <directionalLight position={[-1, 2, -5]} intensity={7} color='purple' castShadow />
+        <directionalLight position={[3, 5, 5]} intensity={8} color='blue' castShadow />
+        <directionalLight position={[-4, 5, -5]} intensity={7} color='purple' castShadow />
       </group>
 
       {/* <axesHelper args={[50]} /> */}
