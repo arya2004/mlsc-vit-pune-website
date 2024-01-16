@@ -9,7 +9,7 @@ import {
   Environment,
 } from "@react-three/drei";
 import { Canvas, extend } from "@react-three/fiber";
-import React, { useRef } from "react";
+import React, { Suspense, useRef } from "react";
 
 import { Background } from "./Components/Background.jsx";
 import Effects from "./Components/Effects.jsx";
@@ -35,7 +35,9 @@ function page() {
       <Canvas style={{ height: "100%", width: "100%" }}>
         <OrbitControls />
 
-        <Portal />
+        <Suspense >
+          <Portal />
+        </Suspense>
 
         
 
