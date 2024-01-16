@@ -13,7 +13,7 @@ const Home = () => {
   return (
     <div className='h-100vh w-100vh'>
       <Canvas style={{'width':'100vw', 'height':'100vh'}} >
-        {/* <OrbitControls enableZoom={false} /> */}
+        <OrbitControls />
         <color attach='background' args={['black']} />
 
         
