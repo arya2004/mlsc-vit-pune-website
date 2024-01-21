@@ -6,6 +6,7 @@ Command: npx gltfjsx@6.2.15 public/models/chosen-motherboard.glb
 
 import React, { useRef } from "react";
 import { useGLTF } from "@react-three/drei";
+import AboutMesh from "../home/html-cards/About.card";
 // import GetInvolved from "../home/html-cards/GetInvolved.card";
 
 export function MotherBoard(props) {
@@ -555,6 +556,8 @@ export function MotherBoard(props) {
             material={materials.BoardM2Cover1M}
             position={[0, 0, 8]}
           />
+          {console.log(`Show about: ${props.showAbout}`)}
+          {props.showAbout && <AboutMesh />}
         </group>
         <group position={[0, 0, 0.017]}>
           <mesh

@@ -1,11 +1,11 @@
 import { PerspectiveCamera } from '@react-three/drei';
-import React, { useMemo, useRef } from 'react'
+import React, { useEffect, useMemo, useRef } from 'react'
 import { useFrame } from '@react-three/fiber';
 import { useScroll, Box } from '@react-three/drei';
 
 import * as THREE from 'three'
 
-const ExploreCamera = () => {
+const ExploreCamera = ({setShowAbout}) => {
 
     const exploreCamera = useRef();
     const scroll = useScroll();
@@ -54,7 +54,19 @@ const ExploreCamera = () => {
         exploreCamera.current?.position.lerp(skipPoints[posIndex], delta);
         // exploreCamera.current.position.lerp(skipPoints[0], delta);
         // exploreCamera.current?.lookAt(new THREE.Vector3(2.6, 0.5, -3), true);
+
+        if(posIndex == 5) {
+            setShowAbout(true)
+        } else {
+            setShowAbout(false)
+        }
+
     });
+
+    useEffect(() => {
+        console.log(`Scroll offset: ${scroll.offset}`);
+    }, [scroll.offset]);
+
   return (
     <>
         <PerspectiveCamera ref={exploreCamera} position={[2.6, 0.7, 3]} makeDefault fov={50} near={0.00048} far={100} />
