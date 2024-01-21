@@ -5,7 +5,7 @@ import { useScroll, Box } from '@react-three/drei';
 
 import * as THREE from 'three'
 
-const ExploreCamera = ({setShowAbout}) => {
+const ExploreCamera = ({setShowAbout, setShowGetInvolved}) => {
 
     const exploreCamera = useRef();
     const scroll = useScroll();
@@ -57,7 +57,10 @@ const ExploreCamera = ({setShowAbout}) => {
 
         if(posIndex == 5) {
             setShowAbout(true)
+        } else if(posIndex == 7) {
+            setShowGetInvolved(true)
         } else {
+            setShowGetInvolved(false)
             setShowAbout(false)
         }
 

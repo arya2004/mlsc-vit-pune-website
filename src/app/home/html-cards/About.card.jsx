@@ -24,8 +24,8 @@ const AboutMesh = () => {
   const {gl} = useThree()
 
   return (
-    <Html as="div" style={{ userSelect: 'none' }} className="bg-transparent w-[550px] h-[350px] sticky" position={[2.5, -2, 0.7]} scale={[.1, .1, .1]} rotation={[Math.PI/2, -Math.PI/2-0.5, 0]} transform portal={{ current: gl.domElement.parentNode }}>
-      <div className="container align-center flex flex-col items-center justify-evenly w-[550px] h-[350px] p-3 bg-transparent rounded-[8px] text-2xl text-center text-[#00040cbd] uppercase  stable-shadows">
+    <Html as="div" className="bg-transparent w-[550px] h-[350px] sticky" position={[2.5, -2, 0.7]} scale={[.1, .1, .1]} rotation={[Math.PI/2, -Math.PI/2-0.5, 0]} transform portal={{ current: gl.domElement.parentNode }}>
+      <div className="container align-center flex flex-col items-center justify-evenly w-[550px] h-[350px] p-3 bg-transparent text-2xl text-center text-[#00040cbd] uppercase  stable-shadows">
         <div
           className={cn(!glitchOn ? "text-" : "text- glitch")}
           data-text="Welcome to Microsoft Learn Student Club VIT, Pune"

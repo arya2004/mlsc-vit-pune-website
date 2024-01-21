@@ -18,6 +18,7 @@ const page = () => {
   const [isCloudResourceAvailable, setIsCloudResourceAvailable] = useState(false);
   
   const [showAbout, setShowAbout] = useState(false);
+  const [showGetInvolved, setShowGetInvolved] = useState(false);
 
 useEffect(() => {
     fetch('https://rawcdn.githack.com/pmndrs/drei-assets/9225a9f1fbd449d9411125c2f419b843d0308c9f/cloud.png:')
@@ -55,16 +56,12 @@ useEffect(() => {
         <gridHelper args={[50, 50]} /> */}
 
         <ScrollControls pages={10} damping={0.5} >
-          <ExploreCamera setShowAbout={setShowAbout}  />
+          <ExploreCamera setShowAbout={setShowAbout} setShowGetInvolved={setShowGetInvolved} />
         </ScrollControls>
         
 
-        {/* <Suspense >
-          <Mask >
-            <GetInvolved />
-          </Mask>
-        </Suspense> */}
-
+        {showGetInvolved && <GetInvolved />}
+        
         <Suspense fallback={<BeforeMotherBoard />} >
           <MotherBoard rotation={[Math.PI/2, Math.PI, -Math.PI/2]} showAbout={showAbout} />
         </Suspense>
