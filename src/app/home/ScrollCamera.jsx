@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, use } from "react";
+import React, { useRef, useEffect, useState } from "react";
 
 import { useFrame } from "@react-three/fiber";
 import {
@@ -23,6 +23,14 @@ const ScrollCamera = () => {
   const showMotherBoard = useMLSCStore((state) => state.showMotherBoard);
   const setShowMotherBoard = useMLSCStore((state) => state.setShowMotherBoard);
 
+  //Another responsiveness idea for home page
+  // const widthChange = window.innerWidth/1300;
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    setIsMobile(window.innerWidth < 768);
+  }, []);
+
   useEffect(() => {
     console.log(`Scroll offset: ${scroll.offset}`);
     if (scroll.offset > 0.2 && !showMotherBoard) {
@@ -35,7 +43,11 @@ const ScrollCamera = () => {
       new THREE.Vector3(0, 0.04, 5 - scroll.offset * 5),
       delta * 24
     );
+
+    if(lights.current.rotation.y === Math.PI*2) lights.current.rotation.y = 0;
     lights.current.rotation.y += delta * 0.03;
+
+    console.log('Rotation '+lights.current.rotation.y)
 
     // console.log(`Scroll offset: ${scroll.offset}`);
     if (scroll.offset > 0.92) {

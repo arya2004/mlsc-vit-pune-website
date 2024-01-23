@@ -1,5 +1,5 @@
 import { PerspectiveCamera } from '@react-three/drei';
-import React, { useEffect, useMemo, useRef } from 'react'
+import React, { useEffect, useMemo, useRef, useState } from 'react'
 import { useFrame } from '@react-three/fiber';
 import { useScroll, Box } from '@react-three/drei';
 
@@ -25,6 +25,14 @@ const ExploreCamera = ({setShowAbout, setShowGetInvolved}) => {
         
     ], []);
 
+    // Handling responsiveness
+    // const widthChange = window.innerWidth/1300;
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        setIsMobile(window?.innerWidth < 768);
+    }, []);
+
     
     useFrame((state, delta) => {
         
@@ -49,7 +57,7 @@ const ExploreCamera = ({setShowAbout, setShowGetInvolved}) => {
             new THREE.Matrix4().lookAt(target, exploreCamera.current?.position, exploreCamera.current?.up)
         );
     
-        exploreCamera.current?.quaternion.slerp(targetQuaternion, delta * 1); // Adjust the 2nd parameter to control the speed of the transition
+        exploreCamera.current?.quaternion?.slerp(targetQuaternion, delta * 1); // Adjust the 2nd parameter to control the speed of the transition
 
         exploreCamera.current?.position.lerp(skipPoints[posIndex], delta);
         // exploreCamera.current.position.lerp(skipPoints[0], delta);
@@ -72,7 +80,7 @@ const ExploreCamera = ({setShowAbout, setShowGetInvolved}) => {
 
   return (
     <>
-        <PerspectiveCamera ref={exploreCamera} position={[2.6, 0.7, 3]} makeDefault fov={50} near={0.00048} far={100} />
+        <PerspectiveCamera ref={exploreCamera} position={[2.6, 0.7, 3]} makeDefault fov={isMobile? 70 : 50} near={0.00048} far={100} />
         {/* <cameraHelper args={[exploreCamera.current]} /> */}
         {/* <Box material-color='red' ref={exploreCamera} args={[0.1, 0.1, 0.1]}  /> */}
 
