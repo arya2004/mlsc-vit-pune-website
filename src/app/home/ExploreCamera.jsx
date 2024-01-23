@@ -59,6 +59,7 @@ const ExploreCamera = ({setShowAbout, setShowGetInvolved}) => {
     
         exploreCamera.current?.quaternion?.slerp(targetQuaternion, delta * 1); // Adjust the 2nd parameter to control the speed of the transition
 
+        if (posIndex < 10)
         exploreCamera.current?.position.lerp(skipPoints[posIndex], delta);
         // exploreCamera.current.position.lerp(skipPoints[0], delta);
         // exploreCamera.current?.lookAt(new THREE.Vector3(2.6, 0.5, -3), true);
