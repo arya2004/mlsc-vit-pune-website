@@ -16,7 +16,7 @@ import ScrollCamera from "./ScrollCamera";
 function Home() {
   return (
     <div className="h-100vh w-100vh">
-      <Canvas style={{ width: "100vw", height: "100vh" }} shadows>
+      <Canvas style={{ width: "100vw", height: "100vh" }} >
         {/* <OrbitControls /> */}
         <color attach="background" args={["black"]} />
         <fog attach="fog" args={["black", 10, 50]} />
