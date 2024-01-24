@@ -1,3 +1,5 @@
+'use client'
+
 import { Html, Text, Text3D } from "@react-three/drei";
 import React, {useState, useEffect} from "react";
 import "./cards_style.scss";

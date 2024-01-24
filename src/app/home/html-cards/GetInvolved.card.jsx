@@ -1,3 +1,5 @@
+'use client'
+
 import React, {useEffect, useState} from "react";
 import { Html, useScroll } from "@react-three/drei";
 import { useThree } from "@react-three/fiber";
