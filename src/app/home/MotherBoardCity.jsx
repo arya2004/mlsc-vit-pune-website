@@ -17,7 +17,7 @@ const page = () => {
 
   const [isCloudResourceAvailable, setIsCloudResourceAvailable] = useState(false);
   
-  const [showAbout, setShowAbout] = useState(false);
+  const [showAbout, setShowAbout] = useState(true);
   const [showGetInvolved, setShowGetInvolved] = useState(false);
 
 useEffect(() => {
@@ -35,7 +35,7 @@ useEffect(() => {
   return (
     <>
     <Canvas style={{'height':'100vh', 'width':'100vw'}}  camera={{ position: [0, 0, 30], near: 0.05, far: 1000, fov: 10 }} >
-      {/* <OrbitControls /> */}
+      <OrbitControls />
 
         {/* <ambientLight intensity={5} /> */}
         <color attach='background' args={['black']} />
@@ -55,15 +55,16 @@ useEffect(() => {
         {/* <axesHelper args={[50]} />
         <gridHelper args={[50, 50]} /> */}
 
-        <ScrollControls pages={10} damping={0.5} >
+        {/* <ScrollControls pages={10} damping={0.5} >
           <ExploreCamera setShowAbout={setShowAbout} setShowGetInvolved={setShowGetInvolved} />
-        </ScrollControls>
+        </ScrollControls> */}
         
 
         {showGetInvolved && <GetInvolved />}
+        {showAbout && <AboutMesh />}
         
         <Suspense fallback={<BeforeMotherBoard />} >
-          <MotherBoard rotation={[Math.PI/2, Math.PI, -Math.PI/2]} showAbout={showAbout} />
+          <MotherBoard rotation={[Math.PI/2, Math.PI, -Math.PI/2]} />
         </Suspense>
         
         {/* <Box material-color='red' args={[0.1, 0.1, 0.1]}  position={[-3.5, 0.05, -1.65]}  /> */}
