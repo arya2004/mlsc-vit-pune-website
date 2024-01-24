@@ -8,6 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "postinstall": "prisma generate"
+  }, "prisma": {
+    "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
   },
   "dependencies": {
     "@prisma/client": "^5.7.1",
@@ -16,9 +18,11 @@
     "@react-three/postprocessing": "^2.15.11",
     "@types/three": "^0.158.2",
     "axios": "^1.6.2",
+    "bcrypt": "^5.1.1",
     "eslint-config-next": "^14.0.1",
     "leva": "^0.9.35",
     "next": "^14.0.1",
+    "next-auth": "^4.24.5",
     "react": "^18",
     "react-dom": "^18",
     "sass": "^1.70.0",
@@ -27,6 +31,7 @@
     "zustand": "^4.4.7"
   },
   "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
     "@types/node": "^20.10.5",
     "autoprefixer": "^10",
     "postcss": "^8",
