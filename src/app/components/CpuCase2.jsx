@@ -27,20 +27,20 @@ export function CPUcase2(props) {
       <group name="Scene">
         <group name="Sketchfab_model" rotation={[-Math.PI / 2, 0, 0]} scale={0.089}>
           <group name="pc_pronto_3objcleanermaterialmergergles">
-            <mesh castShadow receiveShadow name="Object_22001" ref={fan} geometry={nodes.Object_22001.geometry} material={materials.blinn5SG} position={[0.014, -4.883, 6.6]} rotation={[Math.PI, -0.091, Math.PI]} />
-            <mesh castShadow receiveShadow name="Object_16" geometry={nodes.Object_16.geometry} material={materials.blinn16SG} />
-            <mesh castShadow receiveShadow name="Object_17" geometry={nodes.Object_17.geometry} material={materials.blinn18SG} />
-            <mesh castShadow receiveShadow name="Object_18" geometry={nodes.Object_18.geometry} material={materials.blinn21SG} />
-            <mesh castShadow receiveShadow name="Object_2" geometry={nodes.Object_2.geometry} material={materials.blinn17SG} />
-            <mesh castShadow receiveShadow name="Object_22"  geometry={nodes.Object_22.geometry} material={materials.blinn5SG} />
-            <mesh castShadow receiveShadow name="Object_24" geometry={nodes.Object_24.geometry} material={materials.lambert11SG} />
-            <mesh castShadow receiveShadow name="Object_27" geometry={nodes.Object_27.geometry} material={materials.lambert22SG} />
-            <mesh castShadow receiveShadow name="Object_33" geometry={nodes.Object_33.geometry} material={materials.lambert31SG} />
-            <mesh castShadow receiveShadow name="Object_34" geometry={nodes.Object_34.geometry} material={materials.lambert32SG} />
-            <mesh castShadow receiveShadow name="Object_35" geometry={nodes.Object_35.geometry} material={materials.lambert33SG} />
-            <mesh castShadow receiveShadow name="Object_37" geometry={nodes.Object_37.geometry} material={materials.lambert37SG} />
-            <mesh castShadow receiveShadow name="Object_38" geometry={nodes.Object_38.geometry} material={materials.lambert38SG} />
-            <mesh castShadow receiveShadow name="Object_9" geometry={nodes.Object_9.geometry} material={materials.lambert19SG} />
+            <mesh castShadow name="Object_22001" ref={fan} geometry={nodes.Object_22001.geometry} material={materials.blinn5SG} position={[0.014, -4.883, 6.6]} rotation={[Math.PI, -0.091, Math.PI]} />
+            <mesh castShadow name="Object_16" geometry={nodes.Object_16.geometry} material={materials.blinn16SG} />
+            <mesh castShadow name="Object_17" geometry={nodes.Object_17.geometry} material={materials.blinn18SG} />
+            <mesh castShadow name="Object_18" geometry={nodes.Object_18.geometry} material={materials.blinn21SG} />
+            <mesh castShadow name="Object_2" geometry={nodes.Object_2.geometry} material={materials.blinn17SG} />
+            <mesh castShadow name="Object_22"  geometry={nodes.Object_22.geometry} material={materials.blinn5SG} />
+            <mesh castShadow name="Object_24" geometry={nodes.Object_24.geometry} material={materials.lambert11SG} />
+            <mesh castShadow name="Object_27" geometry={nodes.Object_27.geometry} material={materials.lambert22SG} />
+            <mesh castShadow name="Object_33" geometry={nodes.Object_33.geometry} material={materials.lambert31SG} />
+            <mesh castShadow name="Object_34" geometry={nodes.Object_34.geometry} material={materials.lambert32SG} />
+            <mesh castShadow name="Object_35" geometry={nodes.Object_35.geometry} material={materials.lambert33SG} />
+            <mesh castShadow name="Object_37" geometry={nodes.Object_37.geometry} material={materials.lambert37SG} />
+            <mesh castShadow name="Object_38" geometry={nodes.Object_38.geometry} material={materials.lambert38SG} />
+            <mesh castShadow name="Object_9" geometry={nodes.Object_9.geometry} material={materials.lambert19SG} />
           </group>
         </group>
       </group>

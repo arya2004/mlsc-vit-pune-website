@@ -18,6 +18,8 @@ const ScrollCamera = () => {
   const lights = useRef();
   const center = useRef();
 
+  const backLight = useRef();
+
   const scroll = useScroll();
 
   const showMotherBoard = useMLSCStore((state) => state.showMotherBoard);
@@ -44,13 +46,15 @@ const ScrollCamera = () => {
       delta * 24
     );
 
-    if(lights.current.rotation.y === Math.PI*2) lights.current.rotation.y = 0;
-    lights.current.rotation.y += delta * 0.03;
+    // if(lights.current.rotation.y === Math.PI*2) lights.current.rotation.y = 0;
+    // lights.current.rotation.y += delta * 0.03;
+
+    // backLight.current.target.position.set(0, 0.5, 0);
+    // backLight.current.target.updateMatrixWorld();
 
     // console.log(`Scroll offset: ${scroll.offset}`);
     if (scroll.offset > 0.92) {
       setShowMotherBoard(true);
-      // console.log(`Show motherboard: ${showMotherBoard}`)
     }
   });
 
@@ -119,6 +123,7 @@ const ScrollCamera = () => {
         {/* <spotLightHelper args={[lights.current.children[0]]} /> */}
         <directionalLight position={[3, 4, 5]} intensity={8} color='blue' castShadow />
         <directionalLight position={[-4, 2, -5]} intensity={7} color='purple' castShadow />
+        {/* <directionalLight ref={backLight} position={[0, 0, 1]} intensity={5} color='blue' castShadow /> */}
       </group>
 
       {/* <axesHelper args={[50]} /> */}
