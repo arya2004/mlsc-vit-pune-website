@@ -4,14 +4,16 @@ import { Canvas } from '@react-three/fiber'
 import React, { Suspense, useState, useEffect } from 'react'
 
 import { Box, Cloud, Clouds, Environment, Loader, Mask, MeshDistortMaterial, MeshReflectorMaterial, OrbitControls, ScrollControls, Sky, Sparkles, SpotLight } from '@react-three/drei'
-import { MotherBoard } from '../components/Motherboard'
 import { MeshStandardMaterial } from 'three'
-import ExploreCamera from './ExploreCamera'
-import BeforeMotherBoard from './BeforeMotherBoard'
-import AboutMesh from './html-cards/About.card'
 import { EffectComposer, Bloom } from '@react-three/postprocessing'
-import Offer from './html-cards/Offer.card'
-import GetInvolved from './html-cards/GetInvolved.card'
+
+import ExploreCamera from './ExploreCamera'
+import { MotherBoard } from '../components/Motherboard'
+import BeforeMotherBoard from './BeforeMotherBoard'
+
+// import AboutMesh from './html-cards/About.card'
+// import GetInvolved from './html-cards/GetInvolved.card'
+// import Offer from './html-cards/Offer.card'
 
 const page = () => {
 
@@ -60,8 +62,8 @@ useEffect(() => {
         </ScrollControls> */}
         
 
-        {showGetInvolved && <GetInvolved />}
-        {showAbout && <AboutMesh />}
+        {/* {showGetInvolved && <GetInvolved />}
+        {showAbout && <AboutMesh />} */}
         
         <Suspense fallback={<BeforeMotherBoard />} >
           <MotherBoard rotation={[Math.PI/2, Math.PI, -Math.PI/2]} />
