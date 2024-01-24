@@ -47,8 +47,6 @@ const ScrollCamera = () => {
     if(lights.current.rotation.y === Math.PI*2) lights.current.rotation.y = 0;
     lights.current.rotation.y += delta * 0.03;
 
-    console.log('Rotation '+lights.current.rotation.y)
-
     // console.log(`Scroll offset: ${scroll.offset}`);
     if (scroll.offset > 0.92) {
       setShowMotherBoard(true);

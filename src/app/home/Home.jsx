@@ -8,19 +8,25 @@ import {
   ScrollControls,
   MeshReflectorMaterial,
   Text,
+  PositionalAudio
 } from "@react-three/drei";
 
 import { CPUcase2 } from "../components/CpuCase2";
 import ScrollCamera from "./ScrollCamera";
+import PlaySoundButton from "../components/PlaySoundButton";
 
 function Home() {
 
   // For Responsiveness:
   // const widthChange = window.innerWidth/1300;
+  const [playBGM, setPlayBGM] = useState(false); // For the background music
+
   const [isMobile, setIsMobile] = useState(false);
   useEffect(() => {
     setIsMobile(window.innerWidth < 768);
   }, []);
+
+  const home_bg = '/audio/home-bgm.mp3'
 
   return (
     <div className="h-100vh w-100vh">
@@ -28,7 +34,7 @@ function Home() {
         {/* <OrbitControls /> */}
         <color attach="background" args={["black"]} />
         <fog attach="fog" args={["black", 10, 50]} />
-        <ambientLight intensity={0.3} />
+        <ambientLight intensity={10} />
 
         <ScrollControls pages={3} damping={3}>
           <ScrollCamera />
@@ -65,7 +71,11 @@ function Home() {
         <Suspense>
           <CPUcase2 position={[0, -0.5, 0]} />
         </Suspense>
+
+        {playBGM && <PositionalAudio autoplay loop url={home_bg} />}
       </Canvas>
+
+      <PlaySoundButton setPlayBGM={setPlayBGM} playBGM={playBGM} />
       <Loader />
     </div>
   );
