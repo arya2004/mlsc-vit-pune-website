@@ -11,9 +11,9 @@ import ExploreCamera from './ExploreCamera'
 import { MotherBoard } from '../components/Motherboard'
 import BeforeMotherBoard from './BeforeMotherBoard'
 
-// import AboutMesh from './html-cards/About.card'
-// import GetInvolved from './html-cards/GetInvolved.card'
-// import Offer from './html-cards/Offer.card'
+import AboutMesh from './html-cards/About.card'
+import GetInvolved from './html-cards/GetInvolved.card'
+import Offer from './html-cards/Offer.card'
 
 const page = () => {
 
