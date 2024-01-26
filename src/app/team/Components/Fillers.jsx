@@ -4,8 +4,8 @@ function Fillers() {
   return (
     <>
       <ambientLight intensity={1} />
-      <directionalLight color="white" position={[5, 10, 0]} intensity={2} />
-      <directionalLight color="purple" position={[0, -10, 0]} intensity={2} />
+      <directionalLight castShadow color="white" position={[5, 10, 0]} intensity={2} />
+      <directionalLight castShadow color="purple" position={[0, -10, 0]} intensity={2} />
       <Stars
         radius={150}
         depth={100}

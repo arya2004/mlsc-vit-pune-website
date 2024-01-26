@@ -13,6 +13,7 @@ import React, { Suspense, useRef } from "react";
 
 import { Background } from "./Components/Background.jsx";
 import Effects from "./Components/Effects.jsx";
+import MainPortal from "./Components/MainPlatform.jsx";
 
 // import BlendFunction from "postprocessing";
 
@@ -20,6 +21,7 @@ import * as THREE from "three";
 
 import Fillers from "./Components/Fillers.jsx";
 import Portal from "./Components/Portal.jsx";
+import MainPlatform from "./Components/MainPlatform.jsx";
 
 function page() {
   const sun = useRef();
@@ -32,14 +34,15 @@ function page() {
 
   return (
     <div className="w-screen h-screen bg-transparent">
-      <Canvas style={{ height: "100%", width: "100%" }}>
+      <Canvas style={{ height: "100%", width: "100%" }} shadows='soft'>
         <OrbitControls />
 
-        <Suspense >
+        {/* <Suspense >
           <Portal />
+        </Suspense> */}
+        <Suspense fallback='spinner' >
+          <MainPlatform position={[0, -20, 0]} />
         </Suspense>
-
-        
 
         <Background backgroundColors={backgroundColors} />
         <Fillers />
