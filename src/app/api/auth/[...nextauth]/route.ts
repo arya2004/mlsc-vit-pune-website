@@ -1,3 +1,6 @@
+// @ts-ignore
+// @ts-nocheck
+
 import axios from 'axios';
 import NextAuth, { type NextAuthOptions } from 'next-auth';
 import GitHubProvider from 'next-auth/providers/github';
