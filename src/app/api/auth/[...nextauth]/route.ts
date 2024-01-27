@@ -1,59 +1,38 @@
-import prisma from '../../../../../prisma/client'
-import { compare } from 'bcrypt'
-import NextAuth, { type NextAuthOptions } from 'next-auth'
-import CredentialsProvider from 'next-auth/providers/credentials'
+import axios from 'axios';
+import NextAuth, { type NextAuthOptions } from 'next-auth';
+import GitHubProvider from 'next-auth/providers/github';
 
 export const authOptions: NextAuthOptions = {
     session: {
       strategy: 'jwt'
     },
     providers: [
-      CredentialsProvider({
-        name: 'Sign in',
-        credentials: {
-          email: {
-            label: 'Email',
-            type: 'email',
-            placeholder: 'hello@example.com'
-          },
-          password: { label: 'Password', type: 'password' }
-        },
-        async authorize(credentials) {
-          if (!credentials?.email || !credentials.password) {
-            return null
-          }
-  
-          const user = await prisma.webUser.findUnique({
-            where: {
-              email: credentials.email
-            }
-          })
-  
-          if (!user) {
-            return null
-          }
-  
-          const isPasswordValid = await compare(
-            credentials.password,
-            user.password
-          )
-  
-          if (!isPasswordValid) {
-            return null
-          }
-  
-          return {
-            id: user.id + '',
-            email: user.email,
-            name: user.name,
-            randomKey: 'Hey cool'
-          }
-        }
-      })
+      GitHubProvider({
+        clientId: process.env.GITHUB_CLIENT_ID,
+        clientSecret: process.env.GITHUB_CLIENT_SECRET
+      }),
     ],
     callbacks: {
+      async signIn({ user, account, profile}) {
+        const email = user.email;
+        const name = user.name;
+        console.log(account)
+        if (!email || !name) 
+        return false;
+        const url = profile.organizations_url // @ts-ignore
+        console.log(url)
+        const {data} = await axios.get(url)
+        const ORG_NAME = 'mlscvitpune'
+        let res = false;
+        for (const org of data) {
+          if (org.login === ORG_NAME) {
+            res = true;
+            break;
+          }
+        }
+        return res;
+      },
       session: ({ session, token }) => {
-        console.log('Session Callback', { session, token })
         return {
           ...session,
           user: {
@@ -64,7 +43,6 @@ export const authOptions: NextAuthOptions = {
         }
       },
       jwt: ({ token, user }) => {
-        console.log('JWT Callback', { token, user })
         if (user) {
           const u = user as unknown as any
           return {
@@ -75,8 +53,9 @@ export const authOptions: NextAuthOptions = {
         }
         return token
       }
-    }
+    },
   }
   
   const handler = NextAuth(authOptions)
-  export { handler as GET, handler as POST }
+  export { handler as GET, handler as POST };
+
