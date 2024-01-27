@@ -49,6 +49,7 @@ function MovingCamera() {
         ref={controls}
         mass={1}
         position={[0, 25, 0]}
+        
         enabledRotations={[false, false, false]}
       >
         <CapsuleCollider args={[0.75, 0.5]} />
