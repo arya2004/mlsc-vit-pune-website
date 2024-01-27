@@ -16,11 +16,9 @@ export const authOptions: NextAuthOptions = {
       async signIn({ user, account, profile}) {
         const email = user.email;
         const name = user.name;
-        console.log(account)
         if (!email || !name) 
         return false;
         const url = profile.organizations_url // @ts-ignore
-        console.log(url)
         const {data} = await axios.get(url)
         const ORG_NAME = 'mlscvitpune'
         let res = false;
