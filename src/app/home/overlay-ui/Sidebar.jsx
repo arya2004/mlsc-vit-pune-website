@@ -39,11 +39,11 @@ function Sidebar() {
           <img src="/icons/compass.png" />
         </button>
       ) : (
-        <div className="relative flex items-center w-2/6 left-10 h-full bg-slate-500 ease-in-out duration-300 ">
+        <div className="relative flex items-center w-2/6 left-10 h-full ease-in-out duration-300 ">
           <div
             className={cn(
               open ? "w-[90%]" : "w-0",
-              "absolute h-[95%] top-7 left-4 rounded-[20px] shadow- ease-in-out bg-[#0078D4] duration-300 clip-corner-back"
+              "absolute h-[95%] top-7 left-4 rounded-[20px] shadow- ease-in-out duration-300 clip-corner-shadow"
             )}
           >
             <svg
@@ -67,19 +67,19 @@ function Sidebar() {
           <div
             className={cn(
               open ? "w-[90%]" : "w-0",
-              "relative flex flex-col items-center justify-evenly z-10 h-[95%] border-[2px] border-[#0078D4] rounded-[20px] shadow- ease-in-out bg-black duration-300 clip-corner-front"
+              "relative flex flex-col items-center justify-evenly z-10 h-[95%] rounded-[20px] ease-in-out clip-corner duration-300 drop-shadow-2xl"
             )}
           >
             {/* Discover */}
             <div className="w-5/6 h-3/6 border-b-[1px] border-[#0078D4] cursor-pointer">
-              <div className="flex flex-row w-4/5 bg-slate-100 h-full">
+              <div className="flex flex-row w-4/5 h-full">
                 <TextAnimation word='DISCOVER' className='"h-full w-1/4 bg-black text-[#0078D4] text-xs p-2 pt-8 uppercase"'  />
-                <div className="flex flex-col items-start justify-evenly h-full w-3/4 bg-black pl-5 font-Wallpoet">
-                  <TextAnimation word="HOME" className='flex items-center justify-start h-10 w-24 p-2 px-4 rounded-[2px] rounded-br-[10px] bg-[#0078d4] text-lg text-white active-black' />
-                  <TextAnimation word="TEAM" className='flex items-center justify-start h-10 w-24 p-2 px-4 rounded-[2px] rounded-br-[10px] bg-[#0078d4] text-lg text-white active-black' />
-                  <TextAnimation word="EVENTS" className='flex items-center justify-start h-10 w-28 p-2 px-4 rounded-[2px] rounded-br-[10px] bg-[#0078d4] text-lg text-white active-black' />
-                  <TextAnimation word="BLOGS" className='flex items-center justify-start h-10 w-24 p-2 px-4 rounded-[2px] rounded-br-[10px] bg-[#0078d4] text-lg text-white active-black' />
-                  <TextAnimation word="PROJECTS" className='flex items-center justify-start h-10 w-32 p-2 px-4 rounded-[2px] rounded-br-[10px] bg-[#0078d4] text-lg text-white active-black' />
+                <div className="flex flex-col items-start justify-evenly h-full w-3/4 bg-transparent pl-5">
+                  <TextAnimation word="HOME" className='flex items-center justify-start h-10 w-28 p-2 px-4 rounded-[2px] rounded-br-[19px] text-2xl text-white active-black clip-corner-option' />
+                  <TextAnimation word="TEAM" className='flex items-center justify-start h-10 w-28 p-2 px-4 rounded-[2px] rounded-br-[19px]  text-2xl text-white active-black clip-corner-option' />
+                  <TextAnimation word="EVENTS" className='flex items-center justify-start h-10 w-32 p-2 px-4 rounded-[2px] rounded-br-[19px]  text-2xl text-white active-black clip-corner-option' />
+                  <TextAnimation word="BLOGS" className='flex items-center justify-start h-10 w-28 p-2 px-4 rounded-[2px] rounded-br-[19px]  text-2xl text-white active-black clip-corner-option' />
+                  <TextAnimation word="PROJECTS" className='flex items-center justify-start h-10 w-36 p-2 px-4 rounded-[2px] rounded-br-[19px]  text-2xl text-white active-black clip-corner-option' />
                 </div>
               </div>
             </div>
@@ -89,9 +89,9 @@ function Sidebar() {
               <div className="relative flex flex-row w-4/5 h-full">
                 <TextAnimation word='CONNECT' className="h-full w-1/4  text-[#0078D4] text-xs p-2 pt-8 uppercase" />
                 <div className="flex z-30 flex-col items-start justify-evenly h-full w-3/4 pl-5 ">
-                  <TextAnimation word='LINKEDIN' className="flex items-center justify-start h-10 w-28 p-4 px-6 rounded-[2px] rounded-br-[10px] bg-[#0078d4] text-lg text-white active-black"  />
-                  <TextAnimation word='INSTAGRAM' className="flex items-center justify-start h-10 w-36 p-4 px-6 rounded-[2px] rounded-br-[10px] bg-[#0078d4] text-lg text-white active-black" />
-                  <TextAnimation word='GITHUB' className="flex items-center justify-start h-10 w-28 p-4 px-6 rounded-[2px] rounded-br-[10px] bg-[#0078d4] text-lg text-white active-black" />
+                  <TextAnimation word='LINKEDIN' className="flex items-center justify-start h-10 w-28 p-4 px-6 rounded-[2px] rounded-br-[10px] clip-corner-option text-lg text-white active-black"  />
+                  <TextAnimation word='INSTAGRAM' className="flex items-center justify-start h-10 w-36 p-4 px-6 rounded-[2px] rounded-br-[10px] clip-corner-option text-lg text-white active-black" />
+                  <TextAnimation word='GITHUB' className="flex items-center justify-start h-10 w-28 p-4 px-6 rounded-[2px] rounded-br-[10px] clip-corner-option text-lg text-white active-black" />
                 </div>
               </div>
             </div>

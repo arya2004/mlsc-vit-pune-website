@@ -1,30 +1,35 @@
-@import url('https://fonts.googleapis.com/css2?family=Wallpoet&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Wallpoet&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap');
 
-.font-wallpoet {
+/*.font-wallpoet {
   font-family: 'Wallpoet', sans-serif;
+} */
+
+/* .font-black-ops-one {
+  font-family: 'Black Ops One', system-ui;
+} */
+
+
+
+.clip-corner {
+    background: linear-gradient(225deg, transparent 75px, black 0 );
+    border-top-right-radius: 120px;
 }
 
-.clip-corner-front:before {
-  
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    border-top: 110px solid #0078D4;
-    border-left: 110px solid transparent;
-    width: 0;
-  
+.clip-corner-shadow {
+    background: linear-gradient(225deg, transparent 73px, #0078D4 0 );
+    border-top-right-radius: 125px;
 }
 
-.clip-corner-back:before {
-    content: '';
-    position: absolute;
-    top: -3;
-    right: 0;
-    border-top: 90px solid #0078D4;
-    border-left: 90px solid #0078D4;
-    width: 0;
+.clip-corner-option:hover {
+    background: linear-gradient(315deg, transparent 10px, #0078D4 0 );
+
 }
+.clip-corner-option:active {
+    background: linear-gradient(315deg, transparent 10px, #8dc1e9 0 );
+}
+
+
 
 /* .animated-cross {
   width: 100px; 
