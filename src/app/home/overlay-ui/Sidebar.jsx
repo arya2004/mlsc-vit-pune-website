@@ -3,25 +3,8 @@ import cn from "../../utils/cn";
 
 import "./styles.css";
 import TextAnimation from "./TextAnimation";
+import {ClosingButton, Cross} from "./ClosingButtons";
 
-export const sidebarCloseButton = () => {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="132"
-      height="132"
-      viewBox="0 0 132 132"
-      fill="none"
-    >
-      <path
-        d="M120.877 1.66733C125.828 1.68094 129.839 5.69133 129.852 10.6426L130.156 121.054C130.178 129.084 120.47 133.121 114.792 127.443L4.07708 16.7278C-1.60104 11.0497 2.43572 1.34182 10.4658 1.36389L120.877 1.66733Z"
-        fill="#203A61"
-        stroke="#0078D4"
-        stroke-width="2"
-      />
-    </svg>
-  );
-};
 
 function Sidebar() {
   const [open, setOpen] = useState(false);
@@ -39,32 +22,21 @@ function Sidebar() {
           <img src="/icons/compass.png" />
         </button>
       ) : (
-        <div className="relative flex items-center w-2/6 left-10 h-full ease-in-out duration-300 ">
-          <div
+        <div className="relative flex items-center lg:w-2/6 sm:w-full left-3 lg:left-10 h-full ease-in-out duration-300 ">
+          <div //Shadow 
             className={cn(
               open ? "w-[90%]" : "w-0",
-              "absolute h-[95%] top-7 left-4 rounded-[20px] shadow- ease-in-out duration-300 clip-corner-shadow"
+              "absolute h-[95%] top-7 left-4 rounded-[20px] shadow- ease-in-out duration-200 clip-corner-shadow"
             )}
           >
-            <svg
-              className="absolute -top-3 w-24 h-auto right-[-1px] z-20"
-              xmlns="http://www.w3.org/2000/svg"
-              width="132"
-              height="132"
-              viewBox="0 0 132 132"
-              fill="none"
-            >
-              <path
-                d="M120.877 1.66733C125.828 1.68094 129.839 5.69133 129.852 10.6426L130.156 121.054C130.178 129.084 120.47 133.121 114.792 127.443L4.07708 16.7278C-1.60104 11.0497 2.43572 1.34182 10.4658 1.36389L120.877 1.66733Z"
-                fill="#203A61"
-                stroke="#0078D4"
-                stroke-width="2"
-              />
-            </svg>
+            <div className="cursor-pointer" onClick={()=>{setOpen(false)}}>
+            <ClosingButton />
+            <Cross />
+            </div>
             {/* <div className="absolute -top-2 right-0 rounded-[20px] bg-black z-20 w-36 h-36"/>  */}
             {/* <div className="absolute top-8 right-10 bg-white z-20 w-48 h-48 rotate-45"/>/ */}
           </div>
-          <div
+          <div //Main container
             className={cn(
               open ? "w-[90%]" : "w-0",
               "relative flex flex-col items-center justify-evenly z-10 h-[95%] rounded-[20px] ease-in-out clip-corner duration-300 drop-shadow-2xl"
