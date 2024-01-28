@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Wallpoet&display=swap');
+
+.font-wallpoet {
+  font-family: 'Wallpoet', sans-serif;
+}
+
+.clip-corner-front:before {
+  
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-top: 110px solid #0078D4;
+    border-left: 110px solid transparent;
+    width: 0;
+  
+}
+
+.clip-corner-back:before {
+    content: '';
+    position: absolute;
+    top: -3;
+    right: 0;
+    border-top: 90px solid #0078D4;
+    border-left: 90px solid #0078D4;
+    width: 0;
+}
+
+/* .animated-cross {
+  width: 100px; 
+  height: 100px;
+  background: url('your-animated-icon.gif') no-repeat;
+  background-size: cover;
+  transition: transform 0.3s ease; 
+} */
+
+/* .animated-cross:hover {
+  transform: scale(1.1); 
+} */
