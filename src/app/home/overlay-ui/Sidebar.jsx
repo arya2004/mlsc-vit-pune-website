@@ -16,7 +16,7 @@ function Sidebar() {
   const SetSideBarOpen = useMLSCStore((state) => state.setSideBarOpen);
 
   return (
-    <div className="absolute w-screen h-screen z-10 bg-transparent flex flex-row ">
+    <div className={cn(sideBarOpen?"sm:w-full lg:w-2/6": "sm:w-0 lg:w-0","absolute h-screen z-10 bg-transparent flex flex-row ease-in-out duration-300")}>
      
       {!sideBarOpen ? (
         <button
@@ -28,7 +28,7 @@ function Sidebar() {
           <img src="/icons/compass.png" />
         </button>
       ) : (
-        <div className={"relative flex items-center lg:w-2/6 sm:w-full left-3 lg:left-10 h-full ease-in-out duration-300 "}>
+        <div className={"relative flex items-center lg:w-full sm:w-full left-3 lg:left-10 h-full ease-in-out duration-300 "}>
           <div //Shadow 
             className={cn(
               sideBarOpen ? "w-[90%]" : "w-0",
@@ -51,7 +51,7 @@ function Sidebar() {
             {/* Discover */}
             <div className="w-5/6 h-3/6 border-b-[1px] border-[#0078D4] cursor-pointer">
               <div className="flex flex-row w-4/5 h-full">
-                <TextAnimation word='DISCOVER' className="h-full w-1/4 text-[#0078D4] text-xs p-2 pt-8 uppercase"  />
+                <TextAnimation word='DISCOVER' className="h-full w-1/4 text-[#0078D4] text-xs p-2 pt-8 uppercase ease-in-out duration-300"  />
                 <div className="flex flex-col items-start justify-evenly h-full w-3/4 bg-transparent pl-5">
                   
                   <Option text="HOME" number="01" addStyles={{'width':'7rem'}} />
@@ -67,11 +67,11 @@ function Sidebar() {
             {/* Connect */}
             <div className="w-5/6  h-2/6 border-b-[1px] border-[#0078D4] cursor-pointer">
               <div className="relative flex flex-row w-4/5 h-full">
-                <TextAnimation word='CONNECT' className="h-full w-1/4  text-[#0078D4] text-xs p-2 pt-8 uppercase" />
+                <TextAnimation word='CONNECT' className="h-full w-1/4  text-[#0078D4] text-xs p-2 pt-8 uppercase  ease-in-out duration-300" />
                 <div className="flex z-30 flex-col items-start justify-evenly h-full w-3/4 pl-5 ">
-                  <TextAnimation word='LINKEDIN' className="flex items-center justify-start h-10 w-[8rem] p-2 px-3 rounded-[2px] rounded-br-[19px] clip-corner-option text-lg text-[#E6E6E6] active-black font-Wallpoet"  />
-                  <TextAnimation word='INSTAGRAM' className="flex items-center justify-start h-10 w-[9.5rem] p-2 px-3 rounded-[2px] rounded-br-[19px] clip-corner-option text-lg text-[#E6E6E6] active-black font-Wallpoet" />
-                  <TextAnimation word='GITHUB' className="flex items-center justify-start h-10 w-[7rem] p-2 px-3 rounded-[2px] rounded-br-[19px] clip-corner-option text-lg text-[#E6E6E6] active-black font-Wallpoet" />
+                  <TextAnimation word='LINKEDIN' className="flex items-center justify-start h-10 w-[8rem] p-2 px-3 rounded-[2px] rounded-br-[19px] clip-corner-option text-lg text-[#E6E6E6] active-black font-Wallpoet  ease-in-out duration-300"  />
+                  <TextAnimation word='INSTAGRAM' className="flex items-center justify-start h-10 w-[9.5rem] p-2 px-3 rounded-[2px] rounded-br-[19px] clip-corner-option text-lg text-[#E6E6E6] active-black font-Wallpoet  ease-in-out duration-300" />
+                  <TextAnimation word='GITHUB' className="flex items-center justify-start h-10 w-[7rem] p-2 px-3 rounded-[2px] rounded-br-[19px] clip-corner-option text-lg text-[#E6E6E6] active-black font-Wallpoet  ease-in-out duration-300" />
                 </div>
               </div>
             </div>
@@ -79,9 +79,9 @@ function Sidebar() {
 
             <div className="w-5/6 h-1/5 cursor-pointer">
               <div className="relative flex flex-row w-4/5 h-full">
-                <TextAnimation word='CREDITS' className="h-full w-1/4  text-[#0078D4] text-xs p-2 pt-8 uppercase" />
+                <TextAnimation word='CREDITS' className="h-full w-1/4  text-[#0078D4] text-xs p-2 pt-8 uppercase  ease-in-out duration-300" />
               
-                <div className="flex flex-col items-start justify-start pt-8 h-full w-3/4 pl-5 text-xs text-[#E6E6E6]">
+                <div className="flex flex-col items-start justify-start pt-8 h-full w-3/4 pl-5 text-xs text-[#E6E6E6]  ease-in-out duration-300">
                   @2023-24 Microsoft Learn Student Club, VIT Pune
                 </div>
               </div>
