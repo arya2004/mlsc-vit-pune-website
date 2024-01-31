@@ -1,26 +1,27 @@
 import React, { useState, useEffect } from "react";
+import { useMLSCStore } from "../../store/MLSCStore";
 
-function TextAnimation({word, className}) {
+function TextAnimation({word, className, addStyles}) {
   const [currentLetter, setCurrentLetter] = useState("@");
   const [currentString, setCurrentString] = useState("");
 
-  const [isHoveredHome, setIsHoveredHome] = useState(false);
-  // const [isHoveredEvent, setIsHoveredEvent] = useState(false);
-  // const [isHoveredProject, setIsHoveredProject] = useState(false);
-  // const [isHoveredTeam, setIsHoveredTeam] = useState(false);
-  // const [isHoveredBlog, setIsHoveredBlog] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+
+  const sideBarOpen = useMLSCStore((state) => state.sideBarOpen);
+  // const [animate, setAnimate] = useState(false);
 
   const [index, setIndex] = useState(0);
-//   const [word, setWord] = useState("HOME");
 
-  const home = "HOME";
-
+  
   useEffect(() => {
-    // const handleTextAnim = (word) => {
+    
+    // if(sideBarOpen){
+    //   setAnimate(true);
+    // }
     let intervalId;
 
-    if (isHoveredHome) {
-      // setCurrentString(currentLetter);
+    if (isHovered) {
+ 
       intervalId = setInterval(() => {
         if (currentString === word) {
           setCurrentLetter("");
@@ -35,32 +36,31 @@ function TextAnimation({word, className}) {
             String.fromCharCode(prevLetter.charCodeAt(0) + 1)
           );
         }
-      }, 8); // Adjust the interval as needed
+      }, 0.8); // Adjust the interval as needed
+
+      // setAnimate(false);
     } else {
       setCurrentLetter("@");
       setIndex(0);
       setCurrentString("");
     }
-    // console.log(`Current String: ${currentString+""+currentLetter} index: ${index}`);
-    // console.log(currentLetter);
+  
     return () => clearInterval(intervalId);
-    // }
 
-    // handleTextAnim(word);
-  }, [currentLetter, isHoveredHome]);
+  }, [currentLetter, isHovered, sideBarOpen]);
 
   return (
     <div
       onMouseEnter={() => {
-        setIsHoveredHome(true);
+        setIsHovered(true);
       }}
       onMouseLeave={() => {
-        setIsHoveredHome(false);
+        setIsHovered(false);
       }}
-  
+      style={addStyles}
       className={className}
     >
-      {isHoveredHome
+      {isHovered 
         ? currentString === word
           ? word
           : currentString + "" + currentLetter

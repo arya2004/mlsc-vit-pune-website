@@ -10,7 +10,7 @@ module.exports = {
 
       fontFamily: {
         Wallpoet: ['Wallpoet', 'sans-serif'],
-        'BlackOpsOne': ['Black Ops One', 'system-ui'],
+        BlackOpsOne: ['Black Ops One', 'system-ui'],
       },
 
       backgroundImage: {

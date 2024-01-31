@@ -13,7 +13,7 @@ const HandleCaseOrMB = () => {
   return (
     <div className="w-screen h-screen">
       <Sidebar />
-      {/* {!showMotherBoard ? <Home /> : <MotherBoardCity />} */}
+      {!showMotherBoard ? <Home /> : <MotherBoardCity />}
     </div>);
 };
 

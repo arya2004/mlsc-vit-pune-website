@@ -12,21 +12,23 @@
 
 
 .clip-corner {
-    background: linear-gradient(225deg, transparent 75px, black 0 );
+    background: linear-gradient(225deg, transparent 75px, rgba(0, 0, 0, 0.759) 0 );
     border-top-right-radius: 120px;
 }
 
 .clip-corner-shadow {
-    background: linear-gradient(225deg, transparent 73px, #0078D4 0 );
+    background: linear-gradient(225deg, transparent 73px, rgba(0, 120, 212, 0.701) 0 );
     border-top-right-radius: 125px;
 }
 
 .clip-corner-option:hover {
     background: linear-gradient(315deg, transparent 10px, #0078D4 0 );
+    color: black;
 
 }
 .clip-corner-option:active {
     background: linear-gradient(315deg, transparent 10px, #8dc1e9 0 );
+    color:black;
 }
 
 
