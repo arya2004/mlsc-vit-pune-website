@@ -36,7 +36,7 @@ function TextAnimation({word, className, addStyles}) {
             String.fromCharCode(prevLetter.charCodeAt(0) + 1)
           );
         }
-      }, 0.8); // Adjust the interval as needed
+      }, 1.2); // Adjust the interval as needed
 
       // setAnimate(false);
     } else {
