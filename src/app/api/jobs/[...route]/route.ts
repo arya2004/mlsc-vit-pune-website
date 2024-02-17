@@ -1,7 +1,6 @@
-import { NextApiRequest } from "next";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
-const handleJobs = async (req: NextApiRequest) => {
+const handleJobs = async (req: NextRequest) => {
     try {
         const url = req.url;
         const revalidationType : PossibleRoutes = url.split('/').reverse()[0] as PossibleRoutes;
