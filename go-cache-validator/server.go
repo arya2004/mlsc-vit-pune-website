@@ -21,7 +21,7 @@ func main() {
 
 	err := godotenv.Load(".env")
 	if err != nil {
-		log.Fatalf("Error loading environment variables file: %s", err)
+		log.Printf("Error loading .env file: %s", err)
 	}
 
 	serverUrl := os.Getenv("SERVER_URL")
