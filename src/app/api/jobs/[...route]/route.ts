@@ -10,15 +10,13 @@ const handleJobs = async (req: NextRequest) => {
         
         if (revalidationType === 'events') {
             const events =  await prisma.event.findMany({
-                select: {
-                    name: true,
-                    id: true,
-                }
+                
             })
             if (events) {
                 await kv.set("events", JSON.stringify(events), {
                     ex: 1000,
                 })
+                
             
                 return NextResponse.json(
                     {
@@ -29,12 +27,7 @@ const handleJobs = async (req: NextRequest) => {
             }
         
         } else if (revalidationType === 'projects') {
-            const projects =  await prisma.project.findMany({
-                select: {
-                    title: true,
-                    id: true,
-                }
-            })
+            const projects =  await prisma.project.findMany({})
             if (projects) {
                 await kv.set("projects", JSON.stringify(projects), {
                     ex: 1000,
@@ -49,12 +42,7 @@ const handleJobs = async (req: NextRequest) => {
             }
             console.log("projects cache re-validated")
         } else if (revalidationType === 'teams') {
-            const projects =  await prisma.user.findMany({
-                select: {
-                    fullName: true,
-                    id: true,
-                }
-            })
+            const projects =  await prisma.user.findMany({})
             if (projects) {
                 await kv.set("team", JSON.stringify(projects), {
                     ex: 1000,
@@ -69,12 +57,7 @@ const handleJobs = async (req: NextRequest) => {
             }
             console.log("projects cache re-validated")
         } else if (revalidationType === 'blogs') {
-            const blogs =  await prisma.blog.findMany({
-                select: {
-                    title: true,
-                    id: true,
-                }
-            })
+            const blogs =  await prisma.blog.findMany({})
             if (blogs) {
                 await kv.set("blogs", JSON.stringify(blogs), {
                     ex: 1000,
