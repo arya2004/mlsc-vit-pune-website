@@ -15,7 +15,7 @@ export async function GET(  request: Request,) {
 
       const cached = await kv.get("events");
       if(cached){
-        console.log("Chache HIT")
+        console.log("Event Chache HIT")
         return NextResponse.json(
           cached,
           {
@@ -23,7 +23,7 @@ export async function GET(  request: Request,) {
           }
         );
       }
-
+      console.log("Event Chache MISS")
       const data = await prisma.event.findMany({});
       return NextResponse.json(
         data,

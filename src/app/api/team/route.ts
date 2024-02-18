@@ -18,7 +18,7 @@ export async function GET(  request: Request,) {
   try {
     const cached = await kv.get("teams");
     if(cached){
-      console.log("Chache HIT")
+      console.log("Team Chache HIT")
       return NextResponse.json(
         cached,
         {
@@ -27,7 +27,7 @@ export async function GET(  request: Request,) {
       );
     
   }else{
-    console.log("Chache MISS")
+    console.log("Team Chache MISS")
     const data = await prisma.user.findMany({});
     return NextResponse.json(
       data,

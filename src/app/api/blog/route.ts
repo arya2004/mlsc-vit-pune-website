@@ -15,7 +15,7 @@ export async function GET(  request: Request,) {
       
       const cached = await kv.get("blogs");
       if(cached){
-        console.log("Chache HIT")
+        console.log("Blogs Chache HIT")
         return NextResponse.json(
           cached,
           {
@@ -23,7 +23,7 @@ export async function GET(  request: Request,) {
           }
         );
       }else{
-        console.log("Chache MISS")
+        console.log("Blogs Chache MISS")
         const data = await prisma.blog.findMany({
           include: {
               author: true,

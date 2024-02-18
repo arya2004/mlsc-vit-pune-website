@@ -15,7 +15,7 @@ export async function GET(  request: Request,) {
 
     const cached = await kv.get("projects");
     if(cached){
-      console.log("Chache HIT")
+      console.log("Projects Chache HIT")
       return NextResponse.json(
         cached,
         {
@@ -24,7 +24,7 @@ export async function GET(  request: Request,) {
       );
     
   }else{
-    console.log("Chache MISS")
+    console.log("Projects Chache MISS")
     const data = await prisma.project.findMany({
       include: {
           maintainer: true,
