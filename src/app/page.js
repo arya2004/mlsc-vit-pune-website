@@ -5,6 +5,7 @@ export default function Page() {
   try {
     const cacheServerUrl = process.env.NEXT_APP_CACHE_VALIDATOR_SERVER_URL
     axios.get(cacheServerUrl + "/hit/all")
+    console.log("cache server hit")
   } catch (error) {
     console.log('Error in cache server hit', error)
   }

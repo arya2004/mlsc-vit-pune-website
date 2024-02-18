@@ -1,6 +1,6 @@
-import { NextRequest, NextResponse } from "next/server";
 import { kv } from '@vercel/kv';
-import prisma from '../../../../../prisma/client'
+import { NextRequest, NextResponse } from "next/server";
+import prisma from '../../../../../prisma/client';
 
 
 const handleJobs = async (req: NextRequest) => {
@@ -16,8 +16,7 @@ const handleJobs = async (req: NextRequest) => {
                 await kv.set("events", JSON.stringify(events), {
                     ex: 1000,
                 })
-                
-            
+                console.log("events cache re-validated")
                 return NextResponse.json(
                     {
                         status: 200,
@@ -33,6 +32,7 @@ const handleJobs = async (req: NextRequest) => {
                     ex: 1000,
                 })
             
+                console.log("projects cache re-validated")
                 return NextResponse.json(
                     {
                         status: 200,
@@ -40,7 +40,6 @@ const handleJobs = async (req: NextRequest) => {
                     }
                 )
             }
-            console.log("projects cache re-validated")
         } else if (revalidationType === 'teams') {
             const projects =  await prisma.user.findMany({})
             if (projects) {
@@ -48,6 +47,7 @@ const handleJobs = async (req: NextRequest) => {
                     ex: 1000,
                 })
             
+                console.log("projects cache re-validated")
                 return NextResponse.json(
                     {
                         status: 200,
@@ -55,7 +55,6 @@ const handleJobs = async (req: NextRequest) => {
                     }
                 )
             }
-            console.log("projects cache re-validated")
         } else if (revalidationType === 'blogs') {
             const blogs =  await prisma.blog.findMany({})
             if (blogs) {
@@ -63,6 +62,7 @@ const handleJobs = async (req: NextRequest) => {
                     ex: 1000,
                 })
             
+                console.log("blogs cache re-validated")
                 return NextResponse.json(
                     {
                         status: 200,
@@ -70,7 +70,6 @@ const handleJobs = async (req: NextRequest) => {
                     }
                 )
             }
-            console.log("blogs cache re-validated")
         }
 
         return NextResponse.json({ url });
