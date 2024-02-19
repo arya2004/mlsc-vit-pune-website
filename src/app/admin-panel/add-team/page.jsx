@@ -1,14 +1,15 @@
 "use client";
 import { useState } from "react";
 
-import {Textboxico, Textbox, Selectbox} from "../components/Textbox";
+import { MdNavigateNext, MdNavigateBefore } from "react-icons/md";
 
-import { IoMdAdd } from "react-icons/io";
-import { FiGrid, FiMonitor } from "react-icons/fi";
-import { RiTeamLine } from "react-icons/ri";
-import { GoProjectSymlink } from "react-icons/go";
-import { ImBlog } from "react-icons/im";
-import { MdOutlineEventSeat } from "react-icons/md";
+import {Textboxico, Textbox, Selectbox} from "../components/Textbox";
+import Sidepanel from "../components/Sidepanel";
+import Searchbox from "../components/Searchbox";
+import Domainoutput from "./Domainoutput";
+import WhichDomain from "./WhichDomain"
+
+//TODO: api/jobs/<teams | events | projects | teams | blogs , cache refresing
 
 const AddTeamMember = () => {
   const [formData, setFormData] = useState({
@@ -22,9 +23,14 @@ const AddTeamMember = () => {
     linkedinID: "",
   });
 
+  const [seeDomains, setSeeDomains] = useState(true);
+  const [output, setoutput] = useState([]);
+  const [whichDomain, setWhichDomain] = useState('Core Team');
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -32,7 +38,7 @@ const AddTeamMember = () => {
 
   return (
     <div className="flex flex-row justify-center bg-[#666666] h-screen w-screen text-[#F0F0F0]">
-      <div className="flex flex-col items-center p-5 h-full w-3/5 bg-slate-700">
+      <div className="flex flex-col items-center p-5 h-full w-3/5">
         <div className="flex flex-row items-center w-full h-[25%] rounded-t-[40px] rounded-bl-[40px] bg-black">
           
           <div className="flex flex-col item-start gap-5 h-full w-[30%] p-7 font-light ">
@@ -46,13 +52,7 @@ const AddTeamMember = () => {
 
         </div>
         <div className="flex flex-row justify-between w-full h-[75%] rounded-b-[40px]  rounded-[40px] rounded-tr-[0px]">
-          <div className="flex flex-col justify-evenly items-center h-[96%] w-16 mt-4 rounded-[20px] bg-[#131416] text-[#818181]">
-            <FiGrid className="h-7 w-7" />
-            <RiTeamLine className="h-7 w-7"/>
-            <GoProjectSymlink className="h-7 w-7" />
-            <ImBlog className="h-7 w-7" />
-            <MdOutlineEventSeat className="h-7 w-7" />
-          </div>
+          <Sidepanel />
           <div className="flex gap-5 flex-col h-full w-[91%] rounded-b-[40px] bg-black px-20">
             <Textboxico label='Team Member Name' icons='/icons/user.svg' type='text' />
             <div className='flex flex-row gap-4 justify-between'>
@@ -79,7 +79,32 @@ const AddTeamMember = () => {
         </div>
       </div>
 
-      <div className="flex flex-col justify-evenly h-full w-2/5 bg-slate-300 text-[#f0f0f0]"></div>
+      <div className="flex flex-col gap-5 justify-evenly h-full w-2/5 p-5 bg-[#666666] text-[#6A6A6A]">
+        <Searchbox />
+        <div className="flex flex-col items-center w-full h-[90%] bg-[#1E1E1E] p-8 px-10  rounded-[40px] border-[#6A6A6A]-2" >
+          <span className="text-lg text-[#6A6A6A] border-b-2 border-[#6A6A6A] w-full text-center py-3 ">All Team Members</span>
+
+          {/* Domains */}
+          {seeDomains ? <Domainoutput setSeeDomains={setSeeDomains} setWhichDomain={setWhichDomain} /> : <WhichDomain whichDomain={whichDomain} setWhichDomain={setWhichDomain} />}
+         
+          {/* Core */}
+          {/* AI-ML */}
+          {/* App */}
+          {/* IoT */}
+          {/* Web */}
+          {/* Web3 */}
+          {/* Multimedia */}
+          {/* Partnership */}
+          {/* Community */}
+          {/* Event */}
+         <div className="flex flex-row items-center gap-5 relative h-8 w-20">
+            <MdNavigateBefore onClick={()=>{setSeeDomains(true)}} className="h-8 w-8 rounded-full p-1 hover:bg-[#424242] active:bg-[#888888]" />
+            <MdNavigateNext onClick={()=>setSeeDomains(false)} className="h-8 w-8 rounded-full p-1 hover:bg-[#424242] active:bg-[#888888]" />
+
+       
+         </div>
+        </div>
+      </div>
 
       {/* <form onSubmit={handleSubmit}>
       <div className="max-w-8xl mx-auto mt-8">
