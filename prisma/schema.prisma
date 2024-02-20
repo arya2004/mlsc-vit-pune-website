@@ -32,6 +32,7 @@ model User {
   githubLink String
   aboutMe String?
   imageLink String
+  modelLink String
   role    Role     @default(TEAM_MEMBER)
   projects Project[]
   blogs Blog[]

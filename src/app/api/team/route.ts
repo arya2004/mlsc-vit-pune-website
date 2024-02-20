@@ -72,7 +72,8 @@ export async function POST(req: Request) {
             linkedinLink,
             githubLink,
             aboutMe,
-            imageLink,} = res;
+            imageLink,
+            modelLink} = res;
 
             await prisma.user.create({
                 data: {
@@ -84,7 +85,8 @@ export async function POST(req: Request) {
                     linkedinLink: linkedinLink,
                     githubLink: githubLink,
                     aboutMe: aboutMe,
-                    imageLink: imageLink
+                    imageLink: imageLink,
+                    modelLink: modelLink,
                 },
               })
 
