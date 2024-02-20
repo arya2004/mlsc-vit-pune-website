@@ -9,7 +9,6 @@ export default function Domainoutput({setSeeDomains, setWhichDomain}) {
     const handleClick = (value) => {
         setWhichDomain(value);
         setSeeDomains(false);
-
     }
 
   return (
@@ -19,8 +18,8 @@ export default function Domainoutput({setSeeDomains, setWhichDomain}) {
       </span>
       <div className="w-full h-full overflow-y-auto">
         {domains.map((value, index) => {
-            return (<div key={index} onClick={handleClick(value)} className="flex flex-row items-center p-2 text-lg text-[#6A6A6A] w-full h-16 border-b-[1px] border-[#6A6A6A] hover:bg-[#282828] cursor-pointer ease-in-out duration-100">
-                {console.log(value)}
+            return (<div key={index} onClick={()=>handleClick(value)} className="flex flex-row items-center p-2 text-lg text-[#6A6A6A] w-full h-16 border-b-[1px] border-[#6A6A6A] hover:bg-[#282828] cursor-pointer ease-in-out duration-100">
+                {/* {console.log(value)} */}
                 {value}
             </div>)
         })}

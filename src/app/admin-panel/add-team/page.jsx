@@ -24,6 +24,7 @@ const AddTeamMember = () => {
   });
 
   const [seeDomains, setSeeDomains] = useState(true);
+  console.log(seeDomains)
   const [output, setoutput] = useState([]);
   const [whichDomain, setWhichDomain] = useState('Core Team');
 
@@ -85,23 +86,12 @@ const AddTeamMember = () => {
           <span className="text-lg text-[#6A6A6A] border-b-2 border-[#6A6A6A] w-full text-center py-3 ">All Team Members</span>
 
           {/* Domains */}
+          {console.log(seeDomains)}
           {seeDomains ? <Domainoutput setSeeDomains={setSeeDomains} setWhichDomain={setWhichDomain} /> : <WhichDomain whichDomain={whichDomain} setWhichDomain={setWhichDomain} />}
-         
-          {/* Core */}
-          {/* AI-ML */}
-          {/* App */}
-          {/* IoT */}
-          {/* Web */}
-          {/* Web3 */}
-          {/* Multimedia */}
-          {/* Partnership */}
-          {/* Community */}
-          {/* Event */}
+    
          <div className="flex flex-row items-center gap-5 relative h-8 w-20">
             <MdNavigateBefore onClick={()=>{setSeeDomains(true)}} className="h-8 w-8 rounded-full p-1 hover:bg-[#424242] active:bg-[#888888]" />
             <MdNavigateNext onClick={()=>setSeeDomains(false)} className="h-8 w-8 rounded-full p-1 hover:bg-[#424242] active:bg-[#888888]" />
-
-       
          </div>
         </div>
       </div>
