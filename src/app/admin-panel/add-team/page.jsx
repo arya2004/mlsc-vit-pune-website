@@ -2,6 +2,7 @@
 import { useState } from "react";
 
 import axios from "axios";
+import {useRouter} from 'next/navigation'
 
 import { MdNavigateNext, MdNavigateBefore } from "react-icons/md";
 
@@ -15,7 +16,6 @@ import WhichDomain from "./WhichDomain";
 //TODO: api/jobs/<teams | events | projects | teams | blogs , cache refresing
 
 function AddTeamMember() {
-  const baseURL = "http://localhost:3000/api/team";
 
   const [formData, setFormData] = useState({
     academicYear: "",
@@ -40,23 +40,40 @@ function AddTeamMember() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(formData);
 
     const res = async () => {
       try{
-        const response = await axios.post('http://localhost:3000/api/team', formData);
+        const body = {
+          fullName: formData.name,
+          domain: formData.domain,
+          position: formData.position,
+          year: formData.academicYear,
+          xLink: formData.twitterID,
+          email: formData.mail,
+          linkedinLink: formData.linkedinID,
+          githubLink: formData.githubID,
+          aboutMe: formData.department,
+          imageLink: formData.photoURL,
+          modelLink: formData.modelURL,
+      }
+        const {data, status } = await axios.post(`/api/team`, body);
         
-        console.log(response.data);
+        console.log("DATA AND STATUS")
+        console.log(data, status);
       } catch (err) {
         console.log(err);
       }
     }
 
-    console.log(res());
-    const cache = axios.get("http://localhost:3000/api/jobs/teams");
+    await res();
+    const cache = await axios.get("/api/jobs/teams");
 
+    console.log(cache)
+
+    window.location.reload();
   };
 
   return (

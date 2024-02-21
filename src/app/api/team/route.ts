@@ -49,7 +49,10 @@ export async function GET(  request: Request,) {
 // Notice the funciton definiton:
 export async function POST(req: Request) {
     const res = await req.json();
+    console.log("Consoling res:")
     console.log(res);
+    console.log("OUT")
+
 
     const session = await getServerSession(authOptions)
 
@@ -69,38 +72,40 @@ export async function POST(req: Request) {
             position, 
             year,
             xLink,
+            email,
             linkedinLink,
             githubLink,
             aboutMe,
             imageLink,
             modelLink} = res;
 
-            await prisma.user.create({
-                data: {
-                    fullName: fullName,
-                    domain: domain,
-                    position: position,
-                    year: year,
-                    xLink: xLink,
-                    linkedinLink: linkedinLink,
-                    githubLink: githubLink,
-                    aboutMe: aboutMe,
-                    imageLink: imageLink,
-                    modelLink: modelLink,
-                },
-              })
+            const user = await prisma.user.create({
+              data:{
+                domain: domain,
+                fullName: fullName,
+                position: position,
+                year: year,
+                xLink: xLink,
+                linkedinLink: linkedinLink,
+                githubLink: githubLink,
+                aboutMe: aboutMe,
+                imageLink: imageLink,
+                modelLink: modelLink,
+                email: email
+              }
+            })
 
-
+              console.log(user);
               return NextResponse.json(
-                { message: "Ok" },
-                {
+                { message: "Ok" ,
+                  user: user,
                   status: 200
                 }
               );
     } catch (error) {
       return NextResponse.json(
-        { message: error.message },
-        {
+        { 
+          message: error.message,
           status: 500,
         }
       );

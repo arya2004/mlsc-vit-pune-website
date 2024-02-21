@@ -17,20 +17,26 @@ export const authOptions: NextAuthOptions = {
     ],
     callbacks: {
       async signIn({ user, account, profile}) {
-        const email = user.email;
-        const name = user.name;
-        if (!email || !name) 
-        return false;
+        // const email = user.email;
+        // const name = user.name;
+
+        // console.log(email, name, user)
+        // // console.log(user, profile);
+        // if (!email || !name) 
+        // return false;
         const url = profile.organizations_url // @ts-ignore
         const {data} = await axios.get(url)
         const ORG_NAME = 'mlscvitpune'
         let res = false;
+        console.log(data)
         for (const org of data) {
           if (org.login === ORG_NAME) {
             res = true;
+            console.log("User is a member of the organization");
             break;
           }
         }
+        console.log(res);
         return res;
       },
       session: ({ session, token }) => {
