@@ -1,15 +1,25 @@
-'use client'
+"use client";
 
 import { useState } from "react";
 
-export default function Domainoutput({setSeeDomains, setWhichDomain}) {
+export default function Domainoutput({ setSeeDomains, setWhichDomain }) {
+  const [domains, setDomains] = useState([
+    "Core",
+    "AI-ML",
+    "App dev",
+    "Community management",
+    "Event Management",
+    "IoT",
+    "Multimedia",
+    "Partnership",
+    "Web development",
+    "Web3",
+  ]);
 
-    const [domains, setDomains] = useState(['Core Team', 'AI-ML', 'App', 'Web', 'Web3', 'Multimedia', 'Event', 'Partnership', 'Community']);
-
-    const handleClick = (value) => {
-        setWhichDomain(value);
-        setSeeDomains(false);
-    }
+  const handleClick = (value) => {
+    setWhichDomain(value);
+    setSeeDomains(false);
+  };
 
   return (
     <div className="flex flex-col items-center justify-start w-full h-[85%]">
@@ -18,13 +28,17 @@ export default function Domainoutput({setSeeDomains, setWhichDomain}) {
       </span>
       <div className="w-full h-full overflow-y-auto">
         {domains.map((value, index) => {
-            return (<div key={index} onClick={()=>handleClick(value)} className="flex flex-row items-center p-2 text-lg text-[#6A6A6A] w-full h-16 border-b-[1px] border-[#6A6A6A] hover:bg-[#282828] cursor-pointer ease-in-out duration-100">
-                {/* {console.log(value)} */}
-                {value}
-            </div>)
+          return (
+            <div
+              key={index}
+              onClick={() => handleClick(value)}
+              className="flex flex-row items-center p-2 text-lg text-[#6A6A6A] w-full h-16 border-b-[1px] border-[#6A6A6A] hover:bg-[#282828] cursor-pointer ease-in-out duration-100"
+            >
+              {/* {console.log(value)} */}
+              {value}
+            </div>
+          );
         })}
-        
-        
       </div>
     </div>
   );

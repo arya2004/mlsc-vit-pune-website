@@ -1,8 +1,8 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import axios from "axios";
-import {useRouter} from 'next/navigation'
+import { useRouter } from "next/navigation";
 
 import { MdNavigateNext, MdNavigateBefore } from "react-icons/md";
 
@@ -16,7 +16,6 @@ import WhichDomain from "./WhichDomain";
 //TODO: api/jobs/<teams | events | projects | teams | blogs , cache refresing
 
 function AddTeamMember() {
-
   const [formData, setFormData] = useState({
     academicYear: "",
     name: "",
@@ -35,17 +34,39 @@ function AddTeamMember() {
   // console.log(seeDomains)
   const [output, setoutput] = useState([]);
   const [whichDomain, setWhichDomain] = useState("Core Team");
+  const [memberData, setMemberData] = useState([]);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+
+  const getTeamData = async () => {
+    try {
+      const teamData = await axios.get("/api/team");
+      // setMemberData(teamData.data.data);
+      setMemberData(teamData.data.data);
+      // console.log(JSON.stringify(teamData.data.data[0].domain))
+    } catch (err) {
+      console.log("GET req error");
+      console.log(err);
+      return err;
+    }
+  };
+
+  console.log(memberData);
+  useEffect(() => {
+    getTeamData();
+    
+    // setMemberData(teamData.data.data);
+    // console.log(memberData)
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(formData);
 
     const res = async () => {
-      try{
+      try {
         const body = {
           fullName: formData.name,
           domain: formData.domain,
@@ -58,20 +79,22 @@ function AddTeamMember() {
           aboutMe: formData.department,
           imageLink: formData.photoURL,
           modelLink: formData.modelURL,
-      }
-        const {data, status } = await axios.post(`/api/team`, body);
-        
-        console.log("DATA AND STATUS")
+        };
+        const { data, status } = await axios.post(`/api/team`, body);
+
+        if(status === 200) alert("Data added successfully!");
+
+        console.log("DATA AND STATUS");
         console.log(data, status);
       } catch (err) {
         console.log(err);
       }
-    }
+    };
 
     await res();
     const cache = await axios.get("/api/jobs/teams");
 
-    console.log(cache)
+    console.log(cache);
 
     window.location.reload();
   };
@@ -209,7 +232,7 @@ function AddTeamMember() {
                 type="text"
               />
             </div>
-            <Button label='Submit' onClick={handleSubmit} />
+            <Button label="Submit" onClick={handleSubmit} />
           </div>
         </div>
       </div>
@@ -222,7 +245,8 @@ function AddTeamMember() {
           </span>
 
           {/* Domains */}
-          {console.log(seeDomains)}
+          {/* {console.log(seeDomains)} */}
+          <div className="w-full h-[88%]">
           {seeDomains ? (
             <Domainoutput
               setSeeDomains={setSeeDomains}
@@ -230,10 +254,12 @@ function AddTeamMember() {
             />
           ) : (
             <WhichDomain
+              teamData={memberData}
               whichDomain={whichDomain}
               setWhichDomain={setWhichDomain}
             />
           )}
+          </div>
 
           <div className="flex flex-row items-center gap-5 relative h-8 w-20">
             <MdNavigateBefore
