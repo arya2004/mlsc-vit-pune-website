@@ -18,19 +18,20 @@ function MovingCamera() {
   const [_, get] = useKeyboardControls();
 
   const rapier = useRapier();
-
+  
   useFrame((state, delta) => {
     const conCurr = controls.current;
     if (conCurr !== undefined) {
       
-      const { forward, backward, left, right } = get();
+      const { forward, backward, left, right, jump } = get();
+      
       // console.log("FORWARD "+forward);
       // console.log("BACKWARD "+backward);
       // console.log("LEFT "+left);
       // console.log("RIGHT "+right);
       const velocity = conCurr?.linvel();
       
-      state.camera.position.set(...conCurr?.translation());
+      state.camera.position.set(conCurr?.translation().x, conCurr?.translation().y, conCurr?.translation().z);
       // console.log(controls);
       console.log(velocity);
 
@@ -42,23 +43,25 @@ function MovingCamera() {
       direction
         .subVectors(frontVector, sideVector)
         .normalize()
-        .multiplyScalar(5)
-        // .applyEuler(state.camera.rotation);
+        .multiplyScalar(8)
+        .applyEuler(state.camera.rotation);
         
-      controls.current?.setLinvel({x: direction.x, y: 0, z: direction.z});
+      controls.current?.setLinvel({x: direction.x, y: velocity.y, z: direction.z});
 
         // try {
         //   // conCurr?.setLinvel([0, 5, 15]);
         // } catch (error) {
         //   console.error("Error setting linear velocity:", error);
         // }
+        const world = rapier?.world;
+        const ray = world?.castRay(
+          new RAPIER.Ray(controls.current?.translation(), { x: 0, y: -1, z: 0 })
+        );
+        const ground = ray && ray.collider && Math.abs(ray.toi) <= 3.0;
+        if (jump && ground) controls.current?.setLinvel({ x: 0, y: 5, z: 0 });
     }
 
-    // const world = rapier.world.raw();
-    // const ray = world?.castRay(
-    //   new RAPIER.Ray(controls.current?.translation(), { x: 0, y: -1, z: 0 })
-    // );
-    // const ground = ray && ray.collider && Math.abs(ray.toi) <= 1.75;
+    
   });
 
   return (
@@ -67,13 +70,14 @@ function MovingCamera() {
     <RigidBody
       type="dynamic"
       ref={controls}
-      mass={1}
-      position={[0, 10, 15]}
+      mass={5}
+      position={[0, 5, 15]}
       restitution={0.3}
       colliders={false}
       enabledRotations={[false, false, false]}
+      canSleep={false}
     >
-      <CapsuleCollider args={[0.75, 0.5]} />
+      <CapsuleCollider args={[3, 3]} />
       {/* <mesh>
         <boxGeometry args={[2, 2, 2]} />
         <meshStandardMaterial color="red" />

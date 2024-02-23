@@ -47,6 +47,7 @@ function page() {
           { name: "backward", keys: ["ArrowDown", "s", "S"] },
           { name: "left", keys: ["ArrowLeft", "a", "A"] },
           { name: "right", keys: ["ArrowRight", "d", "D"] },
+          { name: "jump", keys: ["Space"]}
         ]}
       >
         <Canvas
@@ -60,9 +61,9 @@ function page() {
           {/* <Suspense >
             <Portal />
           </Suspense> */}
+          <PointerLockControls />
           <Suspense>
             <Physics gravity={[0, -10, 0]} debug >
-              <PointerLockControls />
               <MovingCamera />
 
               {/* <RigidBody type="dynamic" mass={1} restitution={1} position={[0, 10, 15]} enabledRotations={[false, false, false]}>
