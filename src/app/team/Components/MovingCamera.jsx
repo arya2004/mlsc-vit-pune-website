@@ -17,20 +17,20 @@ function MovingCamera() {
   console.log(controls);
   const [_, get] = useKeyboardControls();
 
-  // const rapier = useRapier();
+  const rapier = useRapier();
 
   useFrame((state, delta) => {
     const conCurr = controls.current;
     if (conCurr !== undefined) {
-      state.camera.position.set(conCurr?.translation());
-
+      
       const { forward, backward, left, right } = get();
       // console.log("FORWARD "+forward);
       // console.log("BACKWARD "+backward);
       // console.log("LEFT "+left);
       // console.log("RIGHT "+right);
       const velocity = conCurr?.linvel();
-
+      
+      state.camera.position.set(...conCurr?.translation());
       // console.log(controls);
       console.log(velocity);
 
@@ -44,12 +44,14 @@ function MovingCamera() {
         .normalize()
         .multiplyScalar(5)
         // .applyEuler(state.camera.rotation);
+        
+      controls.current?.setLinvel({x: direction.x, y: 0, z: direction.z});
 
-        try {
-          // conCurr?.setLinvel([0, 5, 15]);
-        } catch (error) {
-          console.error("Error setting linear velocity:", error);
-        }
+        // try {
+        //   // conCurr?.setLinvel([0, 5, 15]);
+        // } catch (error) {
+        //   console.error("Error setting linear velocity:", error);
+        // }
     }
 
     // const world = rapier.world.raw();

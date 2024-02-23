@@ -28,7 +28,7 @@ import Fillers from "./Components/Fillers.jsx";
 import Portal from "./Components/Portal.jsx";
 import MainPlatform from "./Components/MainPlatform.jsx";
 import MovingCamera from "./Components/MovingCamera.jsx";
-import { Physics, RigidBody, CapsuleCollider } from "@react-three/rapier";
+import { Physics, RigidBody } from "@react-three/rapier";
 
 function page() {
   const sun = useRef();
@@ -54,7 +54,7 @@ function page() {
           shadows="soft"
           // camera={{ position: [0, 5, 30] }}
         >
-          {/* <OrbitControls /> */}
+         {/* <OrbitControls /> */}
           <ambientLight intensity={5} />
 
           {/* <Suspense >
