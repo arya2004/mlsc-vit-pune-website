@@ -1,5 +1,5 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 import prisma from '../../../../../prisma/client'
 //Route handlers
@@ -34,12 +34,14 @@ export async function GET(  request: Request,
     );
   }
 
-  export async function PUT(  request: Request,
-    { params }: { params: { memberId: string } }
-    ) {
+  export async function PUT(  request: NextRequest) {
 
-    const memberId = params.memberId 
+    const memberId = request.url.split('/').reverse()[0]; 
     const res = await request.json();
+
+    console.log("MEMBER ID")
+    console.log(memberId, res)
+
     const {  
         fullName,
         domain,

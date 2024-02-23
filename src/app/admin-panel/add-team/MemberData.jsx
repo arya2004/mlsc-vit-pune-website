@@ -1,8 +1,12 @@
 import cn from "../../utils/cn";
 import React, { useState } from "react";
 import axios from "axios";
+import { getServerSession } from "next-auth";
+import { useSession } from "next-auth/react";
 
 export default function MemberData({ member, className, setClickCount, clickCount }) {
+
+  const {data: uSession} = useSession();
 
     const handleDelete = async() =>{
         const res = async() =>{
@@ -18,6 +22,8 @@ export default function MemberData({ member, className, setClickCount, clickCoun
         }
     }
 
+    
+    // console.log(serverSession);
 
   const [update, setUpdate] = useState(false);
   return (
@@ -29,6 +35,7 @@ export default function MemberData({ member, className, setClickCount, clickCoun
     >
       <span className="flex flex-row gap-6 justify-center pt-4 pb-2 text-[#6A6A6A]">
         <div onClick={()=>setClickCount(!clickCount)} className="relative hover:bg-[#424242] p-1 text-sm rounded-[3px] w-auto h-auto">{member.fullName}</div>
+        {member.mail === uSession.user?.email &&   
         <div className="w-auto flex flex-row h-full gap-2">
           <div
             onClick={() => setUpdate(!update)}
@@ -47,6 +54,7 @@ export default function MemberData({ member, className, setClickCount, clickCoun
 
 
         </div>
+        }
       </span>
                 {update ? <UpdateData member={member} /> : <ReadOnlyData member={member} />}
       
@@ -160,26 +168,26 @@ const UpdateData = ({ member }) => {
     const [updateModal, setUpdateModal] = useState(false);
 
     const [updatedData, setUpdatedData] = useState({
-        academicYear: "",
-        name: "",
-        domain: "",
-        department: "",
-        position: "",
-        photoURL: "",
-        modelURL: "",
-        mail: "",
-        githubID: "",
-        twitterID: "",
-        linkedinID: "",
+        academicYear: member.year,
+        name: member.fullName,
+        domain: member.domain,
+        department: member.aboutMe,
+        position: member.position,
+        photoURL: member.imageLink,
+        modelURL: member.modelLink,
+        mail: member.email,
+        githubID: member.githubLink,
+        twitterID: member.xLink,
+        linkedinID: member.linkedinLink,
       });
+
+      console.log(updatedData)
     
       const handleUpdateChange = (e) => {
-        if(e?.target.value !== null && e?.target.value !== '\0'){
-            setUpdatedData({ ...updatedData, [e.target.name]: e.target.value });
-        }else{
-            setUpdatedData({ ...updatedData, [e.target.name]: e.target.defaultValue });
-        }
-      };
+       
+        setUpdatedData({ ...updatedData, [e.target.name]: e.target.value });
+        
+      }
 
       const handleUpdate = async (e) => {
         const res = async () => {
@@ -197,6 +205,9 @@ const UpdateData = ({ member }) => {
                 imageLink: updatedData.photoURL,
                 modelLink: updatedData.modelURL,
               };
+
+              console.log("UPDATED BODY")
+              console.log(updatedBody)
               
               const {data, status} = await axios.put(`/api/team/${member.id}`, updatedBody);
               console.log(data, status)

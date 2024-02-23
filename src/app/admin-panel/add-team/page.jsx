@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 
+import { useSession } from './hooks'
+
 import { MdNavigateNext, MdNavigateBefore } from "react-icons/md";
 
 import { Textboxico, Textbox, Selectbox } from "../components/Textbox";
@@ -16,6 +18,18 @@ import WhichDomain from "./WhichDomain";
 //TODO: api/jobs/<teams | events | projects | teams | blogs , cache refresing
 
 function AddTeamMember() {
+
+  // const {data: session} = useSession();
+  const userSession = useSession();
+
+  // console.log(session)
+
+  // const [userSession, setUserSession] = useState();
+
+  // useEffect(() => {
+  //   setUserSession(session);
+  // }, [session]);
+
   const [formData, setFormData] = useState({
     academicYear: "",
     name: "",
@@ -24,7 +38,7 @@ function AddTeamMember() {
     position: "",
     photoURL: "",
     modelURL: "",
-    mail: "",
+    mail: '' ,
     githubID: "",
     twitterID: "",
     linkedinID: "",
@@ -53,7 +67,7 @@ function AddTeamMember() {
     }
   };
 
-  console.log(memberData);
+  // console.log(memberData);
   useEffect(() => {
     getTeamData();
     
@@ -204,12 +218,14 @@ function AddTeamMember() {
             </div>
 
             <div className="flex flex-row justify-evenly gap-4 w-full">
+              {/*{!userSession && !userSession.user.email &&  */}
               <Textboxico
                 name="mail"
                 onChange={handleChange}
-                label="MailID"
+                label="MailID (GitHub)"
                 icons="/icons/mail-form.svg"
               />
+              {/*}*/}
               <Textboxico
                 name="twitterID"
                 onChange={handleChange}
