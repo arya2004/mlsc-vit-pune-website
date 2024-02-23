@@ -63,15 +63,8 @@ function page() {
           </Suspense> */}
           <PointerLockControls />
           <Suspense>
-            <Physics gravity={[0, -10, 0]} debug >
+            <Physics gravity={[0, -10, 0]} >
               <MovingCamera />
-
-              {/* <RigidBody type="dynamic" mass={1} restitution={1} position={[0, 10, 15]} enabledRotations={[false, false, false]}>
-              <mesh>
-                <boxGeometry args={[2, 2, 2]} />
-                <meshStandardMaterial color="hotpink" />
-              </mesh>
-              </RigidBody> */}
 
               <RigidBody
                 type="fixed"
@@ -84,8 +77,8 @@ function page() {
           </Suspense>
 
           <Background backgroundColors={backgroundColors} />
-          {/* <Fillers /> */}
-          {/* <Effects /> */}
+          <Fillers />
+          <Effects />
         </Canvas>
       </KeyboardControls>
       <Loader />

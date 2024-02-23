@@ -19,11 +19,11 @@ function Fillers() {
         <Cloud
           segments={80}
           bounds={[10, 2, 10]}
-          concentrate="outside"
+          concentrate='outside'
           position={[0, -20, 0]}
           color="#65b5ef"
           volume={8}
-          scale={32}
+          scale={100}
           speed={0.05}
           growth={2}
         />

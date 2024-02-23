@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import { useKeyboardControls } from "@react-three/drei";
-import { useFrame } from "@react-three/fiber";
+import { useFrame, useThree } from "@react-three/fiber";
 import { CapsuleCollider, RigidBody, useRapier } from "@react-three/rapier";
 import { Suspense } from "react";
 
@@ -18,6 +18,8 @@ function MovingCamera() {
   const [_, get] = useKeyboardControls();
 
   const rapier = useRapier();
+
+  const scene = useThree((state) => state.scene);
   
   useFrame((state, delta) => {
     const conCurr = controls.current;
@@ -29,16 +31,17 @@ function MovingCamera() {
       // console.log("BACKWARD "+backward);
       // console.log("LEFT "+left);
       // console.log("RIGHT "+right);
+      // console.log("JUMP "+jump);
       const velocity = conCurr?.linvel();
       
       state.camera.position.set(conCurr?.translation().x, conCurr?.translation().y, conCurr?.translation().z);
       // console.log(controls);
-      console.log(velocity);
+      // console.log(velocity);
 
       frontVector.set(0, 0, backward - forward);
       sideVector.set(left - right, 0, 0);
 
-      console.log(frontVector);
+      // console.log(frontVector);
 
       direction
         .subVectors(frontVector, sideVector)
@@ -55,10 +58,13 @@ function MovingCamera() {
         // }
         const world = rapier?.world;
         const ray = world?.castRay(
-          new RAPIER.Ray(controls.current?.translation(), { x: 0, y: -1, z: 0 })
+          new RAPIER.Ray(controls.current?.translation(), { x: 0, y: -10, z: 0 }),
+          10, true
         );
-        const ground = ray && ray.collider && Math.abs(ray.toi) <= 3.0;
-        if (jump && ground) controls.current?.setLinvel({ x: 0, y: 5, z: 0 });
+
+        const ground = ray && ray.collider && Math.abs(ray.toi) <= .75;
+        // console.log(ray.toi);
+        if (jump && ground) controls.current?.setLinvel({ x: 0, y: 10, z: 0 });
     }
 
     
@@ -78,10 +84,7 @@ function MovingCamera() {
       canSleep={false}
     >
       <CapsuleCollider args={[3, 3]} />
-      {/* <mesh>
-        <boxGeometry args={[2, 2, 2]} />
-        <meshStandardMaterial color="red" />
-      </mesh> */}
+      {/* <axesHelper args={[50]} /> */}
     </RigidBody>
   );
 }
