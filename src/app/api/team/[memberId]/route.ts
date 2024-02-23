@@ -45,11 +45,14 @@ export async function GET(  request: Request,
         domain,
         position, 
         year,
+        email,
         xLink,
         linkedinLink,
         githubLink,
         aboutMe,
-        imageLink,} = res;
+        imageLink,
+        modelLink,
+       } = res;
 
         const updatedUser = await prisma.user.update({
             where: {
@@ -61,22 +64,22 @@ export async function GET(  request: Request,
                 domain: domain,
                 position: position,
                 year: year,
+                email: email,
                 xLink: xLink,
                 linkedinLink: linkedinLink,
                 githubLink: githubLink,
                 aboutMe: aboutMe,
-                imageLink: imageLink
+                imageLink: imageLink,
+                modelLink: modelLink
             },
           })
   
         
    
-    return NextResponse.json(
-    updatedUser,
-      {
-        status: 405
-      }
-    );
+    return NextResponse.json({
+      updatedUser,
+      status: 200,
+    });
   }
   
 

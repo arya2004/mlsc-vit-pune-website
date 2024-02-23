@@ -26,3 +26,19 @@ body {
     rgb(var(--background-start-rgb)); */
     background-color: black;
 }
+
+::-webkit-scrollbar{
+  width: 8px;
+  border-radius: 50px;
+  background-color: grey;
+}
+
+::-webkit-scrollbar-thumb{
+  width: 9px;
+  border-radius: 50px;
+  background-color: #0078D4;
+}
+
+::-webkit-scrollbar-button{
+  opacity: 0;
+}

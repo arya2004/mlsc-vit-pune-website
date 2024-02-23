@@ -266,11 +266,11 @@ function AddTeamMember() {
               onClick={() => {
                 setSeeDomains(true);
               }}
-              className="h-8 w-8 rounded-full p-1 hover:bg-[#424242] active:bg-[#888888]"
+              className="h-8 w-8 rounded-full p-1 hover:bg-[#373737] active:bg-[#888888]"
             />
             <MdNavigateNext
               onClick={() => setSeeDomains(false)}
-              className="h-8 w-8 rounded-full p-1 hover:bg-[#424242] active:bg-[#888888]"
+              className="h-8 w-8 rounded-full p-1 hover:bg-[#373737] active:bg-[#888888]"
             />
           </div>
         </div>
