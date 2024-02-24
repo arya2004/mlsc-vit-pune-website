@@ -46,7 +46,7 @@ function MovingCamera() {
       direction
         .subVectors(frontVector, sideVector)
         .normalize()
-        .multiplyScalar(8)
+        .multiplyScalar(3)
         .applyEuler(state.camera.rotation);
         
       controls.current?.setLinvel({x: direction.x, y: velocity.y, z: direction.z});
@@ -57,14 +57,14 @@ function MovingCamera() {
         //   console.error("Error setting linear velocity:", error);
         // }
         const world = rapier?.world;
-        const ray = world?.castRay(
-          new RAPIER.Ray(controls.current?.translation(), { x: 0, y: -10, z: 0 }),
+        const ray = world.castRay(
+          new RAPIER.Ray(controls?.current?.translation(), { x: 0, y: -5, z: 0 }),
           10, true
         );
 
         const ground = ray && ray.collider && Math.abs(ray.toi) <= .75;
         // console.log(ray.toi);
-        if (jump && ground) controls.current?.setLinvel({ x: 0, y: 10, z: 0 });
+        if (jump && ground) controls.current?.setLinvel({ x: 0, y: 5, z: 0 });
     }
 
     
@@ -83,7 +83,7 @@ function MovingCamera() {
       enabledRotations={[false, false, false]}
       canSleep={false}
     >
-      <CapsuleCollider args={[3, 3]} />
+      <CapsuleCollider args={[0.75, 1.2]} />
       {/* <axesHelper args={[50]} /> */}
     </RigidBody>
   );

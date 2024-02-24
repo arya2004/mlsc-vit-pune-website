@@ -53,25 +53,26 @@ function page() {
         <Canvas
           style={{ height: "100%", width: "100%" }}
           shadows="soft"
-          // camera={{ position: [0, 5, 30] }}
+          camera={{ fov: 70, near: 0.1, far: 1000, 
+            position: [0, 0, 15]}}
         >
-         {/* <OrbitControls /> */}
+         <OrbitControls />
           <ambientLight intensity={5} />
 
           {/* <Suspense >
             <Portal />
           </Suspense> */}
-          <PointerLockControls />
+          {/* <PointerLockControls /> */}
           <Suspense>
             <Physics gravity={[0, -10, 0]} >
-              <MovingCamera />
+              {/* <MovingCamera /> */}
 
               <RigidBody
                 type="fixed"
                 colliders="trimesh"
                 position={[0, -20, 0]}
               >
-                <MainPlatform />
+                <MainPlatform scale={[.2, .2, .2]} />
               </RigidBody>
             </Physics>
           </Suspense>

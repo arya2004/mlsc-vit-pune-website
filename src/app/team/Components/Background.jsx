@@ -36,7 +36,7 @@ export const Background = ({ backgroundColors }) => {
       </Sphere>
       <Environment resolution={256} frames={Infinity}>
         <Sphere
-          scale={[100, 100, 100]}
+          scale={[500, 500, 500]}
           rotation-y={Math.PI / 2}
           rotation-x={Math.PI}
         >
