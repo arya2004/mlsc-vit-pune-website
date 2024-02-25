@@ -1,5 +1,6 @@
 import axios from 'axios'
 import MotherBoardCity from './home/MotherBoardCity'
+import HandleCaseOrMB from './home/HandleCaseOrMB'
 
 export default function Page() {
   try {
