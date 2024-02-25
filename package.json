@@ -13,6 +13,7 @@
     "@react-three/drei": "^9.88.13",
     "@react-three/fiber": "^8.15.10",
     "@react-three/postprocessing": "^2.15.12",
+    "@react-three/rapier": "^1.2.1",
     "@types/three": "^0.158.2",
     "axios": "^1.6.2",
     "eslint-config-next": "^14.0.1",
@@ -21,7 +22,7 @@
     "next": "^14.0.1",
     "react": "^18",
     "react-dom": "^18",
-    "three": "^0.158.0",
+    "three": "^0.161.0",
     "zustand": "^4.4.7"
   },
   "devDependencies": {
