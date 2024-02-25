@@ -1,7 +1,7 @@
 
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import { NextResponse } from "next/server";
-
+import { kv } from '@vercel/kv';
 import prisma from '../../../../prisma/client'
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "../auth/[...nextauth]/route";
@@ -14,14 +14,34 @@ import { authOptions } from "../auth/[...nextauth]/route";
 
 export async function GET(  request: Request,) {
 
- 
+
+  try {
+    const cached = await kv.get("teams");
+    if(cached){
+      console.log("Team Chache HIT")
+      return NextResponse.json(
+        cached,
+        {
+          status: 200
+        }
+      );
+    
+  }else{
+    console.log("Team Chache MISS")
     const data = await prisma.user.findMany({});
     return NextResponse.json(
       data,
       {
-        status: 405
+        status: 304
       }
     );
+  }
+  } catch (error) {
+    console.log(error)
+    return NextResponse.json({ error });
+  }
+ 
+   
   }
   
 
