@@ -56,6 +56,7 @@ function page() {
           shadows="soft"
           camera={{ fov: 70, near: 0.1, far: 1000, 
             position: [0, 0, 15]}}
+            performance={{min: 0.5, max: 1}}
         >
          <OrbitControls />
           <ambientLight intensity={5} />
