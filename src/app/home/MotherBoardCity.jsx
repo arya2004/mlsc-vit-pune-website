@@ -3,15 +3,24 @@
 import { Canvas } from '@react-three/fiber'
 import React, { Suspense, useState, useEffect } from 'react'
 
-import { Box, Cloud, Clouds, Environment, Loader, MeshDistortMaterial, MeshReflectorMaterial, OrbitControls, ScrollControls, Sky, Sparkles, SpotLight } from '@react-three/drei'
-import { MotherBoard } from '../components/Motherboard'
+import { Box, Cloud, Clouds, Environment, Loader, Mask, MeshDistortMaterial, MeshReflectorMaterial, OrbitControls, ScrollControls, Sky, Sparkles, SpotLight } from '@react-three/drei'
 import { MeshStandardMaterial } from 'three'
+import { EffectComposer, Bloom } from '@react-three/postprocessing'
+
 import ExploreCamera from './ExploreCamera'
+import { MotherBoard } from '../components/Motherboard'
 import BeforeMotherBoard from './BeforeMotherBoard'
+
+import AboutMesh from './html-cards/About.card'
+import GetInvolved from './html-cards/GetInvolved.card'
+import Offer from './html-cards/Offer.card'
 
 const page = () => {
 
   const [isCloudResourceAvailable, setIsCloudResourceAvailable] = useState(false);
+  
+  const [showAbout, setShowAbout] = useState(true);
+  const [showGetInvolved, setShowGetInvolved] = useState(false);
 
 useEffect(() => {
     fetch('https://rawcdn.githack.com/pmndrs/drei-assets/9225a9f1fbd449d9411125c2f419b843d0308c9f/cloud.png:')
@@ -31,6 +40,7 @@ useEffect(() => {
       {/* <OrbitControls /> */}
 
         {/* <ambientLight intensity={5} /> */}
+        <color attach='background' args={['black']} />
         <spotLight position={[10, 10, 10]} angle={0.15} color='red' penumbra={1} />
         {/* <directionalLight position={[0, 10, 5]} intensity={1} /> */}
         <directionalLight position={[5, 5, -3]} color='purple' intensity={2} />
@@ -44,12 +54,16 @@ useEffect(() => {
         {isCloudResourceAvailable && <Cloud color='grey' opacity={0.5} />}
         <Sparkles scale={6} size={1} speed={0.5} noise={0.3}  color='purple' />
 
-        <axesHelper args={[50]} />
-        <gridHelper args={[50, 50]} />
+        {/* <axesHelper args={[50]} />
+        <gridHelper args={[50, 50]} /> */}
 
-        <ScrollControls pages={10} damping={0.3} >
-          <ExploreCamera  />
+        <ScrollControls pages={10} damping={0.5} >
+          <ExploreCamera setShowAbout={setShowAbout} setShowGetInvolved={setShowGetInvolved} />
         </ScrollControls>
+        
+
+        {showGetInvolved && <GetInvolved />}
+        {showAbout && <AboutMesh />}
         
         <Suspense fallback={<BeforeMotherBoard />} >
           <MotherBoard rotation={[Math.PI/2, Math.PI, -Math.PI/2]} />
@@ -57,6 +71,10 @@ useEffect(() => {
         
         {/* <Box material-color='red' args={[0.1, 0.1, 0.1]}  position={[-3.5, 0.05, -1.65]}  /> */}
 
+
+      {/* <EffectComposer >
+        <Bloom mipmapBlur intensity={0.8} />
+      </EffectComposer> */}
     </Canvas>
     <Loader />
     </>

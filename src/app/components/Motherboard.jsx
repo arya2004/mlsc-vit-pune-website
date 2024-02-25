@@ -1909,7 +1909,9 @@ export function MotherBoard(props) {
           material={materials.lambert1}
           position={[0.179, 1.651, 0.059]}
           scale={[0.039, 0.083, 0.011]}
-        />
+        >
+          {/* <GetInvolved /> */}
+        </mesh>  
         <mesh
           geometry={nodes.pCube501_lambert1_0.geometry}
           material={materials.lambert1}
