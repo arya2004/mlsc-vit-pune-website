@@ -26,12 +26,7 @@ function MovingCamera() {
     if (conCurr !== undefined) {
       
       const { forward, backward, left, right, jump } = get();
-      
-      // console.log("FORWARD "+forward);
-      // console.log("BACKWARD "+backward);
-      // console.log("LEFT "+left);
-      // console.log("RIGHT "+right);
-      // console.log("JUMP "+jump);
+  
       const velocity = conCurr?.linvel();
       
       state.camera.position.set(conCurr?.translation().x, conCurr?.translation().y, conCurr?.translation().z);
@@ -51,20 +46,16 @@ function MovingCamera() {
         
       controls.current?.setLinvel({x: direction.x, y: velocity.y, z: direction.z});
 
-        // try {
-        //   // conCurr?.setLinvel([0, 5, 15]);
-        // } catch (error) {
-        //   console.error("Error setting linear velocity:", error);
-        // }
-        const world = rapier?.world;
-        const ray = world.castRay(
-          new RAPIER.Ray(controls?.current?.translation(), { x: 0, y: -5, z: 0 }),
-          10, true
-        );
+        // const world = rapier?.world;
+        // const ray = world.castRay(
+        //   new RAPIER.Ray(controls?.current?.translation(), { x: 0, y: -5, z: 0 }),
+        //   10, true
+        // );
 
-        const ground = ray && ray.collider && Math.abs(ray.toi) <= .75;
+        // const ground = ray && ray.collider && Math.abs(ray.toi) <= .75;
         // console.log(ray.toi);
-        if (jump && ground) controls.current?.setLinvel({ x: 0, y: 5, z: 0 });
+        if (jump) controls.current?.setLinvel({ x: 0, y: 5, z: 0 });
+        
     }
 
     

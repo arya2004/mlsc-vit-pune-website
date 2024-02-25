@@ -19,6 +19,7 @@ import React, { Suspense, useRef, useMemo } from "react";
 import { Background } from "./Components/Background.jsx";
 import Effects from "./Components/Effects.jsx";
 import MainPortal from "./Components/MainPlatform.jsx";
+import DomainLabels from "./Components/DomainLabel.jsx";
 
 // import BlendFunction from "postprocessing";
 
@@ -58,7 +59,7 @@ function page() {
         >
          <OrbitControls />
           <ambientLight intensity={5} />
-
+            {/* <axesHelper args={[100]} /> */}
           {/* <Suspense >
             <Portal />
           </Suspense> */}
@@ -66,20 +67,22 @@ function page() {
           <Suspense>
             <Physics gravity={[0, -10, 0]} >
               {/* <MovingCamera /> */}
+              
 
               <RigidBody
                 type="fixed"
                 colliders="trimesh"
                 position={[0, -20, 0]}
               >
-                <MainPlatform scale={[.2, .2, .2]} />
+                <MainPlatform position={[0, 10, 0]} scale={[.2, .2, .2]} />
               </RigidBody>
+              <Background backgroundColors={backgroundColors} />
             </Physics>
           </Suspense>
 
-          <Background backgroundColors={backgroundColors} />
-          <Fillers />
-          <Effects />
+          <DomainLabels />
+          {/* <Fillers />
+          <Effects /> */}
         </Canvas>
       </KeyboardControls>
       <Loader />
