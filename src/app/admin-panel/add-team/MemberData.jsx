@@ -12,16 +12,19 @@ export default function MemberData({ member, className, setClickCount, clickCoun
         const res = async() =>{
             try {
                 const {data, status} = await axios.delete(`/api/team/${member.id}`);
-                console.log(data)
-                console.log(status)
+                // console.log(data)
+                // console.log(status)
             } catch (error) {
                 
                 console.error(error);
 
             }
         }
+        res();
+        const cache = await caches.open("/api/jobs/teams");
+        window.location.reload();
     }
-
+    // console.log(member.email, uSession.user?.email)
     
     // console.log(serverSession);
 
@@ -35,7 +38,7 @@ export default function MemberData({ member, className, setClickCount, clickCoun
     >
       <span className="flex flex-row gap-6 justify-center pt-4 pb-2 text-[#6A6A6A]">
         <div onClick={()=>setClickCount(!clickCount)} className="relative hover:bg-[#424242] p-1 text-sm rounded-[3px] w-auto h-auto">{member.fullName}</div>
-        {member.mail === uSession.user?.email &&   
+        {member.email === uSession.user?.email &&   
         <div className="w-auto flex flex-row h-full gap-2">
           <div
             onClick={() => setUpdate(!update)}
@@ -48,7 +51,7 @@ export default function MemberData({ member, className, setClickCount, clickCoun
           >
             update
           </div>
-          <div className="flex items-center justify-center bg-[#424242] text-[#6a6a6a] hover:bg-[#525252] active:bg-red-500 rounded-[3px] w-auto h-[80%] text-sm p-2">
+          <div onClick={handleDelete} className="flex items-center justify-center bg-[#424242] text-[#6a6a6a] hover:bg-[#525252] active:bg-red-500 rounded-[3px] w-auto h-[80%] text-sm p-2">
             delete
           </div>
 
@@ -213,6 +216,7 @@ const UpdateData = ({ member }) => {
               console.log(data, status)
 
                 if(status === 200) alert("Data updated successfully!")
+                
 
             } catch (error) {
               console.error(error);
@@ -220,7 +224,7 @@ const UpdateData = ({ member }) => {
        }
          await res();
          const cache = await caches.open("/api/jobs/teams");
-    //    window.location.reload();
+       window.location.reload();
     }
 
     return (
