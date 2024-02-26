@@ -26,12 +26,13 @@ model User {
   fullName    String?
   domain String
   position String
-  year Int
+  year String
   xLink String
   linkedinLink String
   githubLink String
   aboutMe String?
   imageLink String
+  modelLink String
   role    Role     @default(TEAM_MEMBER)
   projects Project[]
   blogs Blog[]
