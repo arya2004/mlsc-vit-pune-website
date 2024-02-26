@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 
-import { useSession } from './hooks'
+import { useSession } from 'next-auth/react'
 
 import { MdNavigateNext, MdNavigateBefore } from "react-icons/md";
 
