@@ -4,6 +4,9 @@ import { degToRad, radToDeg } from "three/src/math/MathUtils";
 
 function DomainLabel({text, position, scale, rotation}){
     return (
+        // <Text position={position} rotation={rotation} >
+        //     {text}
+        // </Text>
         <Html transform occlude position={position} scale={scale} rotation={rotation} >
             <div className="flex items-center p-2 justify-center bg-[#10a9f06c] rounded-[8px] border-2 border-[#1c485c]">
                 <div className="text-lxl font-bold align-middle text-[#65a8d2] " >{text}</div>
