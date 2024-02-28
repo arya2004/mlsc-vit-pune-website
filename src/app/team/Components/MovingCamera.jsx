@@ -6,6 +6,9 @@ import { Suspense } from "react";
 
 import * as THREE from "three";
 import RAPIER from "@dimforge/rapier3d-compat";
+import TeleportAnim from "./TeleportAnim";
+
+import {useMLSCStore} from "../../store/MLSCStore";
 
 const frontVector = new THREE.Vector3();
 const sideVector = new THREE.Vector3();
@@ -16,6 +19,8 @@ function MovingCamera() {
   const controls = useRef();
   console.log(controls);
   const [_, get] = useKeyboardControls();
+
+  const teleporting = useMLSCStore((s) => s.teleporting);
 
   const rapier = useRapier();
 
@@ -63,20 +68,22 @@ function MovingCamera() {
 
   return (
     // <PerspectiveCamera position={[1, 4, 2]} ref={controls} />
-
-    <RigidBody
-      type="dynamic"
-      ref={controls}
-      mass={5}
-      position={[0, 5, 15]}
-      restitution={0.3}
-      colliders={false}
-      enabledRotations={[false, false, false]}
-      canSleep={false}
-    >
-      <CapsuleCollider args={[0.75, 1.2]} />
-      {/* <axesHelper args={[50]} /> */}
-    </RigidBody>
+    <group>
+      <RigidBody
+        type="dynamic"
+        ref={controls}
+        mass={5}
+        position={[0, 5, 15]}
+        restitution={0.3}
+        colliders={false}
+        enabledRotations={[false, false, false]}
+        canSleep={false}
+      >
+       {teleporting && <TeleportAnim position={[0, 0, 0]} />}
+        <CapsuleCollider args={[0.75, 1.2]} />
+        {/* <axesHelper args={[50]} /> */}
+      </RigidBody>
+    </group>
   );
 }
 

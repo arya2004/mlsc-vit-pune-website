@@ -6,9 +6,16 @@ import {
   Noise,
   LensFlare,
   Scanline,
+  Bloom,
+  DotScreen,
 } from "@react-three/postprocessing";
 
+import {useMLSCStore} from "../../store/MLSCStore";
+
 function Effects() {
+
+  const teleporting = useMLSCStore((s) => s.teleporting);
+
   return (
     <EffectComposer>
       {/* <GodRays
@@ -26,6 +33,8 @@ function Effects() {
             blur={true}
           /> */}
       <Noise opacity={0.05} />
+      {/* <Bloom luminanceThreshold={0.5} luminanceSmoothing={0.9} height={300} /> */}
+      {teleporting ?? <DotScreen />}
     </EffectComposer>
   );
 }
