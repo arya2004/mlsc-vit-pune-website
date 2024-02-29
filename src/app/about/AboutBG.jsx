@@ -5,6 +5,7 @@ Command: npx gltfjsx@6.2.16 ./public/models/about-scene.glb -o ./src/app/about/A
 
 import React, { useRef } from 'react'
 import { useGLTF, useAnimations } from '@react-three/drei'
+import { BlogCard, ProjectCard } from './Cards'
 
 export function AboutBG(props) {
   const group = useRef()
@@ -70,6 +71,7 @@ export function AboutBG(props) {
           <mesh name="boards_Blue_Emission_0010_2" geometry={nodes.boards_Blue_Emission_0010_2.geometry} material={materials.metal} />
         </group>
         <group name="boards_Blue_Emission_0011" position={[6.939, 7.188, -0.108]} rotation={[2.298, -1.242, 1.146]} scale={1.294}>
+          <BlogCard rotation={[-0.08, 3.53, 0.46]} scale={4.9} />
           <mesh name="boards_Blue_Emission_0011_1" geometry={nodes.boards_Blue_Emission_0011_1.geometry} material={materials.Blue_Emission} />
           <mesh name="boards_Blue_Emission_0011_2" geometry={nodes.boards_Blue_Emission_0011_2.geometry} material={materials.metal} />
         </group>
@@ -78,6 +80,7 @@ export function AboutBG(props) {
           <mesh name="boards_Blue_Emission_0012_1" geometry={nodes.boards_Blue_Emission_0012_1.geometry} material={materials.metal} />
         </group>
         <group name="boards_Blue_Emission_0003" position={[-6.669, 7.188, -0.108]} rotation={[-0.67, -1.292, 1.311]} scale={1.294}>
+          <ProjectCard rotation={[-0.08, 3.53, 0.46]} scale={4.9} />
           <mesh name="boards_Blue_Emission_0013" geometry={nodes.boards_Blue_Emission_0013.geometry} material={materials.Blue_Emission} />
           <mesh name="boards_Blue_Emission_0013_1" geometry={nodes.boards_Blue_Emission_0013_1.geometry} material={materials.metal} />
         </group>
