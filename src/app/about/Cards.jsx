@@ -8,7 +8,7 @@ function EventCard({text, position, scale, rotation}){
         //     {text}
         // </Text>
         <Html transform occlude position={position} scale={scale} rotation={rotation} >
-            <div className="flex items-center w-full h-full p-2 justify-center bg-[#100101e6] rounded-[1px] border-[1px] border-[#162e3a]">
+            <div className="flex items-center w-full h-full p-2 justify-center bg-[#1833547a] rounded-[1px] border-[#162f4b]">
                 <div className="text-lxl font-bold align-middle text-[#65a8d2] " ></div>
             </div>
         </Html>
@@ -34,8 +34,8 @@ export function EventCards({position, scale,}){
 export function BlogCard({text, position, scale, rotation}){
     return (
         <Html transform occlude position={position} scale={scale} rotation={rotation} >
-            <div className="flex items-center w-full h-full p-2 justify-center bg-[#0d38539a] rounded-[2px] ">
-                <div className="text-lxl font-bold align-middle text-[#65a8d2] " ></div>
+            <div className="flex items-center w-20 h-20 p-2 justify-center bg-[#0d38539a] rounded-[12px] ">
+                <div className="text-xs font-bold align-middle text-[#65a8d2] " >Loading</div>
             </div>
         </Html>
     )
@@ -44,8 +44,8 @@ export function BlogCard({text, position, scale, rotation}){
 export function ProjectCard({text, position, scale, rotation}){
     return (
         <Html transform occlude position={position} scale={scale} rotation={rotation} >
-            <div className="flex items-center w-full h-full p-2 justify-center bg-[#0d38539a] rounded-[2px]">
-                <div className="text-lxl font-bold align-middle text-[#65a8d2] " ></div>
+            <div className="flex items-center w-20 h-20 p-2 justify-center bg-[#0d38539a] rounded-[12px]">
+                <div className="text-xs font-bold align-middle text-[#65a8d2] " >Loading</div>
             </div>
         </Html>
     )
