@@ -29,4 +29,7 @@ body {
     )
     rgb(var(--background-start-rgb)); */
     background-color: #a3d7ff;
+    width: 100vw;
+    height: 100vh;
 }
+
