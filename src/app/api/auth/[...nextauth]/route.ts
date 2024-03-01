@@ -4,6 +4,7 @@
 import axios from 'axios';
 import NextAuth, { type NextAuthOptions } from 'next-auth';
 import GitHubProvider from 'next-auth/providers/github';
+import { parseToGetGithub } from '../../../../helpers/authParser';
 
 export const authOptions: NextAuthOptions = {
     session: {
@@ -16,29 +17,13 @@ export const authOptions: NextAuthOptions = {
       }),
     ],
     callbacks: {
-      async signIn({ user, account, profile}) {
-        // const email = user.email;
-        // const name = user.name;
-
-        // console.log(email, name, user)
-        // // console.log(user, profile);
-        // if (!email || !name) 
-        // return false;
-        const url = profile.organizations_url // @ts-ignore
-        const {data} = await axios.get(url)
-        const ORG_NAME = 'mlscvitpune'
-        let res = false;
-        console.log(data)
-        for (const org of data) {
-          if (org.login === ORG_NAME) {
-            res = true;
-            console.log("User is a member of the organization");
-            break;
-          }
-        }
-        console.log(res);
+      async signIn({ profile }) {
+        const loginName = profile.login // @ts-ignore
+        const { data } = await axios.get('https://raw.githubusercontent.com/mlscvitpune/Team_23-24/main/README.md')
+        const memberData = parseToGetGithub(data)
+        const res = memberData.includes(loginName.toLocaleLowerCase())
         return res;
-      },
+      }, 
       session: ({ session, token }) => {
         return {
           ...session,
@@ -65,4 +50,3 @@ export const authOptions: NextAuthOptions = {
   
   const handler = NextAuth(authOptions)
   export { handler as GET, handler as POST };
-
