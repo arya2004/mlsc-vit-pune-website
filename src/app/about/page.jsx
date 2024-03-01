@@ -1,12 +1,14 @@
 'use client'
 
 import { Canvas } from "@react-three/fiber"
-import { Lightformer, Loader, OrbitControls } from '@react-three/drei'
+import { Lightformer, Loader, MeshPortalMaterial, OrbitControls } from '@react-three/drei'
 
-import {AboutBG} from './AboutBG'
-import {EventCards} from './Cards'
+import AboutScene from './AboutScene' 
+import {AboutDoor} from './AboutDoor'
+import { LantainGate } from './LantainPortal'
 
-
+import * as THREE from 'three'
+import { degToRad } from "three/src/math/MathUtils"
 
 
 export default function About() {
@@ -14,15 +16,14 @@ export default function About() {
     <>
     <Canvas shadows='basic' dpr={[0.1, 10]} >
       <OrbitControls />
-       <color attach="background" args={['#000']} />
-        <ambientLight intensity={0.25} />
-       
-        <pointLight intensity={10} position={[-10, -10, -10]} />
-        <directionalLight intensity={1} color='blue' position={[3, 2, 0]} />
-        <directionalLight intensity={0.75} color='white' position={[0, 2, 3]} />
-      <EventCards position={[0, 6, 0]} scale={[8, 5, 1]} />
-      <AboutBG position={[0, -2, 0]} scale={[0.5, 0.5, 0.5]} />
-        
+       <color attach="background" args={['#fff']} />
+        <directionalLight position={[3, 3, 0]} intensity={5} color='white' />
+          {/* <AboutScene /> */}
+        <group >
+          
+          <LantainGate position={[1, 1, 1]} scale={10} />
+          <AboutDoor rotation={[0, Math.PI/6+degToRad(5), 0]} scale={[0.2, 0.2, 0.2]} position={[-0.2, -2, 0.7]} />
+        </group>
     </Canvas>
     <Loader />
     </>
