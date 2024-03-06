@@ -1,8 +1,10 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { useKeyboardControls } from "@react-three/drei";
 import { useFrame, useThree } from "@react-three/fiber";
 import { CapsuleCollider, RigidBody, useRapier } from "@react-three/rapier";
 import { Suspense } from "react";
+import { degToRad, radToDeg } from "three/src/math/MathUtils";
+
 
 import * as THREE from "three";
 import RAPIER from "@dimforge/rapier3d-compat";
@@ -16,16 +18,18 @@ const direction = new THREE.Vector3();
 // const rotation = new THREE.Vector3();
 
 function MovingCamera({position}) {
+
   const controls = useRef();
   console.log(controls);
   const [_, get] = useKeyboardControls();
 
   const teleporting = useMLSCStore((s) => s.teleporting);
+  const setTeleporting = useMLSCStore((s) => s.setTeleporting);
+  const [portalPos, setPortalPos] = useState([0,0,0]);
 
   const rapier = useRapier();
 
   const scene = useThree((state) => state.scene);
-  
   
   useFrame((state, delta) => {
     const conCurr = controls.current;
@@ -56,25 +60,62 @@ function MovingCamera({position}) {
 
         // const world = rapier?.world;
         // const ray = world.castRay(
-        //   new RAPIER.Ray(controls?.current?.translation(), { x: 0, y: -5, z: 0 }),
+        //   new RAPIER.Ray(controls?.current?.translation(), { x: 0, y: -10, z: 0 }),
         //   10, true
         // );
 
         // const ground = ray && ray.collider && Math.abs(ray.toi) <= .75;
         // console.log(ray.toi);
-      if (jump) controls.current?.setLinvel({ x: 0, y: 5, z: 0 });
+      if (jump) controls.current?.setLinvel({ x: direction.x, y: 5, z: direction.z });
+
+      /*When clicked on the any button on sidebar, camera will be dragged to the center of the scene and portal will suck it to another location */
       if(teleporting) {
-        if(Math.floor(Math.sqrt(conCurr?.translation().x**2 + conCurr?.translation().z**2)) > 0){
-          if(Math.floor(Math.sqrt(conCurr?.translation().x**2 + conCurr?.translation().z**2)) < 2)
-            conCurr.setLinvel({x: -conCurr?.translation().x, y: 1, z: -conCurr?.translation().z});
+        if(Math.floor(Math.sqrt(conCurr?.translation().x**2 + conCurr?.translation().z**2)) < 2)
+          conCurr.setLinvel({x: -conCurr?.translation().x, y: 1, z: -conCurr?.translation().z});
+        else if(Math.floor(Math.sqrt(conCurr?.translation().x**2 + conCurr?.translation().z**2)) > 0)
           conCurr.setLinvel({x: -conCurr?.translation().x, y: 0, z: -conCurr?.translation().z});
-        }else {
-          conCurr?.setLinvel({x: 0, y: 1, z: 0});
-        
-        }
       }
-      console.log("translation", conCurr?.translation());
-        
+
+      // console.log("Distance", Math.floor(Math.sqrt(conCurr?.translation().x**2 + conCurr?.translation().z**2)));
+
+      /*When the camera reaches near any domain portal, this will drag the camera into the portal */
+      if(Math.floor(Math.sqrt(conCurr?.translation().x**2 + conCurr?.translation().z**2)) >= 31){
+        setTeleporting(true);
+        const theta = radToDeg(Math.atan2(conCurr?.translation().z, conCurr?.translation().x));
+
+        if(theta > 20-10 && theta < 20+10){
+          setPortalPos([34*Math.cos(degToRad(20)), 0, 34*Math.sin(degToRad(20))]);
+          conCurr.setLinvel({x: 34*Math.cos(degToRad(20))-conCurr?.translation().x, y: 1, z: 34*Math.sin(degToRad(20))-conCurr?.translation().z});
+        } else if (theta > 56-10 && theta < 56+10){
+          setPortalPos([34*Math.cos(degToRad(56)), 0, 34*Math.sin(degToRad(56))]);
+          conCurr.setLinvel({x: 34*Math.cos(degToRad(56))-conCurr?.translation().x, y: 1, z: 34*Math.sin(degToRad(56))-conCurr?.translation().z});
+        } else if (theta > 92-10 && theta < 92+10){
+          setPortalPos([34*Math.cos(degToRad(92)), 0, 34*Math.sin(degToRad(92))]);
+          conCurr.setLinvel({x: 34*Math.cos(degToRad(92))-conCurr?.translation().x, y: 1, z: 34*Math.sin(degToRad(92))-conCurr?.translation().z});
+        } else if (theta > 128-10 && theta < 128+10){
+          setPortalPos([34*Math.cos(degToRad(128)), 0, 34*Math.sin(degToRad(128))]);
+          conCurr.setLinvel({x: 34*Math.cos(degToRad(128))-conCurr?.translation().x, y: 1, z: 34*Math.sin(degToRad(128))-conCurr?.translation().z});
+        } else if (theta > 164-10 && theta < 164+10){
+          setPortalPos([34*Math.cos(degToRad(164)), 0, 34*Math.sin(degToRad(164))]);
+          conCurr.setLinvel({x: 34*Math.cos(degToRad(164))-conCurr?.translation().x, y: 1, z: 34*Math.sin(degToRad(164))-conCurr?.translation().z});
+        } else if (theta > (200-10-360) && theta < (200+10-360)){
+          setPortalPos([34*Math.cos(degToRad(200)), 0, 34*Math.sin(degToRad(200))]);
+          conCurr.setLinvel({x: 34*Math.cos(degToRad(200))-conCurr?.translation().x, y: 1, z: 34*Math.sin(degToRad(200))-conCurr?.translation().z});
+        } else if (theta > (236-10-360) && theta < (236+10-360)){
+          setPortalPos([34*Math.cos(degToRad(236)), 0, 34*Math.sin(degToRad(236))]);
+          conCurr.setLinvel({x: 34*Math.cos(degToRad(236))-conCurr?.translation().x, y: 1, z: 34*Math.sin(degToRad(236))-conCurr?.translation().z});
+        } else if (theta > (272-10-360) && theta < (272+10-360)){
+          setPortalPos([34*Math.cos(degToRad(272)), 0, 34*Math.sin(degToRad(272))]);
+          conCurr.setLinvel({x: 34*Math.cos(degToRad(272))-conCurr?.translation().x, y: 1, z: 34*Math.sin(degToRad(272))-conCurr?.translation().z});
+        } else if (theta > (308-10-360) && theta < (308+10-360)){
+          setPortalPos([34*Math.cos(degToRad(308)), 0, 34*Math.sin(degToRad(308))]);
+          conCurr.setLinvel({x: 34*Math.cos(degToRad(308))-conCurr?.translation().x, y: 1, z: 34*Math.sin(degToRad(308))-conCurr?.translation().z});
+        } else if (theta > (344-10-360) && theta < (344+10-360)){
+          setPortalPos([34*Math.cos(degToRad(344)), 0, 34*Math.sin(degToRad(344))]);
+          conCurr.setLinvel({x: 34*Math.cos(degToRad(344))-conCurr?.translation().x, y: 1, z: 34*Math.sin(degToRad(344))-conCurr?.translation().z});
+        }
+
+      }        
     }
 
   });
@@ -82,7 +123,7 @@ function MovingCamera({position}) {
   return (
     // <PerspectiveCamera position={[1, 4, 2]} ref={controls} />
     <group>
-      {teleporting && <TeleportAnim position={[0, 0, 0]} />}
+      {teleporting && <TeleportAnim position={portalPos} />}
       <RigidBody
         type="dynamic"
         ref={controls}

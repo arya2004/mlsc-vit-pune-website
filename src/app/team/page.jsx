@@ -25,7 +25,7 @@ import DomainLabels from "./Components/DomainLabel.jsx";
 import DomainPortals from "./Components/DomainPortals.jsx";
 
 // import BlendFunction from "postprocessing";
-
+import {useMLSCStore} from "../store/MLSCStore";
 
 import Fillers from "./Components/Fillers.jsx";
 import Portal from "./Components/Portal.jsx";
@@ -33,7 +33,12 @@ import MainPlatform from "./Components/MainPlatform.jsx";
 import MovingCamera from "./Components/MovingCamera.jsx";
 
 function page() {
-  const sun = useRef();
+  const sun = useRef(); 
+
+  const teleporting = useMLSCStore((s) => s.teleporting);
+  const setTeleporting = useMLSCStore((s) => s.setTeleporting);
+
+  setTeleporting(false)
 
   const backgroundColors = useRef({
     // colorB: "#61b0ed",
@@ -43,6 +48,7 @@ function page() {
 
   return (
     <div className="w-screen h-screen bg-transparent">
+      {/* <div onClick={setTeleporting(!teleporting)} className="absolute w-32 h-32 bg-slate-600 rounded-md right-5 bottom-5"></div> */}
       <KeyboardControls
         map={[
           { name: "forward", keys: ["ArrowUp", "w", "W"] },
@@ -55,7 +61,7 @@ function page() {
         <Canvas
           style={{ height: "100%", width: "100%" }}
           shadows="basic"
-          camera={{ fov: 70, near: 0.1, far: 1000 }}
+          camera={{ fov: 70, near: 0.1, far: 1000, }}
           // position: [0, 0, 15]}}
           performance={{ current: 1, min: 0.1, max: 1, debounce: 200 }}
           frameloop="demand"
@@ -68,14 +74,14 @@ function page() {
             position={[0, 4, 5]}
             intensity={5}
           />
-          {/* <axesHelper args={[100]} /> */}
+          <axesHelper args={[100]} />
           <Environment preset="night" />
           {/* <Suspense >
             <Portal />
           </Suspense> */}
           <PointerLockControls />
           <Suspense>
-            <Physics gravity={[0, -10, 0]}>
+            <Physics gravity={[0, -10, 0]} >
               <MovingCamera position={[0, 2, 15]} />
 
               <RigidBody

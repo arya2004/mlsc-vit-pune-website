@@ -1,11 +1,12 @@
-import {create} from 'zustand';
+import { create } from "zustand";
 
 export const useMLSCStore = create((set) => ({
+  showMotherBoard: false,
+  setShowMotherBoard: (showMotherBoard) => set({ showMotherBoard }),
 
-    showMotherBoard: false,
-    setShowMotherBoard: (showMotherBoard) => set({ showMotherBoard }),
+  teleporting: false,
+  setTeleporting: (teleporting) => set({ teleporting }),
 
-    teleporting: false,
-    setTeleporting: (teleporting) => set({ teleporting }),
+  domain: "",
+  setDomain: (domain) => set({ domain }),
 }));
-
