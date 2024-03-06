@@ -5,10 +5,11 @@ import { BoxGeometry } from "three";
 import { randFloat, randFloatSpread, randInt } from "three/src/math/MathUtils";
 import * as THREE from "three";
 
-export default function TeleportAnim({ position, ref }) {
+export default function TeleportAnim({ position, targetPos, ref }) {
   const partilcleProperties = [];
 
   const depthBuffer = useDepthBuffer();
+  const spotLight = useRef();
 
   for (let index = 0; index < 500; index++) {
     const posy = randFloat(-5, 5);
@@ -22,6 +23,8 @@ export default function TeleportAnim({ position, ref }) {
   }
 
   useFrame((state, delta) => {
+ 
+
     partilcleProperties.forEach((particle) => {
       particle.ref.current.position.y += 0.1;
       if (particle.ref.current.position.y > 5) {
@@ -34,16 +37,16 @@ export default function TeleportAnim({ position, ref }) {
 
   return (
     <group position={position} ref={ref}>
-      {/* <SpotLight
-        position={[0, 5, 0]}
+      <SpotLight
+        ref={spotLight}
+        position={[0, 10, 0]}
+        penumbra={0.5}
         color="#2879ff"
-        shadow-mapSize-width={1024}
-        distance={10}
-        attenuation={15}
+        distance={15}
+        attenuation={25}
         radiusTop={1.5}
         radiusBottom={1.5}
-        customDepthMaterial={depthBuffer.material}
-      /> */}
+      />
       {partilcleProperties.map((particle, index) => {
         return (
           <mesh

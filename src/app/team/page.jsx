@@ -76,7 +76,7 @@ function page() {
           <PointerLockControls />
           <Suspense>
             <Physics gravity={[0, -10, 0]}>
-              <MovingCamera />
+              <MovingCamera position={[0, 2, 15]} />
 
               <RigidBody
                 type="fixed"
