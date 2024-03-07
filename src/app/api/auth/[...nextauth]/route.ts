@@ -21,7 +21,7 @@ export const authOptions: NextAuthOptions = {
         const loginName = profile.login // @ts-ignore
         const { data } = await axios.get('https://raw.githubusercontent.com/mlscvitpune/Team_23-24/main/README.md')
         const memberData = parseToGetGithub(data)
-        const res = memberData.includes(loginName.toLocaleLowerCase())
+        const res = memberData.includes(loginName?.toLocaleLowerCase())
         return res;
       }, 
       session: ({ session, token }) => {

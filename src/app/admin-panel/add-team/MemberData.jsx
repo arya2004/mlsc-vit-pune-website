@@ -1,8 +1,7 @@
-import cn from "../../utils/cn";
-import React, { useState } from "react";
 import axios from "axios";
-import { getServerSession } from "next-auth";
 import { useSession } from "next-auth/react";
+import { useState } from "react";
+import cn from "../../utils/cn";
 
 export default function MemberData({ member, className, setClickCount, clickCount }) {
 
@@ -36,7 +35,7 @@ export default function MemberData({ member, className, setClickCount, clickCoun
         className
       }
     >
-      <span className="flex flex-row gap-6 justify-center pt-4 pb-2 text-[#6A6A6A]">
+      <span className="flex flex-row gap-6 justify-center pt-4 pb-2 text-[#bfbdbd]">
         <div onClick={()=>setClickCount(!clickCount)} className="relative hover:bg-[#424242] p-1 text-sm rounded-[3px] w-auto h-auto">{member.fullName}</div>
         {member.email === uSession.user?.email &&   
         <div className="w-auto flex flex-row h-full gap-2">
@@ -45,13 +44,13 @@ export default function MemberData({ member, className, setClickCount, clickCoun
             className={cn(
               update
                 ? "bg-green-500 text-[#f0f0f0]"
-                : "bg-[#424242] text-[#6a6a6a]",
+                : "bg-[#424242] text-[#bfbdbd]",
               "flex items-center justify-center hover:bg-[#525252] rounded-[3px] w-auto h-[80%] text-sm p-2"
             )}
           >
             update
           </div>
-          <div onClick={handleDelete} className="flex items-center justify-center bg-[#424242] text-[#6a6a6a] hover:bg-[#525252] active:bg-red-500 rounded-[3px] w-auto h-[80%] text-sm p-2">
+          <div onClick={handleDelete} className="flex items-center justify-center bg-[#424242] text-[#bfbdbd] hover:bg-[#525252] active:bg-red-500 rounded-[3px] w-auto h-[80%] text-sm p-2">
             delete
           </div>
 
@@ -243,7 +242,7 @@ const UpdateData = ({ member }) => {
           <select onChange={handleUpdateChange} name="domain" defaultValue={member.domain} className="flex items-center px-2 justify-center w-[70%] h-full rounded-[5px] bg-[#282828] text-sm truncate text-ellipsis">
             {domainOptions.map((value, index) => {
                 return (
-                    <option className="bg-[#282828] text-xs p-1 text-[#6a6a6a]" key={index} value={value}>{value}</option>
+                    <option className="bg-[#282828] text-xs p-1 text-[#bfbdbd]" key={index} value={value}>{value}</option>
                 )
             })}
           </select>
@@ -255,7 +254,7 @@ const UpdateData = ({ member }) => {
           <select onChange={handleUpdateChange} name="position" defaultValue={member.position} className="flex items-cent px-2er justify-center w-[70%] h-full rounded-[5px] bg-[#282828] text-sm truncate text-ellipsis">
             {positonOptions.map((value, index) => {
                 return (
-                    <option className="bg-[#282828] text-xs p-1 text-[#6a6a6a]" key={index} value={value}>{value}</option>
+                    <option className="bg-[#282828] text-xs p-1 text-[#bfbdbd]" key={index} value={value}>{value}</option>
                 )
             })}
           </select>
@@ -267,7 +266,7 @@ const UpdateData = ({ member }) => {
           <select onChange={handleUpdateChange} name="academicYear" defaultValue={member.year} className="flex items-center j px-2ustify-center w-[70%] h-full rounded-[5px] bg-[#282828] text-sm truncate text-ellipsis">
             {yearOptions.map((value, index) => {
                 return (
-                    <option className="bg-[#282828] text-xs p-1 text-[#6a6a6a]" key={index} value={value}>{value}</option>
+                    <option className="bg-[#282828] text-xs p-1 text-[#bfbdbd]" key={index} value={value}>{value}</option>
                 )
             })}
           </select>
@@ -279,7 +278,7 @@ const UpdateData = ({ member }) => {
           <select onChange={handleUpdateChange} name="department" defaultValue={member.aboutMe} className="flex items-cente px-2r justify-center w-[70%] h-full rounded-[5px] bg-[#282828] text-sm truncate text-ellipsis">
             {departmentOptions.map((value, index) => {
                 return (
-                    <option className="bg-[#282828] text-xs p-1 text-[#6a6a6a]" key={index} value={value}>{value}</option>
+                    <option className="bg-[#282828] text-xs p-1 text-[#bfbdbd]" key={index} value={value}>{value}</option>
                 )
             })}
           </select>
