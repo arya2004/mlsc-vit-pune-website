@@ -2,16 +2,15 @@
 import { useEffect, useState } from "react";
 
 import axios from "axios";
-import { useRouter } from "next/navigation";
 
-import { useSession } from 'next-auth/react'
+import { useSession } from 'next-auth/react';
 
-import { MdNavigateNext, MdNavigateBefore } from "react-icons/md";
+import { MdNavigateBefore, MdNavigateNext } from "react-icons/md";
 
-import { Textboxico, Textbox, Selectbox } from "../components/Textbox";
-import Sidepanel from "../components/Sidepanel";
-import Searchbox from "../components/Searchbox";
 import Button from "../components/Button";
+import Searchbox from "../components/Searchbox";
+import Sidepanel from "../components/Sidepanel";
+import { Selectbox, Textbox, Textboxico } from "../components/Textbox";
 import Domainoutput from "./Domainoutput";
 import WhichDomain from "./WhichDomain";
 
@@ -87,7 +86,7 @@ function AddTeamMember() {
           position: formData.position,
           year: formData.academicYear,
           xLink: formData.twitterID,
-          email: formData.mail,
+          email: userSession?.data.user.email ?? formData.mail,
           linkedinLink: formData.linkedinID,
           githubLink: formData.githubID,
           aboutMe: formData.department,
@@ -219,12 +218,12 @@ function AddTeamMember() {
 
             <div className="flex flex-row justify-evenly gap-4 w-full">
               {/*{!userSession && !userSession.user.email &&  */}
-              <Textboxico
+              {!userSession && !userSession.data.user.email && <Textboxico
                 name="mail"
                 onChange={handleChange}
                 label="MailID (GitHub)"
                 icons="/icons/mail-form.svg"
-              />
+              />}
               {/*}*/}
               <Textboxico
                 name="twitterID"
@@ -253,10 +252,10 @@ function AddTeamMember() {
         </div>
       </div>
 
-      <div className="flex flex-col gap-5 justify-evenly h-full w-2/5 p-5 bg-[#666666] text-[#6A6A6A]">
+      <div className="flex flex-col gap-5 justify-evenly h-full w-2/5 p-5 bg-[#666666] text-[#bfbdbd]">
         <Searchbox />
-        <div className="flex flex-col items-center w-full h-[90%] bg-[#1E1E1E] p-8 px-10  rounded-[40px] border-[#6A6A6A]-2">
-          <span className="text-lg text-[#6A6A6A] border-b-2 border-[#6A6A6A] w-full text-center py-3 ">
+        <div className="flex flex-col items-center w-full h-[90%] bg-[#1E1E1E] p-8 px-10  rounded-[40px] border-[#bfbdbd]-2">
+          <span className="text-lg text-[#bfbdbd] border-b-2 border-[#bfbdbd] w-full text-center py-3 ">
             All Team Members
           </span>
 
