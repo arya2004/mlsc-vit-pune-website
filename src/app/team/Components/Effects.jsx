@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   EffectComposer,
   GodRays,
@@ -12,9 +12,9 @@ import {
 
 import {useMLSCStore} from "../../store/MLSCStore";
 
-function Effects() {
+function Effects({teleporting}) {
 
-  const teleporting = useMLSCStore((s) => s.teleporting);
+  // const teleporting = useMLSCStore((s) => s.teleporting);
 
   return (
     <EffectComposer>
@@ -34,7 +34,7 @@ function Effects() {
           /> */}
       <Noise opacity={0.05} />
       {/* <Bloom luminanceThreshold={0.5} luminanceSmoothing={0.9} height={300} /> */}
-      {teleporting ?? <DotScreen />}
+      {teleporting && <DotScreen />}
     </EffectComposer>
   );
 }

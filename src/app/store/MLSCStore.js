@@ -4,7 +4,7 @@ export const useMLSCStore = create((set) => ({
   showMotherBoard: false,
   setShowMotherBoard: (showMotherBoard) => set({ showMotherBoard }),
 
-  teleporting: false,
+  teleporting: true,
   setTeleporting: (teleporting) => set({ teleporting }),
 
   domain: "",

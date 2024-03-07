@@ -23,7 +23,7 @@ export default function TeleportAnim({ position, targetPos, ref }) {
   }
 
   useFrame((state, delta) => {
- 
+    spotLight.current.target.position.set(position[0], -5, position[2])
 
     partilcleProperties.forEach((particle) => {
       particle.ref.current.position.y += 0.1;

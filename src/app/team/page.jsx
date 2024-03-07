@@ -14,7 +14,7 @@ import {
   PointerLockControls,
 } from "@react-three/drei";
 import { Canvas, extend } from "@react-three/fiber";
-import React, { Suspense, useRef, useMemo } from "react";
+import React, { Suspense, useRef, useMemo, useState } from "react";
 import { Physics, RigidBody } from "@react-three/rapier";
 import * as THREE from "three";
 
@@ -35,10 +35,12 @@ import MovingCamera from "./Components/MovingCamera.jsx";
 function page() {
   const sun = useRef(); 
 
-  const teleporting = useMLSCStore((s) => s.teleporting);
-  const setTeleporting = useMLSCStore((s) => s.setTeleporting);
+  // const teleporting = useMLSCStore((s) => s.teleporting);
+  // const setTeleporting = useMLSCStore((s) => s.setTeleporting);
 
-  setTeleporting(false)
+  // setTeleporting(false)
+
+  const [teleporting, setTeleporting] = useState(false);
 
   const backgroundColors = useRef({
     // colorB: "#61b0ed",
@@ -74,7 +76,7 @@ function page() {
             position={[0, 4, 5]}
             intensity={5}
           />
-          <axesHelper args={[100]} />
+          {/* <axesHelper args={[100]} /> */}
           <Environment preset="night" />
           {/* <Suspense >
             <Portal />
@@ -82,7 +84,7 @@ function page() {
           <PointerLockControls />
           <Suspense>
             <Physics gravity={[0, -10, 0]} >
-              <MovingCamera position={[0, 2, 15]} />
+              <MovingCamera position={[0, 2, 10]} teleporting={teleporting} setTeleporting={setTeleporting} />
 
               <RigidBody
                 type="fixed"
@@ -99,7 +101,7 @@ function page() {
             <DomainPortals />
           </Suspense>
           <Fillers />
-          <Effects />
+          <Effects teleporting={teleporting} />
         </Canvas>
       </KeyboardControls>
       <Loader />

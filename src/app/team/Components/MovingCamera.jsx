@@ -5,7 +5,6 @@ import { CapsuleCollider, RigidBody, useRapier } from "@react-three/rapier";
 import { Suspense } from "react";
 import { degToRad, radToDeg } from "three/src/math/MathUtils";
 
-
 import * as THREE from "three";
 import RAPIER from "@dimforge/rapier3d-compat";
 import TeleportAnim from "./TeleportAnim";
@@ -17,14 +16,14 @@ const sideVector = new THREE.Vector3();
 const direction = new THREE.Vector3();
 // const rotation = new THREE.Vector3();
 
-function MovingCamera({position}) {
+function MovingCamera({teleporting, position, setTeleporting}) {
 
   const controls = useRef();
   console.log(controls);
   const [_, get] = useKeyboardControls();
 
-  const teleporting = useMLSCStore((s) => s.teleporting);
-  const setTeleporting = useMLSCStore((s) => s.setTeleporting);
+  // const teleporting = useMLSCStore((s) => s.teleporting);
+  // const setTeleporting = useMLSCStore((s) => s.setTeleporting);
   const [portalPos, setPortalPos] = useState([0,0,0]);
 
   const rapier = useRapier();
@@ -70,18 +69,22 @@ function MovingCamera({position}) {
 
       /*When clicked on the any button on sidebar, camera will be dragged to the center of the scene and portal will suck it to another location */
       if(teleporting) {
-        if(Math.floor(Math.sqrt(conCurr?.translation().x**2 + conCurr?.translation().z**2)) < 2)
+        if(Math.floor(Math.sqrt(conCurr?.translation().x**2 + conCurr?.translation().z**2)) < 4)
           conCurr.setLinvel({x: -conCurr?.translation().x, y: 1, z: -conCurr?.translation().z});
         else if(Math.floor(Math.sqrt(conCurr?.translation().x**2 + conCurr?.translation().z**2)) > 0)
-          conCurr.setLinvel({x: -conCurr?.translation().x, y: 0, z: -conCurr?.translation().z});
+          conCurr.setLinvel({x: -conCurr?.translation().x, y: 2, z: -conCurr?.translation().z});
       }
 
       // console.log("Distance", Math.floor(Math.sqrt(conCurr?.translation().x**2 + conCurr?.translation().z**2)));
 
       /*When the camera reaches near any domain portal, this will drag the camera into the portal */
-      if(Math.floor(Math.sqrt(conCurr?.translation().x**2 + conCurr?.translation().z**2)) >= 31){
+      if(Math.floor(Math.sqrt(conCurr?.translation().x**2 + conCurr?.translation().z**2)) >= 25)
         setTeleporting(true);
+      if(Math.floor(Math.sqrt(conCurr?.translation().x**2 + conCurr?.translation().z**2)) >= 31){
+  
         const theta = radToDeg(Math.atan2(conCurr?.translation().z, conCurr?.translation().x));
+
+
 
         if(theta > 20-10 && theta < 20+10){
           setPortalPos([34*Math.cos(degToRad(20)), 0, 34*Math.sin(degToRad(20))]);
@@ -124,6 +127,7 @@ function MovingCamera({position}) {
     // <PerspectiveCamera position={[1, 4, 2]} ref={controls} />
     <group>
       {teleporting && <TeleportAnim position={portalPos} />}
+      
       <RigidBody
         type="dynamic"
         ref={controls}
