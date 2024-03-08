@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 
 import axios from "axios";
 
-import { useSession } from 'next-auth/react';
 
 import { MdNavigateBefore, MdNavigateNext } from "react-icons/md";
 
@@ -13,21 +12,26 @@ import Sidepanel from "../components/Sidepanel";
 import { Selectbox, Textbox, Textboxico } from "../components/Textbox";
 import Domainoutput from "./Domainoutput";
 import WhichDomain from "./WhichDomain";
+import { useServerSession } from "./hooks";
 
 //TODO: api/jobs/<teams | events | projects | teams | blogs , cache refresing
 
 function AddTeamMember() {
 
   // const {data: session} = useSession();
-  const userSession = useSession();
+  // const userSession = useSession();
 
-  // console.log(session)
+  // console.log("session = " + JSON.stringify(userSession.data))
 
-  // const [userSession, setUserSession] = useState();
-
-  // useEffect(() => {
-  //   setUserSession(session);
-  // }, [session]);
+  const [userSession, setUserSession] = useState(null);
+  useEffect(() => {
+    const getSession = async () => {
+      const session = await useServerSession();
+      setUserSession(session);
+      console.log(session);
+    }
+    getSession();
+  }, []);
 
   const [formData, setFormData] = useState({
     academicYear: "",
@@ -56,12 +60,12 @@ function AddTeamMember() {
   const getTeamData = async () => {
     try {
       const teamData = await axios.get("/api/team");
-      // setMemberData(teamData.data.data);
       setMemberData(teamData.data.data);
+      // setMemberData([]);
       // console.log(JSON.stringify(teamData.data.data[0].domain))
     } catch (err) {
       console.log("GET req error");
-      console.log(err);
+      // console.log(err);
       return err;
     }
   };
@@ -86,7 +90,7 @@ function AddTeamMember() {
           position: formData.position,
           year: formData.academicYear,
           xLink: formData.twitterID,
-          email: userSession?.data.user.email ?? formData.mail,
+          email: userSession?.user.email ?? formData.mail,
           linkedinLink: formData.linkedinID,
           githubLink: formData.githubID,
           aboutMe: formData.department,
@@ -162,7 +166,7 @@ function AddTeamMember() {
               <Selectbox
                 name="position"
                 onChange={handleChange}
-                label="Positoin"
+                label="Position"
                 options={[
                   "__select__",
                   "President",
@@ -218,7 +222,7 @@ function AddTeamMember() {
 
             <div className="flex flex-row justify-evenly gap-4 w-full">
               {/*{!userSession && !userSession.user.email &&  */}
-              {!userSession && !userSession.data.user.email && <Textboxico
+              {!userSession?.user.email && <Textboxico
                 name="mail"
                 onChange={handleChange}
                 label="MailID (GitHub)"

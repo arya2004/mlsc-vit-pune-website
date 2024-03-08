@@ -1,7 +1,9 @@
+"use server";
+
 import { getServerSession } from 'next-auth';
 
 
-export async function useSession(){
+export async function useServerSession(){
 
     const userSession = await getServerSession();
 
