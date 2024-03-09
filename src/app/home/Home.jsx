@@ -11,9 +11,9 @@ import {
   PositionalAudio,
 } from "@react-three/drei";
 
-import { CPUcase2 } from "../components/CpuCase2";
+import { CPUcase2 } from "../components-3d/CpuCase2";
 import ScrollCamera from "./ScrollCamera";
-import PlaySoundButton from "../components/PlaySoundButton";
+import PlaySoundButton from "../components-3d/PlaySoundButton";
 
 function Home() {
   // For Responsiveness:

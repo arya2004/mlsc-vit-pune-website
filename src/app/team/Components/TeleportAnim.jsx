@@ -4,7 +4,6 @@ import { useFrame } from "@react-three/fiber";
 import { BoxGeometry } from "three";
 import { randFloat, randFloatSpread, randInt } from "three/src/math/MathUtils";
 import * as THREE from "three";
-import { SP } from "next/dist/shared/lib/utils";
 
 export default function TeleportAnim({ position, targetPos, ref }) {
   const partilcleProperties = [];
