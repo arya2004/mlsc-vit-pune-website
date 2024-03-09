@@ -241,7 +241,7 @@ function AddTeamMember() {
               />
             </div>
 
-            <div className="flex flex-row justify-evenly gap-4 w-full">
+            <div className="flex flex-row justify-between gap-4 w-full">
               {/* <Textbox
                 name="photoURL"
                 onChange={handleChange}
@@ -249,8 +249,8 @@ function AddTeamMember() {
                 type="text"
               /> */}
 
-              <div>
-                <form onSubmit={async (event) => {
+              <div className="flex flex-row items-center justify-start p-1 gap-1 w-1/2 ">
+                <form className="flex flex-row justify-around gap-2" onSubmit={async (event) => {
                   event.preventDefault();
 
                   if (!inputFileRef.current?.files) {
@@ -274,17 +274,19 @@ function AddTeamMember() {
                   console.log(newBlob);
                 }}>
                   <input name="file" 
+                  className="w-3/5 text-xs flex items-center justify-center h-full p-1 text-[#f0f0f0] border border-gray-300 rounded-lg cursor-pointer bg-[#373737]  "
                   ref={inputFileRef} type="file" required />
-                  <button type="submit">Upload</button>
+                  <button className="bg-[#505050] text-xs p-2 rounded-[7px] hover:bg-slate-400 active:bg-green-400" type="submit">Upload Photo</button>
                 </form>
               </div>
-
+                <div className="w-1/2">
               <Textbox
                 name="modelURL"
                 onChange={handleChange}
                 label="Action Figure"
                 type="text"
               />
+              </div>
             </div>
             <Button label="Submit" onClick={handleSubmit} />
           </div>
