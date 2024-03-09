@@ -259,16 +259,25 @@ function AddTeamMember() {
 
                   const file = inputFileRef.current.files[0];
 
-                  const response = await fetch(
-                    `/api/photo/upload?filename=${file.name}`,
-                    {
-                      method: 'POST',
-                      body: file,
+                  // const response = await fetch(
+                  //   `/api/photo/upload?filename=${file.name}`,
+                  //   {
+                  //     method: 'POST',
+                  //     body: file,
+                  //   },
+                  // );
+
+                  const {data: newBlob } = await axios.post(`/api/photo/upload?filename=${file.name}`, file, {
+                    headers: {
+                      'Content-Type': 'multipart/form-data',
                     },
-                  );
+                  });
 
-                  const newBlob = (await response.json());
-
+                  // const newBlob = (await response.json());
+                  if (newBlob.error) {
+                    alert("Error uploading images");
+                    return;
+                  }
                   setBlob(newBlob);
                   setImageUrl(newBlob.url);
                   alert(`Image uploaded successfully to ${newBlob.url}`);
