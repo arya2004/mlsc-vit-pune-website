@@ -271,6 +271,7 @@ function AddTeamMember() {
 
                   setBlob(newBlob);
                   setImageUrl(newBlob.url);
+                  alert(`Image uploaded successfully to ${newBlob.url}!`);
                   console.log(newBlob);
                 }}>
                   <input name="file" 
