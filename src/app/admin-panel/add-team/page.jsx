@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 
+import { useRef } from 'react';
+
 import { MdNavigateBefore, MdNavigateNext } from "react-icons/md";
 
 import Button from "../components/Button";
@@ -52,7 +54,9 @@ function AddTeamMember() {
   const [output, setoutput] = useState([]);
   const [whichDomain, setWhichDomain] = useState("Core Team");
   const [memberData, setMemberData] = useState([]);
-
+  const inputFileRef = useRef(null);
+  const [blob, setBlob] = useState(null);
+  const [imageUrl, setImageUrl] = useState("");
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -94,7 +98,7 @@ function AddTeamMember() {
           linkedinLink: formData.linkedinID,
           githubLink: formData.githubID,
           aboutMe: formData.department,
-          imageLink: formData.photoURL,
+          imageLink: imageUrl,
           modelLink: formData.modelURL,
         };
         const { data, status } = await axios.post(`/api/team`, body);
@@ -238,12 +242,43 @@ function AddTeamMember() {
             </div>
 
             <div className="flex flex-row justify-evenly gap-4 w-full">
-              <Textbox
+              {/* <Textbox
                 name="photoURL"
                 onChange={handleChange}
                 label="Photo"
                 type="text"
-              />
+              /> */}
+
+              <div>
+                <form onSubmit={async (event) => {
+                  event.preventDefault();
+
+                  if (!inputFileRef.current?.files) {
+                    throw new Error('No file selected');
+                  }
+
+                  const file = inputFileRef.current.files[0];
+
+                  const response = await fetch(
+                    `/api/photo/upload?filename=${file.name}`,
+                    {
+                      method: 'POST',
+                      body: file,
+                    },
+                  );
+
+                  const newBlob = (await response.json());
+
+                  setBlob(newBlob);
+                  setImageUrl(newBlob.url);
+                  console.log(newBlob);
+                }}>
+                  <input name="file" 
+                  ref={inputFileRef} type="file" required />
+                  <button type="submit">Upload</button>
+                </form>
+              </div>
+
               <Textbox
                 name="modelURL"
                 onChange={handleChange}
