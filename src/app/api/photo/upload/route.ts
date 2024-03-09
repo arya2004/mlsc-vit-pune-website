@@ -1,10 +1,10 @@
 import { put } from '@vercel/blob';
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 
-export async function POST(request: Request): Promise<NextResponse> {
+export async function POST(request: NextRequest): Promise<NextResponse> {
     const { searchParams } = new URL(request.url);
-    const filename = searchParams.get('filename');
-
+    const randomNumber = Math.floor(Math.random() * 1000000);
+    const filename = searchParams.get('filename') || `image${randomNumber}.jpg`;
     const blob = await put(filename, request.body, {
         access: 'public',
     });
