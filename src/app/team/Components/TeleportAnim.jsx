@@ -4,6 +4,7 @@ import { useFrame } from "@react-three/fiber";
 import { BoxGeometry } from "three";
 import { randFloat, randFloatSpread, randInt } from "three/src/math/MathUtils";
 import * as THREE from "three";
+import { SP } from "next/dist/shared/lib/utils";
 
 export default function TeleportAnim({ position, targetPos, ref }) {
   const partilcleProperties = [];
@@ -12,7 +13,7 @@ export default function TeleportAnim({ position, targetPos, ref }) {
   const spotLight = useRef();
 
   for (let index = 0; index < 500; index++) {
-    const posy = randFloat(-5, 5);
+    const posy = randFloat(-5, 10);
     const posx = randFloat(-1, 1);
     const posz = randFloat(-1, 1);
     const particleRef = useRef();
@@ -25,9 +26,15 @@ export default function TeleportAnim({ position, targetPos, ref }) {
   useFrame((state, delta) => {
     spotLight.current.target.position.set(position[0], -5, position[2])
 
+    console.log("SPOTLIGHT",spotLight.current);
+    
+    if(spotLight.current.distance < 20) {
+      spotLight.current.distance += 1;
+    }
+
     partilcleProperties.forEach((particle) => {
       particle.ref.current.position.y += 0.1;
-      if (particle.ref.current.position.y > 5) {
+      if (particle.ref.current.position.y > 10) {
         particle.ref.current.position.y = -5;
         particle.ref.current.position.x = randFloat(-1, 1);
         particle.ref.current.position.z = randFloat(-1, 1);
@@ -46,6 +53,7 @@ export default function TeleportAnim({ position, targetPos, ref }) {
         attenuation={25}
         radiusTop={1.5}
         radiusBottom={1.5}
+        opacity={1}
       />
       {partilcleProperties.map((particle, index) => {
         return (

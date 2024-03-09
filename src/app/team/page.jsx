@@ -41,6 +41,7 @@ function page() {
   // setTeleporting(false)
 
   const [teleporting, setTeleporting] = useState(false);
+  const [inPortal, setInPortal] = useState(false);
 
   const backgroundColors = useRef({
     // colorB: "#61b0ed",
@@ -84,7 +85,7 @@ function page() {
           <PointerLockControls />
           <Suspense>
             <Physics gravity={[0, -10, 0]} >
-              <MovingCamera position={[0, 2, 10]} teleporting={teleporting} setTeleporting={setTeleporting} />
+              <MovingCamera position={[0, 2, 10]} teleporting={teleporting} setTeleporting={setTeleporting} inPortal={inPortal} setInPortal={setInPortal} />
 
               <RigidBody
                 type="fixed"
@@ -101,7 +102,7 @@ function page() {
             <DomainPortals />
           </Suspense>
           <Fillers />
-          <Effects teleporting={teleporting} />
+          <Effects inPortal={inPortal} />
         </Canvas>
       </KeyboardControls>
       <Loader />

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Suspense, useState } from "react";
 import {
   EffectComposer,
   GodRays,
@@ -12,7 +12,7 @@ import {
 
 import {useMLSCStore} from "../../store/MLSCStore";
 
-function Effects({teleporting}) {
+function Effects({inPortal}) {
 
   // const teleporting = useMLSCStore((s) => s.teleporting);
 
@@ -34,7 +34,7 @@ function Effects({teleporting}) {
           /> */}
       <Noise opacity={0.05} />
       {/* <Bloom luminanceThreshold={0.5} luminanceSmoothing={0.9} height={300} /> */}
-      {teleporting && <DotScreen />}
+      {inPortal && <Suspense><DotScreen /> </Suspense>}
     </EffectComposer>
   );
 }
