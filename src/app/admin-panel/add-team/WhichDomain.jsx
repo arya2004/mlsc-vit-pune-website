@@ -9,8 +9,8 @@ export default function WhichDomain({whichDomain, teamData}){
     const [clickCount, setClickCount] = useState(false)
 
     return (
-    <div className="flex flex-col items-center justify-start w-full h-full pb-14 ">
-      <span className="flex flex-row gap-5 justify-center pt-4 pb-2 text-[#4A4A4A] border-b-[1px] border-[#4A4A4A]">
+    <div className="flex flex-col items-center justify-start w-full h-full pb-14 text-[#c0c0c0]">
+      <span className="flex flex-row gap-5 justify-center pt-4 pb-2 border-b-[1px] border-[#4A4A4A]">
         {whichDomain}
       </span>
       <div className="w-full h-full overflow-y-auto">

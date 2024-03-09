@@ -67,7 +67,7 @@ export default function MemberData({ member, className, setClickCount, clickCoun
 
 const ReadOnlyData = ({ member }) => {
     return (
-        <div className="flex flex-col gap-2 w-full h-full overflow-y-auto">
+        <div className="flex flex-col gap-2 w-full h-full overflow-y-auto text-[#c0c0c0]">
         <div className="flex flex-row w-full h-10 justify-around gap-3">
           <div className="flex items-center justify-center w-[30%] h-full rounded-[5px] bg-[#282828] text-sm truncate text-ellipsis">
             Name:
@@ -101,26 +101,26 @@ const ReadOnlyData = ({ member }) => {
           </div>
         </div>
         <div className="flex flex-row w-full h-10 justify-around gap-3">
-          <div className="flex items-center justify-center w-[30%] h-full rounded-[5px] bg-[#282828] text-sm truncate text-ellipsis">
+          <div className="flex items-center justify-center w-[30%] h-full rounded-[5px] bg-[#282828] text-sm  text-ellipsis truncate">
             Department:
           </div>
-          <div className="flex items-center justify-center w-[70%] h-full rounded-[5px] bg-[#282828] text-sm truncate text-ellipsis">
+          <div className="flex items-center justify-center w-[70%] h-full rounded-[5px] bg-[#282828] text-sm text-ellipsis truncate">
             {member.aboutMe}
           </div>
         </div>
         <div className="flex flex-row w-full h-10 justify-around gap-3">
-          <div className="flex items-center justify-center w-[30%] h-full rounded-[5px] bg-[#282828] text-sm truncate text-ellipsis">
+          <div className="flex items-center justify-center w-[30%] h-full rounded-[5px] bg-[#282828] text-sm text-ellipsis truncate">
             GithubID:
           </div>
-          <div className="flex items-center justify-center w-[70%] h-full rounded-[5px] bg-[#282828] text-sm truncate text-ellipsis">
+          <div className="flex items-center justify-center w-[70%] h-full rounded-[5px] bg-[#282828] text-sm text-ellipsis truncate">
             {member.githubLink}
           </div>
         </div>
         <div className="flex flex-row w-full h-10 justify-around gap-3">
-          <div className="flex items-center justify-center w-[30%] h-full rounded-[5px] bg-[#282828] text-sm truncate text-ellipsis">
+          <div className="flex items-center justify-center w-[30%] h-full rounded-[5px] bg-[#282828] text-sm text-ellipsis truncate">
             LinkedInID:
           </div>
-          <div className="flex items-center justify-center w-[70%] h-full rounded-[5px] bg-[#282828] text-sm truncate text-ellipsis">
+          <div className="flex items-center justify-center w-[70%] h-full rounded-[5px] bg-[#282828] text-sm  text-ellipsis truncate">
             {member.linkedinLink}
           </div>
         </div>
@@ -128,7 +128,7 @@ const ReadOnlyData = ({ member }) => {
           <div className="flex items-center justify-center w-[30%] h-full rounded-[5px] bg-[#282828] text-sm truncate text-ellipsis">
             MailID
           </div>
-          <div className="flex items-center justify-center w-[70%] h-full rounded-[5px] bg-[#282828] text-sm truncate text-ellipsis">
+          <div className="flex items-center justify-center w-[70%] h-full rounded-[5px] bg-[#282828] text-sm  text-ellipsis  truncate">
             {member.email}
           </div>
         </div>
@@ -136,23 +136,23 @@ const ReadOnlyData = ({ member }) => {
           <div className="flex items-center justify-center w-[30%] h-full rounded-[5px] bg-[#282828] text-sm truncate text-ellipsis">
             X_ID
           </div>
-          <div className="flex items-center justify-center w-[70%] h-full rounded-[5px] bg-[#282828] text-sm truncate text-ellipsis">
+          <div className="flex items-center justify-center w-[70%] h-full rounded-[5px] bg-[#282828] text-sm text-ellipsis truncate">
             {member.xLink}
           </div>
         </div>
         <div className="flex flex-row w-full h-10 justify-around gap-3">
-          <div className="flex items-center justify-center w-[30%] h-full rounded-[5px] bg-[#282828] text-sm truncate text-ellipsis">
+          <div className="flex items-center justify-center w-[30%] h-full rounded-[5px] bg-[#282828] text-sm text-ellipsis truncate">
             ImageURL:
           </div>
-          <div className="flex items-center justify-center w-[70%] h-full rounded-[5px] bg-[#282828] text-sm truncate text-ellipsis">
+          <div className="flex items-center justify-center w-[70%] h-full rounded-[5px] bg-[#282828] text-sm text-ellipsis truncate">
             {member.imageLink}
           </div>
         </div>
         <div className="flex flex-row w-full h-10 justify-around gap-3">
-          <div className="flex items-center justify-center w-[30%] h-full rounded-[5px] bg-[#282828] text-sm truncate text-ellipsis">
+          <div className="flex items-center justify-center w-[30%] h-full rounded-[5px] bg-[#282828] text-sm text-ellipsis truncate">
             AvatarURL
           </div>
-          <div className="flex items-center justify-center w-[70%] h-full rounded-[5px] bg-[#282828] text-sm truncate text-ellipsis">
+          <div className="flex items-center justify-center w-[70%] h-full rounded-[5px] bg-[#282828] text-sm text-ellipsis truncate">
             {member.modelLink}
           </div>
         </div>
@@ -227,7 +227,7 @@ const UpdateData = ({ member }) => {
     }
 
     return (
-        <div className="flex flex-col gap-2 w-full h-full overflow-y-auto">
+        <div className="flex flex-col gap-2 w-full h-full overflow-y-auto text-[#c0c0c0]">
         <div className="flex flex-row w-full h-10 justify-around gap-3">
           <div className="flex items-center justify-center w-[30%] h-full rounded-[5px] bg-[#282828] text-sm truncate text-ellipsis">
             Name:
@@ -312,7 +312,7 @@ const UpdateData = ({ member }) => {
 
         </div>
         <div className="flex flex-row w-full h-10 justify-around gap-3">
-          <div className="flex items-center justify-center w-[30%] h-full rounded-[5px] bg-[#282828] text-sm truncate text-ellipsis">
+          <div className="flex items-center justify-center w-[30%] h-full rounded-[5px] bg-[#282828] text-sm text-ellipsis truncate">
             ImageURL:
           </div>
           <input onChange={handleUpdateChange} name="photoURL" type="text" defaultValue={member.imageLink} className="flex items-cente px-2r justify-center w-[70%] h-full rounded-[5px] bg-[#282828] text-sm truncate text-ellipsis" />

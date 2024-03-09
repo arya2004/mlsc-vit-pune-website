@@ -10,7 +10,7 @@ export function Textboxico({label, icons, type, onChange, name}) {
 
 export function Textbox({label, onChange, name}) {
     return (
-        <div className="relative full text-[#bfbdbd]">
+        <div className="relative w-full text-[#bfbdbd]">
         <label htmlFor="textinput" className="absolute left-16 -top-3 px-5 bg-black text-sm font-light text-[#bfbdbd]">{label}</label>
     
         <input onChange={onChange} className="rounded-[10px] p-3 w-full border-[1px] border-[#bfbdbd] bg-black" type="text" name={name} />
