@@ -6,7 +6,7 @@ import { User } from '../user';
 import { LoginButton, LogoutButton } from './auth';
 
 export default  async function Home(){
-    console.log('Hello, Wld!');   
+    // console.log('Hello, Wld!');   
     const session = await getServerSession(authOptions)
     return (
         <div>

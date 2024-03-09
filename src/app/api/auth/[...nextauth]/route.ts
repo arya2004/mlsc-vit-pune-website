@@ -53,7 +53,7 @@ export const authOptions: NextAuthOptions = {
     ],
     callbacks: {
       session: ({ session, token }) => {
-        console.log('Session Callback', { session, token })
+        // console.log('Session Callback', { session, token })
         return {
           ...session,
           user: {
