@@ -3,29 +3,24 @@
 import { Canvas } from "@react-three/fiber";
 import React, { Suspense, useState, useEffect } from "react";
 
-import {
-  Box,
-  Cloud,
-  Clouds,
-  Environment,
-  Loader,
-  MeshDistortMaterial,
-  MeshReflectorMaterial,
-  OrbitControls,
-  ScrollControls,
-  Sky,
-  Sparkles,
-  SpotLight,
-  Stars,
-} from "@react-three/drei";
-import { MotherBoard } from "../components-3d/Motherboard";
-import { MeshStandardMaterial } from "three";
-import ExploreCamera from "./ExploreCamera";
-import BeforeMotherBoard from "./BeforeMotherBoard";
+import { Box, Cloud, Clouds, Environment, Loader, Mask, MeshDistortMaterial, MeshReflectorMaterial, OrbitControls, ScrollControls, Sky, Sparkles, SpotLight } from '@react-three/drei'
+import { MeshStandardMaterial } from 'three'
+import { EffectComposer, Bloom } from '@react-three/postprocessing'
+
+import ExploreCamera from './ExploreCamera'
+import { MotherBoard } from '../components/Motherboard'
+import BeforeMotherBoard from './BeforeMotherBoard'
+
+import AboutMesh from './html-cards/About.card'
+import GetInvolved from './html-cards/GetInvolved.card'
+import Offer from './html-cards/Offer.card'
 
 const page = () => {
-  const [isCloudResourceAvailable, setIsCloudResourceAvailable] =
-    useState(false);
+
+  const [isCloudResourceAvailable, setIsCloudResourceAvailable] = useState(false);
+  
+  const [showAbout, setShowAbout] = useState(true);
+  const [showGetInvolved, setShowGetInvolved] = useState(false);
 
   useEffect(() => {
     fetch(
@@ -86,22 +81,26 @@ const page = () => {
         {/* <axesHelper args={[50]} />
         <gridHelper args={[50, 50]} /> */}
 
-        <group rotation={[0, Math.PI, 0]}>
-          <directionalLight position={[5, 5, -3]} color="purple" intensity={2} />
-          <directionalLight position={[5, 5, 5]} color="#0078d4" intensity={4} />
+        <ScrollControls pages={10} damping={0.5} >
+          <ExploreCamera setShowAbout={setShowAbout} setShowGetInvolved={setShowGetInvolved} />
+        </ScrollControls>
+        
 
-          <ScrollControls pages={10} damping={0.3}>
-            <ExploreCamera />
-          </ScrollControls>
-
-          <Suspense fallback={<BeforeMotherBoard />}>
-            <MotherBoard rotation={[Math.PI / 2, Math.PI, -Math.PI / 2]} />
-          </Suspense>
-        </group>
-
+        {showGetInvolved && <GetInvolved />}
+        {showAbout && <AboutMesh />}
+        
+        <Suspense fallback={<BeforeMotherBoard />} >
+          <MotherBoard rotation={[Math.PI/2, Math.PI, -Math.PI/2]} />
+        </Suspense>
+        
         {/* <Box material-color='red' args={[0.1, 0.1, 0.1]}  position={[-3.5, 0.05, -1.65]}  /> */}
-      </Canvas>
-      <Loader />
+
+
+      {/* <EffectComposer >
+        <Bloom mipmapBlur intensity={0.8} />
+      </EffectComposer> */}
+    </Canvas>
+    <Loader />
     </>
   );
 };

@@ -1,7 +1,8 @@
 import './globals.css'
-import { Inter } from 'next/font/google'
+import { Jura } from 'next/font/google'
+import { Providers } from './providers'
 
-const inter = Inter({ subsets: ['latin'] })
+const jura = Jura({ subsets: ['latin'] })
 
 export const metadata = {
   title: 'MLSC VIT Pune',
@@ -11,7 +12,12 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+
+      <body className={jura.className}>    
+        <Providers>
+        {children}
+      </Providers></body>
+
     </html>
   )
 }

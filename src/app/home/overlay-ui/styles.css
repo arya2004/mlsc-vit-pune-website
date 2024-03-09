@@ -1,0 +1,46 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Wallpoet&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap');
+
+/*.font-wallpoet {
+  font-family: 'Wallpoet', sans-serif;
+} */
+
+/* .font-black-ops-one {
+  font-family: 'Black Ops One', system-ui;
+} */
+
+
+
+.clip-corner {
+    background: linear-gradient(225deg, transparent 75px, rgba(0, 0, 0, 0.759) 0 );
+    border-top-right-radius: 120px;
+}
+
+.clip-corner-shadow {
+    background: linear-gradient(225deg, transparent 73px, rgba(0, 120, 212, 0.701) 0 );
+    border-top-right-radius: 125px;
+}
+
+.clip-corner-option:hover {
+    background: linear-gradient(315deg, transparent 10px, #0078D4 0 );
+    color: black;
+
+}
+.clip-corner-option:active {
+    background: linear-gradient(315deg, transparent 10px, #8dc1e9 0 );
+    color:black;
+}
+
+
+
+/* .animated-cross {
+  width: 100px; 
+  height: 100px;
+  background: url('your-animated-icon.gif') no-repeat;
+  background-size: cover;
+  transition: transform 0.3s ease; 
+} */
+
+/* .animated-cross:hover {
+  transform: scale(1.1); 
+} */

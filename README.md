@@ -19,10 +19,18 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
+Start a postgre container
+
+```bash
+docker-compose up -d
+```
+
 First, run the development server:
 
 ```bash
 npm run dev
+npx prisma migrate dev --name init
+npx prisma db seed
 # or
 yarn dev
 # or
