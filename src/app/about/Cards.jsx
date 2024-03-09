@@ -20,7 +20,7 @@ export function EventCards({position, scale,}){
         <group position={position} >
             <EventCard position={[18*Math.cos(degToRad(30)),  -5, 18*Math.sin(degToRad(30))]}  scale={scale} rotation={[0, degToRad(60), 0]} />
             <EventCard position={[18*Math.cos(degToRad(60)),  -5, 18*Math.sin(degToRad(60))]}  scale={scale} rotation={[0, degToRad(30), 0]} />
-            <EventCard position={[18*Math.cos(degToRad(120)),  -5, 18*Math.sin(degToRad(120))]}  scale={scale} rotation={[0, degToRad(-30), 0]} />
+            <EventCard position={[18*Math.cos(degToRad(120)), -5, 18*Math.sin(degToRad(120))]} scale={scale} rotation={[0, degToRad(-30), 0]} />
             <EventCard position={[18*Math.cos(degToRad(150)), -5, 18*Math.sin(degToRad(150))]} scale={scale} rotation={[0, degToRad(-60), 0]} />
             <EventCard position={[18*Math.cos(degToRad(210)), -5, 18*Math.sin(degToRad(210))]} scale={scale} rotation={[0, degToRad(60), 0]} />
             <EventCard position={[18*Math.cos(degToRad(240)), -5, 18*Math.sin(degToRad(240))]} scale={scale} rotation={[0, degToRad(30), 0]} />
