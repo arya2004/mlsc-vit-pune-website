@@ -17,16 +17,24 @@ export function Avatar(props) {
     const { animations: house_dancing} = useFBX('/animations/House Dancing.fbx');
     const { animations: swing_dancing} = useFBX('/animations/Swing Dancing.fbx');
 
+    const { animations: standing_pose } = useFBX('/animations/Male Standing Pose.fbx');
+    const { animations: standing_pose_1 } = useFBX('/animations/Male Standing Pose (1).fbx');
+    const { animations: standing_pose_2 } = useFBX('/animations/Male Standing Pose (2).fbx');
+
     bBoy_hip_hop[0].name = "Bboy Hip Hop Move";
     gangnum_style[0].name = "Gangnum Style";
     hip_hop[0].name = "Hip Hop Dance";
     house_dancing[0].name = "House Dancing";
     swing_dancing[0].name = "Swing Dancing";
+
+    standing_pose[0].name = "Standing Pose";
+    standing_pose_1[0].name = "Standing Pose 1";
+    standing_pose_2[0].name = "Standing Pose 2";
     
-    const {actions} = useAnimations([bBoy_hip_hop[0], gangnum_style[0], hip_hop[0], house_dancing[0], swing_dancing[0]], group);
+    const {actions} = useAnimations([bBoy_hip_hop[0], gangnum_style[0], hip_hop[0], house_dancing[0], swing_dancing[0],  standing_pose[0], standing_pose_1[0], standing_pose_2[0]], group);
 
     useEffect(() => {
-        actions['Gangnum Style'].play();
+        actions['Standing Pose'].play();
     }, [actions]);
     
     

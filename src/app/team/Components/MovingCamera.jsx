@@ -7,7 +7,7 @@ import { degToRad, radToDeg } from "three/src/math/MathUtils";
 
 import * as THREE from "three";
 import RAPIER from "@dimforge/rapier3d-compat";
-import TeleportAnim from "./TeleportAnim";
+import TeleportAnim from "../../components-3d/TeleportAnim";
 
 import {useMLSCStore} from "../../store/MLSCStore";
 
