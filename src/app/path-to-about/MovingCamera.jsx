@@ -12,6 +12,7 @@ import RAPIER from "@dimforge/rapier3d-compat";
 import { YearCard } from "./YearCard";
 
 import { useMLSCStore } from "../store/MLSCStore";
+import { useRouter } from "next/navigation";
 
 const frontVector = new THREE.Vector3();
 const sideVector = new THREE.Vector3();
@@ -27,6 +28,8 @@ function MovingCamera({ position, setsYear }) {
   // const setTeleporting = useMLSCStore((s) => s.setTeleporting);
   const [portalPos, setPortalPos] = useState([0, 0, 0]);
   const [showYearCard, setshowYearCard] = useState(false);
+
+  const rounter = useRouter();
 
   const rapier = useRapier();
 
@@ -81,6 +84,9 @@ function MovingCamera({ position, setsYear }) {
 
       if (conCurr?.translation().x < -13.5 && conCurr?.translation().z < -13) {
         setshowYearCard(true);
+        if(conCurr?.translation().x < -16 && conCurr?.translation().z < -16.5){
+          rounter.push('/about');
+        }
       } else setshowYearCard(false);
 
       /*When clicked on the any button on sidebar, camera will be dragged to the center of the scene and portal will suck it to another location */

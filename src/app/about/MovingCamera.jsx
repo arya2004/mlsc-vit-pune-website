@@ -16,7 +16,7 @@ const sideVector = new THREE.Vector3();
 const direction = new THREE.Vector3();
 // const rotation = new THREE.Vector3();
 
-function MovingCamera({ position, setsYear }) {
+function MovingCamera({ position }) {
   const controls = useRef();
   console.log(controls);
   const [_, get] = useKeyboardControls();
@@ -48,7 +48,8 @@ function MovingCamera({ position, setsYear }) {
       frontVector.set(0, 0, backward - forward);
       sideVector.set(left - right, 0, 0);
 
-      // console.log(frontVector);
+      console.log("FRONT VEC: ",frontVector);
+      console.log("SIDE VEC: ",sideVector);
 
       direction
         .subVectors(frontVector, sideVector)
@@ -75,12 +76,6 @@ function MovingCamera({ position, setsYear }) {
       if (jump)
         controls.current?.setLinvel({ x: direction.x, y: 5, z: direction.z });
 
-      console.log("CAM_POS:", conCurr?.translation());
-
-      if (conCurr?.translation().x < -13.5 && conCurr?.translation().z < -13) {
-        setshowYearCard(true);
-      } else setshowYearCard(false);
-
       /*When clicked on the any button on sidebar, camera will be dragged to the center of the scene and portal will suck it to another location */
       // if(teleporting) {
       //   if(Math.floor(Math.sqrt(conCurr?.translation().x**2 + conCurr?.translation().z**2)) < 4)
@@ -105,13 +100,6 @@ function MovingCamera({ position, setsYear }) {
   return (
     // <PerspectiveCamera position={[1, 4, 2]} ref={controls} />
     <group>
-      {/* <Suspense>
-        {teleporting && <TeleportAnim position={portalPos} />}
-      </Suspense> */}
-      {!showYearCard && <PointerLockControls />}
-      {showYearCard && (
-        <YearCard position={[-16.2, 0, -17]} rotation={[0, degToRad(40), 0]} />
-      )}
       <RigidBody
         type="dynamic"
         ref={controls}

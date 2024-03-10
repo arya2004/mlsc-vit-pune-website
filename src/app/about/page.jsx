@@ -55,9 +55,9 @@ export default function About() {
         {/* <Environment preset="night" background /> */}
         {/* <AboutScene /> */}
         <Suspense>
-          {/* <PointerLockControls /> */}
+          <PointerLockControls />
           <Physics>
-            <MovingCamera position={[0, 2, 5]} />
+            <MovingCamera position={[0, 2, 18]} />
 
             {/* {aboutYear !== "" ? ( */}
 
@@ -73,8 +73,8 @@ export default function About() {
           </Physics>
         </Suspense>
 
-        <Background backgroundColors={backgroundColors} />
-        <Fillers />
+        {/* <Background backgroundColors={backgroundColors} /> */}
+        {/* <Fillers /> */}
         {/* <Effects /> */}
       </Canvas>
       <Loader />
