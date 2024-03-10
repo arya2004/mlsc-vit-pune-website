@@ -9,6 +9,8 @@ import * as THREE from "three";
 import RAPIER from "@dimforge/rapier3d-compat";
 // import TeleportAnim from "./TeleportAnim";
 
+import { YearCard } from "./YearCard";
+
 import { useMLSCStore } from "../store/MLSCStore";
 
 const frontVector = new THREE.Vector3();

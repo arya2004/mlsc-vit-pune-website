@@ -10,12 +10,15 @@ export function AboutDoor(props) {
   const { nodes, materials } = useGLTF('/models/door-to-about.glb')
   return (
     <group {...props} dispose={null}>
-      <color attach="background" args={['#000']} />
       <group rotation={[-Math.PI / 2, 0, 0]} scale={0.046}>
         <group rotation={[Math.PI / 2, 0, 0]}>
           <group scale={100}>
-            <mesh geometry={nodes.portal_blocking_Material001_0.geometry} material={materials['Material.002']} />
-            <mesh geometry={nodes.portal_blocking_Material001_0001.geometry} material={materials['Material.003']} />
+            <mesh geometry={nodes.portal_blocking_Material001_0.geometry} material={materials['Material.002']} >
+
+            </mesh>
+            <mesh geometry={nodes.portal_blocking_Material001_0001.geometry} material={materials['Material.003']} >
+           
+            </mesh>
           </group>
         </group>
       </group>

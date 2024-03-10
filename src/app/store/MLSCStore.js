@@ -12,4 +12,7 @@ export const useMLSCStore = create((set) => ({
 
   domain: "",
   setDomain: (domain) => set({ domain }),
+
+  aboutYear: "",
+  setAboutYear: (aboutYear) => set({ aboutYear }),
 }));
