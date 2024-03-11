@@ -87,7 +87,7 @@ export default function toTheAbout() {
 
         <Background backgroundColors={backgroundColors} />
         <Fillers />
-        {/* <Effects /> */}
+        <Effects />
       </Canvas>
       <Loader />
     </KeyboardControls>

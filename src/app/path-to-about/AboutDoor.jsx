@@ -17,7 +17,7 @@ export function AboutDoor(props) {
 
             </mesh>
             <mesh geometry={nodes.portal_blocking_Material001_0001.geometry} material={materials['Material.003']} >
-           
+              <meshStandardMaterial emissive='#65a8d2' emissiveIntensity={1.5} toneMapped={false}  />
             </mesh>
           </group>
         </group>

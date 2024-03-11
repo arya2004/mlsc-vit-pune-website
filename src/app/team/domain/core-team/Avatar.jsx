@@ -34,7 +34,7 @@ export function Avatar(props) {
     const {actions} = useAnimations([bBoy_hip_hop[0], gangnum_style[0], hip_hop[0], house_dancing[0], swing_dancing[0],  standing_pose[0], standing_pose_1[0], standing_pose_2[0]], group);
 
     useEffect(() => {
-        actions['Standing Pose'].play();
+        actions['Standing Pose 2'].play();
     }, [actions]);
     
     
