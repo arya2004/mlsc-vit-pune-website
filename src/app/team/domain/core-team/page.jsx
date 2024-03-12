@@ -20,17 +20,8 @@ import { Suspense, useRef, useState } from "react";
 
 function Page() {
 
-  // const modelScene = useRef();
+  const modelScene = useRef();
 
-  const [next, setNext] = useState(false);
-  const [prev, setPrev] = useState(false);
-
-  const handleClickNext = () => {
-    setNext(!next);
-  }
-  const handleClickPrev = () => {
-    setPrev(!prev);
-  }
   return (
     <>
       <Canvas
@@ -62,16 +53,13 @@ function Page() {
          <SpotLight position={[0, 3.5, 0]} penumbra={0.8} angle={Math.PI/8} radiusTop={3} radiusBottom={5} attenuation={5} distance={5} intensity={5} color='white' />
          <spotLight position={[0, 0, 2]} angle={Math.PI/2} intensity={2} />
 
-          <ScrollControls pages={5} damping={5} >
-            <MemberScene next prev />
+          <ScrollControls pages={5} damping={2} >
+            <MemberScene />
           </ScrollControls>
 
         </Suspense>
       </Canvas>
-      {/* <div className="absolute top-0 w-screen h-screen z-50 flex flex-row items-end bg-transparent">
-        <button onClick={handleClickPrev} className="bg-[#0d3853] text-[#65a8d2] p-2 rounded-[8px] mr-5 border-1 border-[#84c0e5] cursor-pointer">prev</button>
-        <button onClick={handleClickNext} className="bg-[#0d3853] text-[#65a8d2] p-2 rounded-[8px] ml-5 border-1 border-[#84c0e5] cursor-pointer">next</button>
-      </div> */}
+      
       <Loader />
     </>
   );
