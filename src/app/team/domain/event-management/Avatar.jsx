@@ -9,6 +9,7 @@ export function Avatar(props) {
     
     const { scene } = useGLTF("https://models.readyplayer.me/654a2335d09f0280f032b08c.glb");
     const clone = useMemo(() => SkeletonUtils.clone(scene), [scene]);
+    console.log("SCENE", scene);
     const { nodes } = useGraph(clone);
 
     const { animations: bBoy_hip_hop } = useFBX('/animations/Bboy Hip Hop Move.fbx');

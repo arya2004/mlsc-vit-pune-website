@@ -57,10 +57,10 @@ export default function MemberScene({ref}){
         memberScene.current.rotation.y = -scroll.offset * noOfMembers * (Math.PI * 2);
 
         // console.log("ROTATION: ", radToDeg(-memberScene.current.rotation.y % (Math.PI * 2)));
-        console.log("OFFSET:", Math.floor(scroll.offset*100))
-        console.log("DVIDEND:", Math.floor(Math.floor(scroll.offset*100) % Math.floor((1/5)*100)));
-        console.log("DAMPING:", scroll.damping);
-        console.log("BOOL:", (Math.floor(Math.floor(scroll.offset*100) % (1/5)*100) <= 18 && Math.floor(Math.floor(scroll.offset*100) % (1/5)*100) >= 1));
+        // console.log("OFFSET:", Math.floor(scroll.offset*100))
+        // console.log("DVIDEND:", Math.floor(Math.floor(scroll.offset*100) % Math.floor((1/5)*100)));
+        // console.log("DAMPING:", scroll.damping);
+        // console.log("BOOL:", (Math.floor(Math.floor(scroll.offset*100) % (1/5)*100) <= 18 && Math.floor(Math.floor(scroll.offset*100) % (1/5)*100) >= 1));
 
         // if(-memberScene.current.rotation.y % (Math.PI * 2) > degToRad(340) || -memberScene.current.rotation.y % (Math.PI * 2) < degToRad(20)){
         // //    scroll.damping = 10;
