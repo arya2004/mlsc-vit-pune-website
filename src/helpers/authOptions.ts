@@ -2,11 +2,11 @@
 // @ts-nocheck
 
 import axios from 'axios';
-import NextAuth, { type NextAuthOptions } from 'next-auth';
+import { type NextAuthOptions } from 'next-auth';
 import GitHubProvider from 'next-auth/providers/github';
-import { parseToGetGithub } from '../../../../helpers/authParser';
+import { parseToGetGithub } from './authParser';
 
-const authOptions: NextAuthOptions = {
+export const authOptions: NextAuthOptions = {
     session: {
       strategy: 'jwt'
     },
@@ -48,7 +48,4 @@ const authOptions: NextAuthOptions = {
         return token
       }
     },
-  }
-  
-const handler = NextAuth(authOptions)
-export { handler as GET, handler as POST };
+  } 
