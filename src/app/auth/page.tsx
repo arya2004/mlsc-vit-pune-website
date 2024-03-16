@@ -1,12 +1,11 @@
 "use server"
 import { getServerSession } from 'next-auth';
-import React from 'react';
-import { authOptions } from '../api/auth/[...nextauth]/route';
+import { authOptions } from '../../helpers/authOptions';
 import { User } from '../user';
 import { LoginButton, LogoutButton } from './auth';
 
 export default  async function Home(){
-    console.log('Hello, Wld!');   
+    // console.log('Hello, Wld!');   
     const session = await getServerSession(authOptions)
     return (
         <div>
