@@ -11,9 +11,9 @@ import {
   PositionalAudio,
 } from "@react-three/drei";
 
-import { CPUcase2 } from "../components/CpuCase2";
+import { CPUcase2 } from "../components-3d/CpuCase2";
 import ScrollCamera from "./ScrollCamera";
-import PlaySoundButton from "../components/PlaySoundButton";
+import PlaySoundButton from "../components-3d/PlaySoundButton";
 
 function Home() {
   // For Responsiveness:
@@ -57,7 +57,7 @@ function Home() {
           {/* <MeshReflectorMaterial color="#010101" roughness={1} metalness={2} /> */}
         {/* </mesh> */} 
 
-        <Text
+        {/* <Text
           scale={0.2}
           position={isMobile ? [0, 1.2, -10] : [0, 0.5, 0]} //Handling the responsiveness
           anchorY="middle"
@@ -66,7 +66,7 @@ function Home() {
           characters="abcdefghijklmnopqrstuvwxyz,"
         >
           {"MICROSOFT LEARN STUDENT CLUB \n                       VIT, PUNE"}
-        </Text>
+        </Text> */}
 
         <Suspense>
           <CPUcase2 position={[0, -0.5, 0]} />
