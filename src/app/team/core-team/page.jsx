@@ -13,7 +13,7 @@ import {
 import { Canvas } from "@react-three/fiber";
 
 import { Suspense, useRef, useState } from "react";
-import { CoreTeamScene } from "CoreTeamScene";
+import { CoreTeamScene } from "./CoreTeamScene";
 
 function Page() {
 
