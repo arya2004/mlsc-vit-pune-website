@@ -13,7 +13,7 @@ import {
 import { Canvas } from "@react-three/fiber";
 
 import { Suspense, useRef, useState } from "react";
-import { TeamBGScene } from "TeamBGScene";
+import { CoreTeamScene } from "CoreTeamScene";
 
 function Page() {
 
@@ -45,7 +45,7 @@ function Page() {
         />
         {/* <axesHelper args={[5]} /> */}
         <pointLight distance={3} position={[0, 2.6, 1]} intensity={2} />
-        <TeamBGScene />
+        <CoreTeamScene />
       </Canvas>
       
       <Loader />
