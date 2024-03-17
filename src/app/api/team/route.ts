@@ -1,11 +1,10 @@
 
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import { NextRequest, NextResponse } from "next/server";
 import { kv } from '@vercel/kv';
-import prisma from '../../../../prisma/client'
 import { getServerSession } from "next-auth/next";
-import { authOptions } from "../auth/[...nextauth]/route";
-import { NextApiRequest, NextApiResponse } from "next";
+import { NextRequest, NextResponse } from "next/server";
+import prisma from '../../../../prisma/client';
+import { authOptions } from "../../../helpers/authOptions";
 
 //Route handlers
 //https://nextjs.org/docs/app/building-your-application/routing/route-handlers
