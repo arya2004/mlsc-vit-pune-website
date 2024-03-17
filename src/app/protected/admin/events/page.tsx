@@ -1,5 +1,5 @@
 import { getServerSession } from "next-auth"
-import { authOptions } from "../../../api/auth/[...nextauth]/route"
+import { authOptions } from "../../../../helpers/authOptions"
 import NoPermission from "../../../components/permissions/NoPermission"
 
 const Events = async () => {
