@@ -1,7 +1,7 @@
 
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import { NextResponse } from "next/server";
-
+import { kv } from '@vercel/kv';
 import prisma from '../../../../prisma/client'
 //Route handlers
 //https://nextjs.org/docs/app/building-your-application/routing/route-handlers
@@ -11,13 +11,33 @@ import prisma from '../../../../prisma/client'
 
 export async function GET(  request: Request,) {
 
-    const data = await prisma.event.findMany({});
-    return NextResponse.json(
-      data,
-      {
-        status: 405
+    try {
+
+      const cached = await kv.get("events");
+      if(cached){
+        console.log("Event Chache HIT")
+        return NextResponse.json(
+          cached,
+          {
+            status: 200
+          }
+        );
       }
-    );
+      console.log("Event Chache MISS")
+      const data = await prisma.event.findMany({});
+      return NextResponse.json(
+        data,
+        {
+          status: 304
+        }
+      );
+      
+    } catch (error) {
+      console.log(error)
+      return NextResponse.json({ error });
+    }
+
+  
   }
   
 

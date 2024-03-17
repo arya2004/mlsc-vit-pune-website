@@ -1,57 +1,29 @@
-import prisma from '../../../../../prisma/client'
-import { compare } from 'bcrypt'
-import NextAuth, { type NextAuthOptions } from 'next-auth'
-import CredentialsProvider from 'next-auth/providers/credentials'
+// @ts-ignore
+// @ts-nocheck
+
+import axios from 'axios';
+import NextAuth, { type NextAuthOptions } from 'next-auth';
+import GitHubProvider from 'next-auth/providers/github';
+import { parseToGetGithub } from '../../../../helpers/authParser';
 
 export const authOptions: NextAuthOptions = {
     session: {
       strategy: 'jwt'
     },
     providers: [
-      CredentialsProvider({
-        name: 'Sign in',
-        credentials: {
-          email: {
-            label: 'Email',
-            type: 'email',
-            placeholder: 'hello@example.com'
-          },
-          password: { label: 'Password', type: 'password' }
-        },
-        async authorize(credentials) {
-          if (!credentials?.email || !credentials.password) {
-            return null
-          }
-  
-          const user = await prisma.webUser.findUnique({
-            where: {
-              email: credentials.email
-            }
-          })
-  
-          if (!user) {
-            return null
-          }
-  
-          const isPasswordValid = await compare(
-            credentials.password,
-            user.password
-          )
-  
-          if (!isPasswordValid) {
-            return null
-          }
-  
-          return {
-            id: user.id + '',
-            email: user.email,
-            name: user.name,
-            randomKey: 'Hey cool'
-          }
-        }
-      })
+      GitHubProvider({
+        clientId: process.env.GITHUB_CLIENT_ID,
+        clientSecret: process.env.GITHUB_CLIENT_SECRET
+      }),
     ],
     callbacks: {
+      async signIn({ profile }) {
+        const loginName = profile.login // @ts-ignore
+        const { data } = await axios.get('https://raw.githubusercontent.com/mlscvitpune/Team_23-24/main/README.md')
+        const memberData = parseToGetGithub(data)
+        const res = memberData.includes(loginName?.toLocaleLowerCase())
+        return res;
+      }, 
       session: ({ session, token }) => {
         // console.log('Session Callback', { session, token })
         return {
@@ -75,8 +47,8 @@ export const authOptions: NextAuthOptions = {
         }
         return token
       }
-    }
+    },
   }
   
   const handler = NextAuth(authOptions)
-  export { handler as GET, handler as POST }
+  export { handler as GET, handler as POST };
