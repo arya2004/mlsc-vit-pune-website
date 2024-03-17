@@ -1,7 +1,9 @@
 import { Html } from "@react-three/drei";
 import { useThree } from "@react-three/fiber";
+import Image from "next/image";
+import Link from "next/link";
 
-export function YearDept() {
+export function Position({imagelink, position}) {
 
     const gl = useThree((state) => state.gl);
 
@@ -9,11 +11,11 @@ export function YearDept() {
         <Html scale={[0.55, 0.55, 0.55]} position={[5.5,4.5,-1]} occlude transform center portal={{ current: gl.domElement.parentNode }} >
             <div className="z-50 top-50 left-60 w-auto h-0 bg-slate-500">
                 <div className="absolute w-24 h-32 bg-slate-600 left-72 top-40">
-                    {/*TODO: add image tag here */}
+                    <Image src={imagelink} width={24} height={32} />
                 </div>
                 <div className="absolute flex flex-col justify-center pb-10 p-5 top-40 left-96 h-32 w-44 ">
                     <div className="text-white text-2xl">
-                        {/*TODO: write position  */}
+                        {position}
                     </div>
                 </div>
                 <img src="/images/svgs/year-dept.svg" />
@@ -22,11 +24,11 @@ export function YearDept() {
     )
 }
 
-export function SocialIcons() {
+export function SocialIcons({xlink, linkedInlink, githublink}) {
 
     const gl = useThree((state) => state.gl);
     const viewPort = useThree((state) => state.viewport);
-    console.log("VIEWPORT:", viewPort.width);
+    // console.log("VIEWPORT:", viewPort.width);
     const positionFactor = viewPort.width / 25;
 
     return (
@@ -36,12 +38,12 @@ export function SocialIcons() {
 
                 <div className="absolute  h-44 w-44 top-24 left-32 cursor-pointer">
                     <div className="absolute flex flex-row justify-between h-[23%] w-[85%] ml-4 mt-2 top-1/2 -translate-y-1/2 ">
-                        <img className="p-1 rounded-[4px] hover:brightness-200 ease-in-out duration-100" src="/images/svgs/x.svg" />
-                        <img className="p-1 rounded-[4px] hover:brightness-200 ease-in-out duration-100" src="/images/svgs/github.svg" />
+                        {/* <Link href={xlink} ><img className="p-1 rounded-[4px] hover:brightness-200 ease-in-out duration-100" src="/images/svgs/x.svg" /></Link> */}
+                        {/* <Link href={githublink} ><img className="p-1 rounded-[4px] hover:brightness-200 ease-in-out duration-100" src="/images/svgs/github.svg" /></Link> */}
                     </div>
                     <div className="absolute flex flex-col justify-between w-[20%] h-[85%] mt-5 ml-1 left-1/2 -translate-x-1/2 ">
                         <img className="p-1 rounded-[4px] hover:brightness-200 ease-in-out duration-100" src="/images/svgs/linkedin.svg" />
-                        <img className="p-1 rounded-[4px] hover:brightness-200 ease-in-out duration-100" src="/images/svgs/instagram.svg" />
+                        {/* <img className="p-1 rounded-[4px] hover:brightness-200 ease-in-out duration-100" src="/images/svgs/instagram.svg" /> */}
                     </div>
                 </div>
 

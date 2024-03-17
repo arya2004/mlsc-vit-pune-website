@@ -13,12 +13,33 @@ import {
 import { Canvas } from "@react-three/fiber";
 
 import MemberScene from "./MemberScene.jsx";
-import {NameYearDept, SocialIcons, YearDept} from "./Components/UI.jsx";
+import {NameYearDept, SocialIcons, Position} from "./Components/UI.jsx";
 
-import { Suspense, useRef, useState } from "react";
+import { Suspense, useRef, useState, useEffect } from "react";
+import { useMLSCStore } from "../../store/MLSCStore";
 
 function Page() {
 
+  const domain = useMLSCStore((s) => s.domain);
+
+  const [memberData, setMemberData] = useState([]);
+
+  const getTeamData = async () => {
+      try {
+        const teamData = await axios.get(`/api/team?domain=${domainToDomainName[domain].split(" ").join("%20")}`);
+        setMemberData(teamData.data.data);
+        // setMemberData([]);
+        console.log(JSON.stringify(teamData.data.data[0].domain))
+      } catch (err) {
+        console.log("GET req error");
+        // console.log(err);
+        return err;
+      }
+  };
+
+  useEffect(() => {
+      getTeamData();
+  }, [domain]);
 
   return (
     <>
@@ -52,11 +73,11 @@ function Page() {
          <spotLight position={[0, 0, 2]} angle={Math.PI/2} intensity={2} />
 
           <ScrollControls pages={5} damping={2} >
-            <MemberScene />
+            <MemberScene memberData={memberData} />
           </ScrollControls>
-        <YearDept />
-        <SocialIcons />
-        <NameYearDept />
+        <Position imagelink={memberData.imageLink} position={memberData.position} />
+        <SocialIcons xlink={memberData.xLink} linkedInlink={memberData.linkedinLink} githublink={memberData.githubLink} />
+        <NameYearDept name={memberData.fullName} year={memberData.year} department={memberData.aboutMe} />
 
         </Suspense>
       </Canvas>
