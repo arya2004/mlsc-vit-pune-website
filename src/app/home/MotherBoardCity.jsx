@@ -13,6 +13,7 @@ import {
   MeshDistortMaterial,
   MeshReflectorMaterial,
   OrbitControls,
+  PointerLockControls,
   ScrollControls,
   Sky,
   Sparkles,
@@ -61,12 +62,14 @@ const page = () => {
 
         {/* <ambientLight intensity={5} /> */}
         <color attach="background" args={["black"]} />
-        <spotLight
+        <directionalLight position={[5, 5, -3]} color='purple' intensity={2} />
+        <directionalLight position={[5, 5, 5]} color='#0078d4' intensity={4} />
+        {/* <spotLight
           position={[10, 10, 10]}
           angle={0.15}
           color="red"
           penumbra={1}
-        />
+        /> */}
         {/* <directionalLight position={[0, 10, 5]} intensity={1} /> */}
 
         {/* <Sky sunPosition={[100, 20, 100]} turbidity={0.1} rayleigh={0.1} /> */}
@@ -102,6 +105,7 @@ const page = () => {
             setShowGetInvolved={setShowGetInvolved}
           />
         </ScrollControls>
+        <PointerLockControls />
 
         {showGetInvolved && <GetInvolved />}
         {showAbout && <AboutMesh />}
