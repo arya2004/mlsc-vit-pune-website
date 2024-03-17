@@ -23,18 +23,18 @@ import {
 import { MeshStandardMaterial } from "three";
 import { EffectComposer, Bloom } from "@react-three/postprocessing";
 
-import ExploreCamera from "./ExploreCamera";
-import { MotherBoard } from "../components-3d/Motherboard";
-import BeforeMotherBoard from "./BeforeMotherBoard";
+import ExploreCamera from './ExploreCamera'
+import { MotherBoard } from '../components-3d/Motherboard'
+import BeforeMotherBoard from './BeforeMotherBoard'
 
-import AboutMesh from "./html-cards/About.card";
-import GetInvolved from "./html-cards/GetInvolved.card";
-import Offer from "./html-cards/Offer.card";
+import AboutMesh from './html-cards/About.card'
+import GetInvolved from './html-cards/GetInvolved.card'
+import Offer from './html-cards/Offer.card'
 
 const page = () => {
-  const [isCloudResourceAvailable, setIsCloudResourceAvailable] =
-    useState(false);
 
+  const [isCloudResourceAvailable, setIsCloudResourceAvailable] = useState(false);
+  
   const [showAbout, setShowAbout] = useState(true);
   const [showGetInvolved, setShowGetInvolved] = useState(false);
 

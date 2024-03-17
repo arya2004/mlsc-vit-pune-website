@@ -18,18 +18,38 @@ import {NameYearDept, SocialIcons, Position} from "./Components/UI.jsx";
 import { Suspense, useRef, useState, useEffect } from "react";
 import { useMLSCStore } from "../../store/MLSCStore";
 
+import axios from "axios";
+
+const domainMap = {
+  "event": {name:"Event Management", text3d: "/models/domain-names/event3dcurvedtext.glb"},
+  "community": {name:"Community Management", text3d: "/models/domain-names/community3dcurvedtext.glb"},
+  "partnership": {name:"Partnership", text3d: "/models/domain-names/partnership3dcurvedtext.glb"},
+  "multimedia": {name:"Multimedia", text3d: "/models/domain-names/multimedia3dcurvedtext.glb"},
+  "iot": {name: "IoT", text3d: "/models/domain-names/iot3dcurvedtext.glb"},
+  "web3": {name: "Web3", text3d: "/models/domain-names/web33dcurvedtext.glb"},
+  "web": {name: "Web Development", text3d: "/models/domain-names/web3dcurvedtext.glb"},
+  "app": {name: "App Development", text3d: "/models/domain-names/app3dcurvedtext.glb"},
+  "aiml": {name: "AI-ML", text3d: "/models/domain-names/ai-mldcurvedtext.glb"},
+
+};
+
+
+
 function Page() {
 
   const domain = useMLSCStore((s) => s.domain);
 
   const [memberData, setMemberData] = useState([]);
+  const [index, setIndex] = useState(0);
+
+  console.log(`/api/team?domain=${domainMap[domain].name.split(" ").join("%20")}`)
 
   const getTeamData = async () => {
       try {
-        const teamData = await axios.get(`/api/team?domain=${domainToDomainName[domain].split(" ").join("%20")}`);
+        const teamData = await axios.get(`/api/team?domain=${domainMap[domain].name.split(" ").join("%20")}`);
         setMemberData(teamData.data.data);
-        // setMemberData([]);
-        console.log(JSON.stringify(teamData.data.data[0].domain))
+        
+        // console.log(JSON.stringify(teamData.data.data[0]))
       } catch (err) {
         console.log("GET req error");
         // console.log(err);
@@ -40,6 +60,8 @@ function Page() {
   useEffect(() => {
       getTeamData();
   }, [domain]);
+
+  console.log(memberData);
 
   return (
     <>
@@ -73,11 +95,11 @@ function Page() {
          <spotLight position={[0, 0, 2]} angle={Math.PI/2} intensity={2} />
 
           <ScrollControls pages={5} damping={2} >
-            <MemberScene memberData={memberData} />
+            <MemberScene memberData={memberData} index={index} setIndex={setIndex} />
           </ScrollControls>
-        <Position imagelink={memberData.imageLink} position={memberData.position} />
-        <SocialIcons xlink={memberData.xLink} linkedInlink={memberData.linkedinLink} githublink={memberData.githubLink} />
-        <NameYearDept name={memberData.fullName} year={memberData.year} department={memberData.aboutMe} />
+        <Position data={memberData[index]} />
+        <SocialIcons data={memberData[index]} />
+        <NameYearDept data={memberData[index]} />
 
         </Suspense>
       </Canvas>

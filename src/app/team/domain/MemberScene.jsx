@@ -21,20 +21,8 @@ const domainTo3DText = {
     "aiml" : "/models/domain-names/ai-mldcurvedtext.glb",
 }
 
-const domainToDomainName = {
-    'event' : 'Event Management',
-    'community' : 'Community management',
-    'partnership' : 'Partnership',
-    'multimedia' : 'Multimedia',
-    'iot' : 'IoT',
-    'web3' : 'Web3',
-    'web' : 'Web Development',
-    'app' : 'App dev',
-    'aiml' : 'AI-ML',
-}
 
-
-export default function MemberScene({memberData}){
+export default function MemberScene({memberData, index, setIndex}){
     
     const domain = useMLSCStore((s) => s.domain);
 
@@ -86,7 +74,7 @@ export default function MemberScene({memberData}){
 
     return (
         <group ref={memberScene}>
-           <Avatar avatarURL={memberData.modelLink} scale={1.7}  />
+           <Avatar avatarURL={memberData[index].modelLink} scale={1.7}  />
            <Text3DModel position={[0, -0.05, 2.7]} rotation={[0, degToRad(40), 0]} scale={0.5} modelURL={domainTo3DText[domain]} />
            <TeamBGScene rotation={[Math.PI/2, 0, 0]} scale={[0.5, 0.5, 0.6]}  />
         </group>
