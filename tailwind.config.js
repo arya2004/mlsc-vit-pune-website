@@ -18,6 +18,8 @@ module.exports = {
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
           // 'corner-clip-option': 'linear-gradient(315deg, transparent 10px, #0078D4 0 )',
+        'projects-blogs-bg': 'url("/images/svgs/blog-project-bg.svg")',
+        'event-bg': 'url("/images/svgs/event-bg.svg")',
       },
 
       // background: {

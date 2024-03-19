@@ -29,7 +29,9 @@ export function YearCard({text, position, scale, rotation}){
 
     return(
         <Html transform occlude position={position} scale={scale} rotation={rotation} >
-            <div className="flex items-center min-w-20 w-auto h-15 p-2 justify-center bg-[#0d38539a] rounded-[8px] border-1 border-[#84c0e5] cursor-pointer">
+
+            <div className="flex items-center min-w-20 w-auto h-15 p-2 justify-center bg-projects-blogs-bg rounded-[8px] border-1 border-[#84c0e5] cursor-pointer">
+                
                 <div className="flex flex-row items-center justify-center gap-3 text-[#65a8d2] text-xs font-bold">
                     <GrCaretPrevious onClick={handleClickPrev} className="relative hover:text-[#84c0e5]" />
                     <div className=" align-middle " >{yearArr[yearIndex]}</div>

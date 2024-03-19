@@ -48,7 +48,7 @@ export default function About() {
         { name: "jump", keys: ["Space"] },
       ]}
     >
-      <Canvas shadows="basic" dpr={[0.1, 10]}>
+      <Canvas shadows="basic" dpr={[0.1, 10]} camera={{ near: 0.1, far: 1000, }} >
         {/* <OrbitControls /> */}
         <color attach="background" args={["#000"]} />
 
