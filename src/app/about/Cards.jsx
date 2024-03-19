@@ -1,7 +1,7 @@
 import { Html, Text } from "@react-three/drei";
 import { degToRad, radToDeg } from "three/src/math/MathUtils";
 
-import { TbBrandGithubFilled } from "react-icons/tb";
+import { MdOutlineSkipPrevious, MdOutlineSkipNext } from "react-icons/md";
 
 function EventCard({text, position, scale, rotation}){
     return (
@@ -38,6 +38,17 @@ export function BlogCard({text, position, scale, rotation}){
     return (
         <Html transform occlude position={position} scale={scale} rotation={rotation} >
             <div className="flex items-center w-20 h-20 p-2 justify-center bg-center bg-cover bg-projects-blogs-bg opacity-95 brightness-125 rounded-[12px] ">
+                {/* Added previous and next buttons */}
+                <div className="absolute h-2 items-center top-1/2 -translate-y-1/2 w-full flex flex-row justify-between z-10 text-[5px]" >
+                    <div className="group">
+                        <MdOutlineSkipPrevious className="text-[#09d9f3] hover:brightness-200 hover:text-[#f0f0f0]" />
+                        <div className="absolute flex items-center justify-center text-[3px] p-[1px] rounded-[1px] text-center bg-[#28838f] text-[#f0f0f0] opacity-0 group-hover:opacity-100">Previous</div>
+                    </div>
+                    <div className="group">
+                        <MdOutlineSkipNext className="text-[#09d8f3d5] hover:brightness-200 hover:text-[#f0f0f0]" />
+                        <div className="absolute flex items-center justify-center text-[3px] p-[1px] rounded-[1px] text-center bg-[#28838f] text-[#f0f0f0] opacity-0 group-hover:opacity-100">Next</div>
+                    </div>
+                </div>
                 {/* <div className="text-xs font-bold align-middle text-[#65a8d2] " >Loading</div> */}
                 <div className="w-[97%] h-[97%] flex flex-col justify-start text-[#f0f0f0]">
                     <div className="w-full h-[15%] flex flex-row justify-between p-0">
@@ -83,6 +94,17 @@ export function ProjectCard({text, position, scale, rotation}){
     return (
         <Html transform occlude position={position} scale={scale} rotation={rotation} >
             <div className="flex items-center w-20 h-20 p-2 justify-center bg-center bg-cover bg-projects-blogs-bg opacity-95 brightness-125 rounded-[12px] ">
+                 {/* Added previous and next buttons */}
+                 <div className="absolute h-2 items-center top-1/2 -translate-y-1/2 w-full flex flex-row justify-between z-10 text-[5px]" >
+                    <div className="group">
+                        <MdOutlineSkipPrevious className="text-[#09d9f3] hover:brightness-200 hover:text-[#f0f0f0]" />
+                        <div className="absolute flex items-center justify-center text-[3px] p-[1px] rounded-[1px] text-center bg-[#28838f] text-[#f0f0f0] opacity-0 group-hover:opacity-100">Previous</div>
+                    </div>
+                    <div className="group">
+                        <MdOutlineSkipNext className="text-[#09d8f3d5] hover:brightness-200 hover:text-[#f0f0f0]" />
+                        <div className="absolute flex items-center justify-center text-[3px] p-[1px] rounded-[1px] text-center bg-[#28838f] text-[#f0f0f0] opacity-0 group-hover:opacity-100">Next</div>
+                    </div>
+                </div>
                 {/* <div className="text-xs font-bold align-middle text-[#65a8d2] " >Loading</div> */}
                 <div className="w-[97%] h-[97%] flex flex-col justify-start text-[#f0f0f0]">
                     <div className="w-full h-[15%] flex flex-row justify-between p-0">
