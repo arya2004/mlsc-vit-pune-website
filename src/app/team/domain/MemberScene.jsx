@@ -1,5 +1,5 @@
 import { Html, useScroll } from "@react-three/drei";
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, Suspense } from "react";
 
 import { Avatar } from "./Components/Avatar";
 import { TeamBGScene } from "./Components/TeamBGScene";
@@ -37,12 +37,17 @@ export default function MemberScene({memberData, index, setIndex}){
     scroll.pages = noOfMembers;
     console.log("SCROLL: ",scroll.pages);
 
+    useEffect(() => {
+        setIndex(Math.floor(scroll.offset * noOfMembers));
+        // console.log("SCROLL INDEX", scroll.offset, Math.floor(scroll.offset * noOfMembers));
+    }, [Math.floor(scroll.offset * noOfMembers)]);
 
 
     useFrame((state, delta) => {
          // Rotate contents
         state.events.update(); // Raycasts every frame rather than on pointer-move
         memberScene.current.rotation.y = -scroll.offset * noOfMembers * (Math.PI * 2);
+        console.log("SCROLL INDEX:", Math.floor(scroll.offset+0.25 * noOfMembers))
 
         // console.log("ROTATION: ", radToDeg(-memberScene.current.rotation.y % (Math.PI * 2)));
         // console.log("OFFSET:", Math.floor(scroll.offset*100))
@@ -74,7 +79,9 @@ export default function MemberScene({memberData, index, setIndex}){
 
     return (
         <group ref={memberScene}>
-           <Avatar avatarURL={memberData[index].modelLink} scale={1.7}  />
+           <Suspense fallback='spinner' >
+            {memberData.length !== 0 && <Avatar avatarURL={memberData[index]?.modelLink} scale={1.7}  />}
+           </Suspense>
            <Text3DModel position={[0, -0.05, 2.7]} rotation={[0, degToRad(40), 0]} scale={0.5} modelURL={domainTo3DText[domain]} />
            <TeamBGScene rotation={[Math.PI/2, 0, 0]} scale={[0.5, 0.5, 0.6]}  />
         </group>

@@ -10,7 +10,7 @@ export const useMLSCStore = create((set) => ({
   teleporting: true,
   setTeleporting: (teleporting) => set({ teleporting }),
 
-  domain: "event",
+  domain: "community",
   setDomain: (domain) => set({ domain }),
 
   aboutYear: "",

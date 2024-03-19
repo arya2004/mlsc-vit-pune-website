@@ -22,13 +22,13 @@ import axios from "axios";
 
 const domainMap = {
   "event": {name:"Event Management", text3d: "/models/domain-names/event3dcurvedtext.glb"},
-  "community": {name:"Community Management", text3d: "/models/domain-names/community3dcurvedtext.glb"},
+  "community": {name:"Community management", text3d: "/models/domain-names/community3dcurvedtext.glb"},
   "partnership": {name:"Partnership", text3d: "/models/domain-names/partnership3dcurvedtext.glb"},
   "multimedia": {name:"Multimedia", text3d: "/models/domain-names/multimedia3dcurvedtext.glb"},
   "iot": {name: "IoT", text3d: "/models/domain-names/iot3dcurvedtext.glb"},
   "web3": {name: "Web3", text3d: "/models/domain-names/web33dcurvedtext.glb"},
-  "web": {name: "Web Development", text3d: "/models/domain-names/web3dcurvedtext.glb"},
-  "app": {name: "App Development", text3d: "/models/domain-names/app3dcurvedtext.glb"},
+  "web": {name: "Web development", text3d: "/models/domain-names/web3dcurvedtext.glb"},
+  "app": {name: "App dev", text3d: "/models/domain-names/app3dcurvedtext.glb"},
   "aiml": {name: "AI-ML", text3d: "/models/domain-names/ai-mldcurvedtext.glb"},
 
 };
@@ -40,7 +40,7 @@ function Page() {
   const domain = useMLSCStore((s) => s.domain);
 
   const [memberData, setMemberData] = useState([]);
-  const [index, setIndex] = useState(0);
+  const [index, setIndex] = useState(2);
 
   console.log(`/api/team?domain=${domainMap[domain].name.split(" ").join("%20")}`)
 
@@ -59,9 +59,9 @@ function Page() {
 
   useEffect(() => {
       getTeamData();
-  }, [domain]);
+  }, []);
 
-  console.log(memberData);
+  console.log("MEMBERS:", memberData);
 
   return (
     <>
@@ -97,9 +97,9 @@ function Page() {
           <ScrollControls pages={5} damping={2} >
             <MemberScene memberData={memberData} index={index} setIndex={setIndex} />
           </ScrollControls>
-        <Position data={memberData[index]} />
-        <SocialIcons data={memberData[index]} />
-        <NameYearDept data={memberData[index]} />
+        {memberData.length > 0 && <Position data={memberData[index]} />}
+        {memberData.length > 0 && <SocialIcons data={memberData[index]} />}
+        {memberData.length > 0 && <NameYearDept data={memberData[index]} />}
 
         </Suspense>
       </Canvas>
