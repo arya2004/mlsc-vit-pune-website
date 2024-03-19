@@ -13,12 +13,55 @@ import {
 import { Canvas } from "@react-three/fiber";
 
 import MemberScene from "./MemberScene.jsx";
-import {NameYearDept, SocialIcons, YearDept} from "./Components/UI.jsx";
+import {NameYearDept, SocialIcons, Position} from "./Components/UI.jsx";
 
-import { Suspense, useRef, useState } from "react";
+import { Suspense, useRef, useState, useEffect } from "react";
+import { useMLSCStore } from "../../store/MLSCStore";
+
+import axios from "axios";
+
+const domainMap = {
+  "event": {name:"Event Management", text3d: "/models/domain-names/event3dcurvedtext.glb"},
+  "community": {name:"Community management", text3d: "/models/domain-names/community3dcurvedtext.glb"},
+  "partnership": {name:"Partnership", text3d: "/models/domain-names/partnership3dcurvedtext.glb"},
+  "multimedia": {name:"Multimedia", text3d: "/models/domain-names/multimedia3dcurvedtext.glb"},
+  "iot": {name: "IoT", text3d: "/models/domain-names/iot3dcurvedtext.glb"},
+  "web3": {name: "Web3", text3d: "/models/domain-names/web33dcurvedtext.glb"},
+  "web": {name: "Web development", text3d: "/models/domain-names/web3dcurvedtext.glb"},
+  "app": {name: "App dev", text3d: "/models/domain-names/app3dcurvedtext.glb"},
+  "aiml": {name: "AI-ML", text3d: "/models/domain-names/ai-mldcurvedtext.glb"},
+
+};
+
+
 
 function Page() {
 
+  const domain = useMLSCStore((s) => s.domain);
+
+  const [memberData, setMemberData] = useState([]);
+  const [index, setIndex] = useState(2);
+
+  console.log(`/api/team?domain=${domainMap[domain].name.split(" ").join("%20")}`)
+
+  const getTeamData = async () => {
+      try {
+        const teamData = await axios.get(`/api/team?domain=${domainMap[domain].name.split(" ").join("%20")}`);
+        setMemberData(teamData.data.data);
+        
+        // console.log(JSON.stringify(teamData.data.data[0]))
+      } catch (err) {
+        console.log("GET req error");
+        // console.log(err);
+        return err;
+      }
+  };
+
+  useEffect(() => {
+      getTeamData();
+  }, []);
+
+  console.log("MEMBERS:", memberData);
 
   return (
     <>
@@ -52,11 +95,11 @@ function Page() {
          <spotLight position={[0, 0, 2]} angle={Math.PI/2} intensity={2} />
 
           <ScrollControls pages={5} damping={2} >
-            <MemberScene />
+            <MemberScene memberData={memberData} index={index} setIndex={setIndex} />
           </ScrollControls>
-        <YearDept />
-        <SocialIcons />
-        <NameYearDept />
+        {memberData.length > 0 && <Position data={memberData[index]} />}
+        {memberData.length > 0 && <SocialIcons data={memberData[index]} />}
+        {memberData.length > 0 && <NameYearDept data={memberData[index]} />}
 
         </Suspense>
       </Canvas>

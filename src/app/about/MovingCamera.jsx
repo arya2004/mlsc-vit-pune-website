@@ -48,8 +48,8 @@ function MovingCamera({ position }) {
       frontVector.set(0, 0, backward - forward);
       sideVector.set(left - right, 0, 0);
 
-      console.log("FRONT VEC: ",frontVector);
-      console.log("SIDE VEC: ",sideVector);
+      // console.log("FRONT VEC: ",frontVector);
+      // console.log("SIDE VEC: ",sideVector);
 
       direction
         .subVectors(frontVector, sideVector)

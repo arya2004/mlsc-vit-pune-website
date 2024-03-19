@@ -7,10 +7,10 @@ import React, { useRef } from 'react'
 import { useGLTF } from '@react-three/drei'
 
 export function Text3DModel(props) {
-  const { nodes, materials } = useGLTF('/models/domain-names/ai-mldcurvedtext.glb')
+  const { nodes, materials } = useGLTF(props.modelURL)
   return (
     <group {...props} dispose={null}>
-      <mesh geometry={nodes.Text.geometry} material={nodes.Text.material} position={[0, 1.338, 0]} rotation={[Math.PI / 2, 0, 2.943]} scale={5.731} />
+      <mesh castShadow geometry={nodes.Text.geometry} material={nodes.Text.material} position={[0, 1.338, 0]} rotation={[Math.PI / 2, 0, 2.943]} scale={5.731} />
     </group>
   )
 }

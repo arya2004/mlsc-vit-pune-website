@@ -18,6 +18,8 @@ const direction = new THREE.Vector3();
 
 function MovingCamera({teleporting, position, setTeleporting, setInPortal}) {
 
+  const setDomain = useMLSCStore((s) => s.setDomain);
+
   const controls = useRef();
   console.log(controls);
   const [_, get] = useKeyboardControls();
@@ -87,6 +89,7 @@ function MovingCamera({teleporting, position, setTeleporting, setInPortal}) {
 
 
         if(theta > 20-10 && theta < 20+10){
+          setDomain("core");
           setPortalPos([34*Math.cos(degToRad(20)), -5, 34*Math.sin(degToRad(20))]);
           if(Math.floor(Math.sqrt(conCurr?.translation().x**2 + conCurr?.translation().z**2)) >= 31){
             setInPortal(true);
@@ -94,54 +97,63 @@ function MovingCamera({teleporting, position, setTeleporting, setInPortal}) {
           }
           
         } else if (theta > 56-10 && theta < 56+10){
+          setDomain("event");
           setPortalPos([34*Math.cos(degToRad(56)), -5, 34*Math.sin(degToRad(56))]);
           if(Math.floor(Math.sqrt(conCurr?.translation().x**2 + conCurr?.translation().z**2)) >= 31){
             setInPortal(true);
             conCurr.setLinvel({x: 34*Math.cos(degToRad(56))-conCurr?.translation().x, y: 1, z: 34*Math.sin(degToRad(56))-conCurr?.translation().z});
           }
         } else if (theta > 92-10 && theta < 92+10){
+          setDomain("community");
           setPortalPos([34*Math.cos(degToRad(92)), -5, 34*Math.sin(degToRad(92))]);
           if(Math.floor(Math.sqrt(conCurr?.translation().x**2 + conCurr?.translation().z**2)) >= 31){
             setInPortal(true);
             conCurr.setLinvel({x: 34*Math.cos(degToRad(92))-conCurr?.translation().x, y: 1, z: 34*Math.sin(degToRad(92))-conCurr?.translation().z});
           }
         } else if (theta > 128-10 && theta < 128+10){
+          setDomain("partnership");
           setPortalPos([34*Math.cos(degToRad(128)), -5, 34*Math.sin(degToRad(128))]);
           if(Math.floor(Math.sqrt(conCurr?.translation().x**2 + conCurr?.translation().z**2)) >= 31){
             setInPortal(true);
             conCurr.setLinvel({x: 34*Math.cos(degToRad(128))-conCurr?.translation().x, y: 1, z: 34*Math.sin(degToRad(128))-conCurr?.translation().z});
           }
         } else if (theta > 164-10 && theta < 164+10){
+          setDomain("multimedia");
           setPortalPos([34*Math.cos(degToRad(164)), -5, 34*Math.sin(degToRad(164))]);
           if(Math.floor(Math.sqrt(conCurr?.translation().x**2 + conCurr?.translation().z**2)) >= 31){
             setInPortal(true);
             conCurr.setLinvel({x: 34*Math.cos(degToRad(164))-conCurr?.translation().x, y: 1, z: 34*Math.sin(degToRad(164))-conCurr?.translation().z});
           }
         } else if (theta > (200-10-360) && theta < (200+10-360)){
+          setDomain("iot");
           setPortalPos([34*Math.cos(degToRad(200)), -5, 34*Math.sin(degToRad(200))]);
           if(Math.floor(Math.sqrt(conCurr?.translation().x**2 + conCurr?.translation().z**2)) >= 31){
             setInPortal(true);
             conCurr.setLinvel({x: 34*Math.cos(degToRad(200))-conCurr?.translation().x, y: 1, z: 34*Math.sin(degToRad(200))-conCurr?.translation().z});
           }
         } else if (theta > (236-10-360) && theta < (236+10-360)){
+          setDomain("web3");
           setPortalPos([34*Math.cos(degToRad(236)), -5, 34*Math.sin(degToRad(236))]);
           if(Math.floor(Math.sqrt(conCurr?.translation().x**2 + conCurr?.translation().z**2)) >= 31){
             setInPortal(true);
             conCurr.setLinvel({x: 34*Math.cos(degToRad(236))-conCurr?.translation().x, y: 1, z: 34*Math.sin(degToRad(236))-conCurr?.translation().z});
           }
         } else if (theta > (272-10-360) && theta < (272+10-360)){
+          setDomain("web");
           setPortalPos([34*Math.cos(degToRad(272)), -5, 34*Math.sin(degToRad(272))]);
           if(Math.floor(Math.sqrt(conCurr?.translation().x**2 + conCurr?.translation().z**2)) >= 31){
             setInPortal(true);
             conCurr.setLinvel({x: 34*Math.cos(degToRad(272))-conCurr?.translation().x, y: 1, z: 34*Math.sin(degToRad(272))-conCurr?.translation().z});
           }
         } else if (theta > (308-10-360) && theta < (308+10-360)){
+          setDomain("app");
           setPortalPos([34*Math.cos(degToRad(308)), -5, 34*Math.sin(degToRad(308))]);
           if(Math.floor(Math.sqrt(conCurr?.translation().x**2 + conCurr?.translation().z**2)) >= 31){
             setInPortal(true);
             conCurr.setLinvel({x: 34*Math.cos(degToRad(308))-conCurr?.translation().x, y: 1, z: 34*Math.sin(degToRad(308))-conCurr?.translation().z});
           }
         } else if (theta > (344-10-360) && theta < (344+10-360)){
+          setDomain("aiml");
           setPortalPos([34*Math.cos(degToRad(344)), -5, 34*Math.sin(degToRad(344))]);
           if(Math.floor(Math.sqrt(conCurr?.translation().x**2 + conCurr?.translation().z**2)) >= 31){
             setInPortal(true);
