@@ -13,7 +13,7 @@ import {
 import { Canvas } from "@react-three/fiber";
 
 import MemberScene from "./MemberScene.jsx";
-import {NameYearDept, SocialIcons, Position} from "./Components/UI.jsx";
+import {NameYearDept, SocialIcons, Position, PrevNextButtons} from "./Components/UI.jsx";
 
 import { Suspense, useRef, useState, useEffect } from "react";
 import { useMLSCStore } from "../../store/MLSCStore";
@@ -21,6 +21,7 @@ import { useMLSCStore } from "../../store/MLSCStore";
 import axios from "axios";
 
 const domainMap = {
+  "core": {name:"Core", text3d: "/models/domain-names/core3dcurvedtext.glb"},
   "event": {name:"Event Management", text3d: "/models/domain-names/event3dcurvedtext.glb"},
   "community": {name:"Community management", text3d: "/models/domain-names/community3dcurvedtext.glb"},
   "partnership": {name:"Partnership", text3d: "/models/domain-names/partnership3dcurvedtext.glb"},
@@ -41,6 +42,20 @@ function Page() {
 
   const [memberData, setMemberData] = useState([]);
   const [index, setIndex] = useState(2);
+
+  const camera = useRef();
+
+  const handlePrev = () => {
+    if (index > 0) {
+      setIndex(index - 1);
+    }
+  }
+
+  const handleNext = () => {
+    if (index < memberData.length - 1) {
+      setIndex(index + 1);
+    }
+  }
 
   console.log(`/api/team?domain=${domainMap[domain].name.split(" ").join("%20")}`)
 
@@ -72,6 +87,7 @@ function Page() {
       >
         {/* <OrbitControls /> */}
         <PerspectiveCamera
+          ref={camera}
           makeDefault
           position={[0, 2, 12]}
           lookAt={[0, 0.5, 0]}
@@ -95,11 +111,12 @@ function Page() {
          <spotLight position={[0, 0, 2]} angle={Math.PI/2} intensity={2} />
 
           <ScrollControls pages={5} damping={2} >
-            <MemberScene memberData={memberData} index={index} setIndex={setIndex} />
+            <MemberScene memberData={memberData} index={index} setIndex={setIndex} camera={camera} />
           </ScrollControls>
         {memberData.length > 0 && <Position data={memberData[index]} />}
         {memberData.length > 0 && <SocialIcons data={memberData[index]} />}
         {memberData.length > 0 && <NameYearDept data={memberData[index]} />}
+        <PrevNextButtons handlePrev={handlePrev} handleNext={handleNext} />
 
         </Suspense>
       </Canvas>

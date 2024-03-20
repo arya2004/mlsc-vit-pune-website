@@ -32,7 +32,7 @@ export function Avatar(props) {
     standing_pose_1[0].name = "Standing Pose 1";
     standing_pose_2[0].name = "Standing Pose 2";
     
-    const {actions} = useAnimations([bBoy_hip_hop[0], gangnum_style[0], hip_hop[0], house_dancing[0], swing_dancing[0],  standing_pose[0], standing_pose_1[0], standing_pose_2[0]], group);
+    const {actions} = useAnimations([standing_pose_2[0], bBoy_hip_hop[0], gangnum_style[0], hip_hop[0], house_dancing[0], swing_dancing[0],  standing_pose[0], standing_pose_1[0]], group);
 
     useEffect(() => {
         actions['Standing Pose 2'].play();
@@ -42,7 +42,7 @@ export function Avatar(props) {
 
     // const { actions } = useAnimations(animations, group)
     return (
-      <group castShadow ref={group} {...props} dispose={null}>
+      <group onClick={props.handleAvatarClick} castShadow ref={group} {...props} dispose={null}>
         <primitive object={clone}  />
       </group>
     );

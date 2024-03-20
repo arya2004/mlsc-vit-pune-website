@@ -22,7 +22,7 @@ const domainTo3DText = {
 }
 
 
-export default function MemberScene({memberData, index, setIndex}){
+export default function MemberScene({memberData, index, setIndex, camera}){
     
     const domain = useMLSCStore((s) => s.domain);
 
@@ -37,6 +37,10 @@ export default function MemberScene({memberData, index, setIndex}){
     scroll.pages = noOfMembers;
     console.log("SCROLL: ",scroll.pages);
 
+    const handleAvatarClick = () => {
+        camera.position.set(0, 0, 5);
+    }
+
     useEffect(() => {
         setIndex(Math.floor(scroll.offset * noOfMembers));
         // console.log("SCROLL INDEX", scroll.offset, Math.floor(scroll.offset * noOfMembers));
@@ -46,7 +50,7 @@ export default function MemberScene({memberData, index, setIndex}){
     useFrame((state, delta) => {
          // Rotate contents
         state.events.update(); // Raycasts every frame rather than on pointer-move
-        memberScene.current.rotation.y = -scroll.offset * noOfMembers * (Math.PI * 2);
+        memberScene.current.rotation.y = -scroll.offset * (Math.PI * 2);
         console.log("SCROLL INDEX:", Math.floor(scroll.offset+0.25 * noOfMembers))
 
         // console.log("ROTATION: ", radToDeg(-memberScene.current.rotation.y % (Math.PI * 2)));
@@ -80,9 +84,9 @@ export default function MemberScene({memberData, index, setIndex}){
     return (
         <group ref={memberScene}>
            <Suspense fallback='spinner' >
-            {memberData.length !== 0 && <Avatar avatarURL={memberData[index]?.modelLink} scale={1.7}  />}
+            {memberData.length !== 0 && <Avatar avatarURL={memberData[index]?.modelLink} handleAvatarClick={handleAvatarClick} scale={1.7}  />}
            </Suspense>
-           <Text3DModel position={[0, -0.05, 2.7]} rotation={[0, degToRad(40), 0]} scale={0.5} modelURL={domainTo3DText[domain]} />
+           {/* <Text3DModel position={[0, -0.05, 2.7]} rotation={[0, degToRad(40), 0]} scale={0.5} modelURL={domainTo3DText[domain]} /> */}
            <TeamBGScene rotation={[Math.PI/2, 0, 0]} scale={[0.5, 0.5, 0.6]}  />
         </group>
     )
