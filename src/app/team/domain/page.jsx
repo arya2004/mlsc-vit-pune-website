@@ -61,10 +61,17 @@ function Page() {
 
   const getTeamData = async () => {
       try {
+        console.log("first")
         const teamData = await axios.get(`/api/team?domain=${domainMap[domain].name.split(" ").join("%20")}`);
-        setMemberData(teamData.data.data);
+        console.log("gdfgs")
+        if (!teamData.data.cached)
+          setMemberData(teamData.data.data);
+        else
+          setMemberData(teamData.data.cached);
+
+
         
-        // console.log(JSON.stringify(teamData.data.data[0]))
+        console.log((teamData.data.data[0]))
       } catch (err) {
         console.log("GET req error");
         // console.log(err);

@@ -68,7 +68,7 @@ function Home() {
         >
           {"MICROSOFT LEARN STUDENT CLUB \n                       VIT, PUNE"}
         </Text> */}
-        <MLSCText scale={0.25} position={isMobile ? [0, 1.3, -8] : [0, 0.62, 0]}  />
+        <MLSCText scale={0.25} position={isMobile ? [0, 1.3, -8.5] : [0, 0.62, 0]}  />
 
         <Suspense>
           <CPUcase2 position={[0, -0.5, 0]} />

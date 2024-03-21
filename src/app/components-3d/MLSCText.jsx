@@ -10,7 +10,7 @@ export function MLSCText(props) {
   const { nodes, materials } = useGLTF('/models/MLSC_text.glb')
   return (
     <group {...props} dispose={null}>
-      <mesh geometry={nodes.Text.geometry} material={materials['Material.001']} rotation={[Math.PI / 2, 0, 0]} />
+      <mesh castShadow geometry={nodes.Text.geometry} material={materials['Material.001']} rotation={[Math.PI / 2, 0, 0]} />
     </group>
   )
 }

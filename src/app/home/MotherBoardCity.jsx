@@ -62,8 +62,8 @@ const page = () => {
 
         {/* <ambientLight intensity={5} /> */}
         <color attach="background" args={["black"]} />
-        <directionalLight position={[5, 5, -3]} color='purple' intensity={2} />
-        <directionalLight position={[5, 5, 5]} color='#0078d4' intensity={4} />
+        <directionalLight position={[5, 5, -3]} color='purple' intensity={6} />
+        <directionalLight position={[5, 5, 5]} color='#0078d4' intensity={9} />
         {/* <spotLight
           position={[10, 10, 10]}
           angle={0.15}
