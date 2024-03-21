@@ -47,7 +47,7 @@ function TextAnimation({word, className, addStyles}) {
   
     return () => clearInterval(intervalId);
 
-  }, [currentLetter, isHovered, sideBarOpen]);
+  }, [currentLetter, isHovered]);
 
   return (
     <div

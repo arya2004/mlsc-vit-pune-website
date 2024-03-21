@@ -116,9 +116,6 @@ const page = () => {
 
         {/* <Box material-color='red' args={[0.1, 0.1, 0.1]}  position={[-3.5, 0.05, -1.65]}  /> */}
 
-        {/* <EffectComposer >
-        <Bloom mipmapBlur intensity={0.8} />
-      </EffectComposer> */}
       </Canvas>
       <Loader />
     </>
