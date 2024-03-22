@@ -78,7 +78,7 @@ function Home() {
         {playBGM ? (
           <Suspense>
             <group position={[0, -0.5, 0]}>
-              <PositionalAudio autoplay loop url={home_bg} distance={5} />
+              <PositionalAudio position={[0, 0, 0]} autoplay loop url={home_bg} distance={5} />
             </group>
           </Suspense>
         ) : undefined}

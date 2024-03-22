@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from 'next/link';
 import cn from "../../utils/cn";
 
 import "./styles.css";
@@ -14,6 +15,8 @@ function Sidebar() {
   // console.log(open)
   const sideBarOpen = useMLSCStore((state) => state.sideBarOpen);
   const SetSideBarOpen = useMLSCStore((state) => state.setSideBarOpen);
+
+  const setPositionsInAbout = useMLSCStore((s) => s.setPositionsInAbout);
 
   return (
     <div className={cn(sideBarOpen?"sm:w-full lg:w-2/6": "sm:w-0 lg:w-0","absolute h-screen z-10 bg-transparent flex flex-row ease-in-out duration-300")}>
@@ -54,11 +57,11 @@ function Sidebar() {
                 <TextAnimation word='DISCOVER' className="h-full w-1/4 text-[#0078D4] text-xs p-2 pt-8 uppercase ease-in-out duration-300"  />
                 <div className="flex flex-col items-start justify-evenly h-full w-3/4 bg-transparent pl-5">
                   
-                  <Option text="HOME" number="01" addStyles={{'width':'7rem'}} />
-                  <Option text="TEAM" number="02" addStyles={{'width':'7rem'}} />
-                  <Option text="EVENTS" number="03" addStyles={{'width':'9rem'}} />
-                  <Option text="PROJECTS" number="04" addStyles={{'width':'11.5rem'}} />
-                  <Option text="BLOG" number="05" addStyles={{'width':'7rem'}} />
+                  <Link href='./' ><Option text="HOME" number="01" addStyles={{'width':'7rem'}} /> </Link>
+                  <Link href='./team' ><Option text="TEAM" number="02" addStyles={{'width':'7rem'}} /> </Link>
+                  <Link href='./path-to-about' ><Option text="EVENTS" number="03" addStyles={{'width':'9rem'}} /> </Link>
+                  <Link href='./path-to-about' ><Option onClick={()=>setPositionsInAbout('projects')} text="PROJECTS" number="04" addStyles={{'width':'11.5rem'}} /> </Link>
+                  <Link href='./path-to-about' ><Option onClick={()=>setPositionsInAbout('blogs')} text="BLOG" number="05" addStyles={{'width':'7rem'}} /> </Link>
 
                 </div>
               </div>

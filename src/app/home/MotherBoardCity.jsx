@@ -30,6 +30,9 @@ import BeforeMotherBoard from './BeforeMotherBoard'
 import AboutMesh from './html-cards/About.card'
 import GetInvolved from './html-cards/GetInvolved.card'
 import Offer from './html-cards/Offer.card'
+import NavButtons from './NavButtons'
+
+import cn from '../../app/utils/cn'
 
 const page = () => {
 
@@ -37,6 +40,7 @@ const page = () => {
   
   const [showAbout, setShowAbout] = useState(true);
   const [showGetInvolved, setShowGetInvolved] = useState(false);
+  const [showNavButtons, setShowNavButtons] = useState(false);  
 
   useEffect(() => {
     fetch(
@@ -53,8 +57,9 @@ const page = () => {
   }, []);
 
   return (
-    <>
+    <div >
       <Canvas
+        className={cn(showNavButtons?"blur-sm":"blur-0","h-screen w-screen")}
         style={{ height: "100vh", width: "100vw" }}
         camera={{ position: [0, 0, 30], near: 0.05, far: 1000, fov: 10 }}
       >
@@ -99,16 +104,17 @@ const page = () => {
         {/* <axesHelper args={[50]} />
         <gridHelper args={[50, 50]} /> */}
 
-        <ScrollControls pages={10} damping={0.5}>
+        <ScrollControls pages={10} damping={3}>
           <ExploreCamera
             setShowAbout={setShowAbout}
             setShowGetInvolved={setShowGetInvolved}
+            setShowNavButtons={setShowNavButtons}
           />
         </ScrollControls>
         <PointerLockControls />
 
-        {showGetInvolved && <GetInvolved />}
-        {showAbout && <AboutMesh />}
+        <GetInvolved showGetInvolved={showGetInvolved} />
+        <AboutMesh showAbout={showAbout} />
 
         <Suspense fallback={<BeforeMotherBoard />}>
           <MotherBoard rotation={[Math.PI / 2, Math.PI, -Math.PI / 2]} />
@@ -117,8 +123,9 @@ const page = () => {
         {/* <Box material-color='red' args={[0.1, 0.1, 0.1]}  position={[-3.5, 0.05, -1.65]}  /> */}
 
       </Canvas>
+      <NavButtons showNavButtons={showNavButtons} />
       <Loader />
-    </>
+    </div>
   );
 };
 

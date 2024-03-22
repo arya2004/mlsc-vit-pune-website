@@ -15,4 +15,8 @@ export const useMLSCStore = create((set) => ({
 
   aboutYear: "",
   setAboutYear: (aboutYear) => set({ aboutYear }),
+
+  positionsInAbout: 'gen',
+  setPositionsInAbout: (positionsInAbout) => set({ positionsInAbout }),
+
 }));

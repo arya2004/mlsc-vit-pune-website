@@ -4,13 +4,14 @@ import "./styles.css";
 
 import TextAnimation from "./TextAnimation";
 
-function Option({ text, number, addStyles }) {
+function Option({ text, number, addStyles, onClick }) {
   const [hover, setHover] = useState(false);
 
   return (
     <div
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
+      onClick={onClick}
       className="flex flex-row justify-start h-auto w-[16rem]"
     >
       <TextAnimation
