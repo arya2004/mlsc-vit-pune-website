@@ -106,7 +106,7 @@ function page() {
           <Effects inPortal={inPortal} />
         </Canvas>
       </KeyboardControls>
-      <CustomLoader background={'/images/loader-images/core-team-bg.png'} />
+      <CustomLoader urlIndex={0}/>
     </div>
   );
 }

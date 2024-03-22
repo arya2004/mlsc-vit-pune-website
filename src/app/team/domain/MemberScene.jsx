@@ -101,7 +101,7 @@ export default function MemberScene({memberData, index, setIndex, zoom, camera})
     return (
         <group ref={memberScene}>
            <Suspense fallback={<ComponentLoader />} >
-            {memberData.length !== 0 && <Avatar index={index} avatarURL={memberData[index]?.modelLink} scale={1.7}  />}
+            {memberData && memberData.length > 0 && <Avatar index={index} avatarURL={memberData[index]?.modelLink} scale={1.7}  />}
            </Suspense>
            {/* <Text3DModel position={[0, -0.05, 2.7]} rotation={[0, degToRad(40), 0]} scale={0.5} modelURL={domainTo3DText[domain]} /> */}
            <TeamBGScene rotation={[Math.PI/2, 0, 0]} scale={[0.5, 0.5, 0.6]}  />

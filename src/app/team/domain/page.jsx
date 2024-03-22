@@ -138,7 +138,7 @@ function Page() {
         </Suspense>
       </Canvas>
       
-      <CustomLoader />
+      <CustomLoader urlIndex={1} />
     </div>
   );
 }

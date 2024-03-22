@@ -32,7 +32,7 @@ export default function TeleportAnim({ position, targetPos, ref }) {
     }
 
     partilcleProperties.forEach((particle) => {
-      particle.ref.current.position.y += 0.1;
+      particle.ref.current.position.y += 0.01;
       if (particle.ref.current.position.y > 10) {
         particle.ref.current.position.y = -5;
         particle.ref.current.position.x = randFloat(-1, 1);

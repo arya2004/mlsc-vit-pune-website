@@ -96,7 +96,7 @@ function MovingCamera({teleporting, position, setTeleporting, setInPortal}) {
           if(Math.floor(Math.sqrt(conCurr?.translation().x**2 + conCurr?.translation().z**2)) >= 31){
             setInPortal(true);
             conCurr.setLinvel({x: 34*Math.cos(degToRad(20))-conCurr?.translation().x, y: 1, z: 34*Math.sin(degToRad(20))-conCurr?.translation().z});
-            if(conCurr?.translation().y > 3.5) router.push("/team/domain")
+            router.push("/team/domain")
           }
           
         } else if (theta > 56-10 && theta < 56+10){
@@ -105,7 +105,7 @@ function MovingCamera({teleporting, position, setTeleporting, setInPortal}) {
           if(Math.floor(Math.sqrt(conCurr?.translation().x**2 + conCurr?.translation().z**2)) >= 31){
             setInPortal(true);
             conCurr.setLinvel({x: 34*Math.cos(degToRad(56))-conCurr?.translation().x, y: 1, z: 34*Math.sin(degToRad(56))-conCurr?.translation().z});
-            if(conCurr?.translation().y > 3.5) router.push("/team/domain")
+            router.push("/team/domain")
           }
         } else if (theta > 92-10 && theta < 92+10){
           setDomain("community");
@@ -113,7 +113,7 @@ function MovingCamera({teleporting, position, setTeleporting, setInPortal}) {
           if(Math.floor(Math.sqrt(conCurr?.translation().x**2 + conCurr?.translation().z**2)) >= 31){
             setInPortal(true);
             conCurr.setLinvel({x: 34*Math.cos(degToRad(92))-conCurr?.translation().x, y: 1, z: 34*Math.sin(degToRad(92))-conCurr?.translation().z});
-            if(conCurr?.translation().y > 3.5) router.push("/team/domain")
+            router.push("/team/domain")
           }
         } else if (theta > 128-10 && theta < 128+10){
           setDomain("partnership");
@@ -121,7 +121,7 @@ function MovingCamera({teleporting, position, setTeleporting, setInPortal}) {
           if(Math.floor(Math.sqrt(conCurr?.translation().x**2 + conCurr?.translation().z**2)) >= 31){
             setInPortal(true);
             conCurr.setLinvel({x: 34*Math.cos(degToRad(128))-conCurr?.translation().x, y: 1, z: 34*Math.sin(degToRad(128))-conCurr?.translation().z});
-            if(conCurr?.translation().y > 3.5) router.push("/team/domain")
+            router.push("/team/domain")
           }
         } else if (theta > 164-10 && theta < 164+10){
           setDomain("multimedia");
@@ -129,7 +129,7 @@ function MovingCamera({teleporting, position, setTeleporting, setInPortal}) {
           if(Math.floor(Math.sqrt(conCurr?.translation().x**2 + conCurr?.translation().z**2)) >= 31){
             setInPortal(true);
             conCurr.setLinvel({x: 34*Math.cos(degToRad(164))-conCurr?.translation().x, y: 1, z: 34*Math.sin(degToRad(164))-conCurr?.translation().z});
-            if(conCurr?.translation().y > 3.5) router.push("/team/domain")
+            router.push("/team/domain")
           }
         } else if (theta > (200-10-360) && theta < (200+10-360)){
           setDomain("iot");
@@ -137,7 +137,7 @@ function MovingCamera({teleporting, position, setTeleporting, setInPortal}) {
           if(Math.floor(Math.sqrt(conCurr?.translation().x**2 + conCurr?.translation().z**2)) >= 31){
             setInPortal(true);
             conCurr.setLinvel({x: 34*Math.cos(degToRad(200))-conCurr?.translation().x, y: 1, z: 34*Math.sin(degToRad(200))-conCurr?.translation().z});
-            if(conCurr?.translation().y > 3.5) router.push("/team/domain")
+            router.push("/team/domain")
           }
         } else if (theta > (236-10-360) && theta < (236+10-360)){
           setDomain("web3");
@@ -145,7 +145,7 @@ function MovingCamera({teleporting, position, setTeleporting, setInPortal}) {
           if(Math.floor(Math.sqrt(conCurr?.translation().x**2 + conCurr?.translation().z**2)) >= 31){
             setInPortal(true);
             conCurr.setLinvel({x: 34*Math.cos(degToRad(236))-conCurr?.translation().x, y: 1, z: 34*Math.sin(degToRad(236))-conCurr?.translation().z});
-            if(conCurr?.translation().y > 3.5) router.push("/team/domain")
+            router.push("/team/domain")
           }
         } else if (theta > (272-10-360) && theta < (272+10-360)){
           setDomain("web");
@@ -153,7 +153,7 @@ function MovingCamera({teleporting, position, setTeleporting, setInPortal}) {
           if(Math.floor(Math.sqrt(conCurr?.translation().x**2 + conCurr?.translation().z**2)) >= 31){
             setInPortal(true);
             conCurr.setLinvel({x: 34*Math.cos(degToRad(272))-conCurr?.translation().x, y: 1, z: 34*Math.sin(degToRad(272))-conCurr?.translation().z});
-            if(conCurr?.translation().y > 3.5) router.push("/team/domain")
+            router.push("/team/domain")
           }
         } else if (theta > (308-10-360) && theta < (308+10-360)){
           setDomain("app");
@@ -161,7 +161,7 @@ function MovingCamera({teleporting, position, setTeleporting, setInPortal}) {
           if(Math.floor(Math.sqrt(conCurr?.translation().x**2 + conCurr?.translation().z**2)) >= 31){
             setInPortal(true);
             conCurr.setLinvel({x: 34*Math.cos(degToRad(308))-conCurr?.translation().x, y: 1, z: 34*Math.sin(degToRad(308))-conCurr?.translation().z});
-            if(conCurr?.translation().y > 3.5) router.push("/team/domain")
+            router.push("/team/domain")
           }
         } else if (theta > (344-10-360) && theta < (344+10-360)){
           setDomain("aiml");
@@ -169,7 +169,7 @@ function MovingCamera({teleporting, position, setTeleporting, setInPortal}) {
           if(Math.floor(Math.sqrt(conCurr?.translation().x**2 + conCurr?.translation().z**2)) >= 31){
             setInPortal(true);
             conCurr.setLinvel({x: 34*Math.cos(degToRad(344))-conCurr?.translation().x, y: 1, z: 34*Math.sin(degToRad(344))-conCurr?.translation().z});
-            if(conCurr?.translation().y > 3.5) router.push("/team/domain")
+            router.push("/team/domain")
           }
         }
 

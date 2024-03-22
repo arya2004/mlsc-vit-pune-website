@@ -85,7 +85,7 @@ function Home() {
       </Canvas>
 
       <PlaySoundButton setPlayBGM={setPlayBGM} playBGM={playBGM} />
-      <CustomLoader />
+      <CustomLoader  urlIndex={1} />
     </div>
   );
 }

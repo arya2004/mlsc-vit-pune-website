@@ -9,7 +9,7 @@ export default function ComponentLoader(){
         <Html center >
             <div>
                 <div suppressHydrationWarning className="text-sm">Loading... {progress}%</div>
-                <div  className="h-[1px] bg-[#f0f0f0]" style={{width: `${progress*3}px`}} />
+                <div  className="h-[1px] bg-[#f0f0f0]" style={{width: `${progress}rem`}} />
             </div>
         </Html>
     )
