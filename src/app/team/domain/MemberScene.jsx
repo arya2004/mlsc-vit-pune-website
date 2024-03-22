@@ -9,6 +9,9 @@ import { degToRad } from "three/src/math/MathUtils";
 
 import { useMLSCStore } from "../../store/MLSCStore";
 
+import * as THREE from "three";
+
+
 const domainTo3DText = {
     "event" : "/models/domain-names/event3dcurvedtext.glb",
     "community" : "/models/domain-names/community3dcurvedtext.glb",
@@ -22,7 +25,7 @@ const domainTo3DText = {
 }
 
 
-export default function MemberScene({memberData, index, setIndex, camera}){
+export default function MemberScene({memberData, index, setIndex, zoom, camera}){
     
     const domain = useMLSCStore((s) => s.domain);
 
@@ -37,14 +40,12 @@ export default function MemberScene({memberData, index, setIndex, camera}){
     scroll.pages = noOfMembers;
     console.log("SCROLL: ",scroll.pages);
 
-    const handleAvatarClick = () => {
-        camera.position.set(0, 0, 5);
-    }
+    
 
-    useEffect(() => {
-        setIndex(Math.floor(scroll.offset * noOfMembers));
-        // console.log("SCROLL INDEX", scroll.offset, Math.floor(scroll.offset * noOfMembers));
-    }, [Math.floor(scroll.offset * noOfMembers)]);
+    // useEffect(() => {
+    //     setIndex(Math.floor(scroll.offset * noOfMembers));
+    //     // console.log("SCROLL INDEX", scroll.offset, Math.floor(scroll.offset * noOfMembers));
+    // }, [Math.floor(scroll.offset * noOfMembers)]);
 
 
     useFrame((state, delta) => {
@@ -52,6 +53,21 @@ export default function MemberScene({memberData, index, setIndex, camera}){
         state.events.update(); // Raycasts every frame rather than on pointer-move
         memberScene.current.rotation.y = -scroll.offset * (Math.PI * 2);
         console.log("SCROLL INDEX:", Math.floor(scroll.offset+0.25 * noOfMembers))
+
+        if(zoom){
+            camera.current.position.lerp(
+                new THREE.Vector3(0, 2, 5),
+                delta * 24
+            )
+
+            // camera.current.target.lerp(0, 0.5, 0, delta * 24);
+        }else{
+            camera.current.position.lerp(
+                new THREE.Vector3(0, 2, 12),
+                delta * 24
+            )
+        }
+        
 
         // console.log("ROTATION: ", radToDeg(-memberScene.current.rotation.y % (Math.PI * 2)));
         // console.log("OFFSET:", Math.floor(scroll.offset*100))
@@ -84,7 +100,7 @@ export default function MemberScene({memberData, index, setIndex, camera}){
     return (
         <group ref={memberScene}>
            <Suspense fallback='spinner' >
-            {memberData.length !== 0 && <Avatar avatarURL={memberData[index]?.modelLink} handleAvatarClick={handleAvatarClick} scale={1.7}  />}
+            {memberData.length !== 0 && <Avatar index={index} avatarURL={memberData[index]?.modelLink} scale={1.7}  />}
            </Suspense>
            {/* <Text3DModel position={[0, -0.05, 2.7]} rotation={[0, degToRad(40), 0]} scale={0.5} modelURL={domainTo3DText[domain]} /> */}
            <TeamBGScene rotation={[Math.PI/2, 0, 0]} scale={[0.5, 0.5, 0.6]}  />

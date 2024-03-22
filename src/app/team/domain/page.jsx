@@ -20,6 +20,8 @@ import { useMLSCStore } from "../../store/MLSCStore";
 
 import axios from "axios";
 
+import * as THREE from "three";
+
 const domainMap = {
   "core": {name:"Core", text3d: "/models/domain-names/core3dcurvedtext.glb"},
   "event": {name:"Event Management", text3d: "/models/domain-names/event3dcurvedtext.glb"},
@@ -42,6 +44,7 @@ function Page() {
 
   const [memberData, setMemberData] = useState([]);
   const [index, setIndex] = useState(2);
+  const [zoom, setZoom] = useState(false);
 
   const camera = useRef();
 
@@ -56,6 +59,11 @@ function Page() {
       setIndex(index + 1);
     }
   }
+
+  const handleAvatarClick = () => {
+    setZoom(!zoom);
+    
+  } 
 
   console.log(`/api/team?domain=${domainMap[domain].name.split(" ").join("%20")}`)
 
@@ -98,7 +106,7 @@ function Page() {
           makeDefault
           position={[0, 2, 12]}
           lookAt={[0, 0.5, 0]}
-          near={0.05}
+          near={zoom? 0.001 :0.05}
           far={50}
           fov={50}
         />
@@ -118,11 +126,11 @@ function Page() {
          <spotLight position={[0, 0, 2]} angle={Math.PI/2} intensity={2} />
 
           <ScrollControls pages={5} damping={2} >
-            <MemberScene memberData={memberData} index={index} setIndex={setIndex} camera={camera} />
+            <MemberScene memberData={memberData} index={index} setIndex={setIndex} zoom={zoom} camera={camera} />
           </ScrollControls>
-        {memberData.length > 0 && <Position data={memberData[index]} />}
-        {memberData.length > 0 && <SocialIcons data={memberData[index]} />}
-        {memberData.length > 0 && <NameYearDept data={memberData[index]} />}
+        {memberData.length > 0 && <Position onClick={handleAvatarClick} data={memberData[index]} scale={zoom? 0.2 :0.35} position={zoom?[3.4, 2, -1]:[5.8, 1.4, -1]} />}
+        {!zoom && memberData.length > 0 && <SocialIcons data={memberData[index]} />}
+        {!zoom && memberData.length > 0 && <NameYearDept data={memberData[index]} />}
         <PrevNextButtons handlePrev={handlePrev} handleNext={handleNext} />
 
         </Suspense>

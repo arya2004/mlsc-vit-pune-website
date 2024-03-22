@@ -5,22 +5,23 @@ import Link from "next/link";
 
 // TODO: fix the imageLink and social link issue.
 
-export function Position({ data }) {
+export function Position({ data, onClick, scale, position }) {
   const gl = useThree((state) => state.gl);
 
   return (
     <Html
-      scale={[0.35, 0.35, 0.35]}
-      position={[5.8, 1.4, -1]}
+      scale={scale}
+      position={position}
       occlude
       transform
       center
       portal={{ current: gl.domElement.parentNode }}
     >
-      <div className="z-0 top-60 left-60 w-[80rem] h-[48rem]  bg-[url('/images/svgs/year-dept.svg')] bg-cover bg-center">
+      <div className="z-0 top-60 left-60 w-[80rem] h-[48rem]  bg-[url('/images/svgs/year-dept.svg')] bg-cover bg-center cursor-pointer">
         <div className="absolute left-[30rem] top-[18rem]">
           {data?.imageLink && (
             <Image
+              onClick={onClick}
               className="opacity-45"
               src={data?.imageLink}
               width={200}
