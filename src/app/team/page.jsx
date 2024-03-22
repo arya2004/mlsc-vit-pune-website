@@ -31,6 +31,7 @@ import Fillers from "./Components/Fillers.jsx";
 import Portal from "./Components/Portal.jsx";
 import MainPlatform from "./Components/MainPlatform.jsx";
 import MovingCamera from "./Components/MovingCamera.jsx";
+import CustomLoader from "../components/CustomLoader.jsx";
 
 function page() {
   const sun = useRef(); 
@@ -50,7 +51,7 @@ function page() {
   });
 
   return (
-    <div className="w-screen h-screen bg-transparent">
+    <div className="w-screen h-screen bg-transparent overflow-hidden">
       {/* <div onClick={setTeleporting(!teleporting)} className="absolute w-32 h-32 bg-slate-600 rounded-md right-5 bottom-5"></div> */}
       <KeyboardControls
         map={[
@@ -105,7 +106,7 @@ function page() {
           <Effects inPortal={inPortal} />
         </Canvas>
       </KeyboardControls>
-      <Loader />
+      <CustomLoader background={'/images/loader-images/core-team-bg.png'} />
     </div>
   );
 }

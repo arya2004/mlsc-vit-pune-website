@@ -15,6 +15,7 @@ import { CPUcase2 } from "../components-3d/CpuCase2";
 import ScrollCamera from "./ScrollCamera";
 import PlaySoundButton from "../components-3d/PlaySoundButton";
 import {MLSCText} from "../components-3d/MLSCText";
+import CustomLoader from "../components/CustomLoader";
 
 function Home() {
   // For Responsiveness:
@@ -29,8 +30,8 @@ function Home() {
   const home_bg = "/audio/home-bgm.mp3";
 
   return (
-    <div className="h-100vh w-100vh">
-      <Canvas style={{ width: "100vw", height: "100vh" }} shadows='basic'>
+    <div className="h-screen w-screen overflow-hidden">
+      <Canvas className="w-full h-full " shadows='basic'>
         {/* <OrbitControls /> */}
         <color attach="background" args={["black"]} />
         <fog attach="fog" args={["black", 10, 50]} />
@@ -84,7 +85,7 @@ function Home() {
       </Canvas>
 
       <PlaySoundButton setPlayBGM={setPlayBGM} playBGM={playBGM} />
-      <Loader />
+      <CustomLoader />
     </div>
   );
 }
