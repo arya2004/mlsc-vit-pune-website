@@ -27,6 +27,8 @@ import MovingCamera from "./MovingCamera";
 
 import { useMLSCStore } from "../store/MLSCStore";
 import CustomLoader from "../components/CustomLoader";
+import Sidebar from "../home/overlay-ui/Sidebar";
+import PlaySoundButton from "../components-3d/PlaySoundButton";
 
 export default function About() {
   const aboutYear = useMLSCStore((s) => s.aboutYear);
@@ -58,7 +60,7 @@ export default function About() {
         { name: "jump", keys: ["Space"] },
       ]}
     >
-      <Canvas shadows="basic" dpr={[0.1, 10]} >
+      <Canvas shadows="basic" dpr={[0.1, 10]} performance={{current: 1, min: 0.1, max: 1, debounce: 200,}} >
         {/* <OrbitControls /> */}
         <color attach="background" args={["#000"]} />
         <PerspectiveCamera makeDefault near={0.1} far={1000} lookAt={[0,0,0]} />
@@ -89,7 +91,9 @@ export default function About() {
         {/* <Effects /> */}
       </Canvas>
     </KeyboardControls>
+      <PlaySoundButton />
       <CustomLoader urlIndex={0} />
+      <Sidebar />
     </div>
   );
 }

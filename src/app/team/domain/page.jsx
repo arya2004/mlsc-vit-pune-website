@@ -16,6 +16,7 @@ import MemberScene from "./MemberScene.jsx";
 import {NameYearDept, SocialIcons, Position, PrevNextButtons} from "./Components/UI.jsx";
 import CustomLoader from "../../components/CustomLoader";
 import ComponentLoader from "../../components/ComponentLoader";
+import Sidebar from "../../home/overlay-ui/Sidebar";
 
 import { Suspense, useRef, useState, useEffect } from "react";
 import { useMLSCStore } from "../../store/MLSCStore";
@@ -23,6 +24,8 @@ import { useMLSCStore } from "../../store/MLSCStore";
 import axios from "axios";
 
 import * as THREE from "three";
+import { Playball } from "next/font/google/index.js";
+import PlaySoundButton from "../../components-3d/PlaySoundButton.jsx";
 
 const domainMap = {
   "core": {name:"Core", text3d: "/models/domain-names/core3dcurvedtext.glb"},
@@ -137,8 +140,9 @@ function Page() {
 
         </Suspense>
       </Canvas>
-      
+      <PlaySoundButton />
       <CustomLoader urlIndex={1} />
+      <Sidebar />
     </div>
   );
 }

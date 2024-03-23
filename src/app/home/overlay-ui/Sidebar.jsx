@@ -24,7 +24,7 @@ function Sidebar() {
   const setPositionsInAbout = useMLSCStore((s) => s.setPositionsInAbout);
 
   return (
-    <div className={cn(sideBarOpen?"sm:w-full lg:w-2/6": "sm:w-0 lg:w-0","absolute h-screen z-10 bg-transparent flex flex-row ease-in-out duration-300")}>
+    <div className={cn(sideBarOpen?"sm:w-full lg:w-2/6": "sm:w-0 lg:w-0","absolute h-screen left-0 top-0 z-10 bg-transparent flex flex-row ease-in-out duration-300")}>
      {playBGM && sideBarOpen ? <audio src="/audio/sfx/sidebar-open.mp3" autoPlay />: <audio src="/audio/sfx/sidebar-close.mp3" autoPlay />}
      
       {/* {!sideBarOpen ? ( */}

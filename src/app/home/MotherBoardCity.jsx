@@ -19,6 +19,7 @@ import {
   Sparkles,
   SpotLight,
   Stars,
+  AdaptiveDpr,
 } from "@react-three/drei";
 import { MeshStandardMaterial } from "three";
 import { EffectComposer, Bloom } from "@react-three/postprocessing";
@@ -33,14 +34,19 @@ import Offer from './html-cards/Offer.card'
 import NavButtons from './NavButtons'
 
 import cn from '../../app/utils/cn'
+import { useMLSCStore } from '../../app/store/MLSCStore'
 
 const page = () => {
+
+  const sidebarOpen = useMLSCStore((state) => state.sidebarOpen);
 
   const [isCloudResourceAvailable, setIsCloudResourceAvailable] = useState(false);
   
   const [showAbout, setShowAbout] = useState(true);
   const [showGetInvolved, setShowGetInvolved] = useState(false);
-  const [showNavButtons, setShowNavButtons] = useState(false);  
+  const [showNavButtons, setShowNavButtons] = useState(false); 
+  
+  const regress = useThree((state) => state.performance.regress)
 
   useEffect(() => {
     fetch(
@@ -57,9 +63,10 @@ const page = () => {
   }, []);
 
   return (
-    <div >
+    <div className="overflow-hidden" >
       <Canvas
-        className={cn(showNavButtons?"blur-sm":"blur-0","h-screen w-screen")}
+        className={cn(sidebarOpen && showNavButtons?"blur-sm":"blur-0","h-screen w-screen")}
+        performance={{ min: 0.1, max: 0.9 }}
         style={{ height: "100vh", width: "100vw" }}
         camera={{ position: [0, 0, 30], near: 0.05, far: 1000, fov: 10 }}
       >
@@ -111,7 +118,7 @@ const page = () => {
             setShowNavButtons={setShowNavButtons}
           />
         </ScrollControls>
-        <PointerLockControls />
+        {/* <PointerLockControls /> */}
 
         <GetInvolved showGetInvolved={showGetInvolved} />
         <AboutMesh showAbout={showAbout} />

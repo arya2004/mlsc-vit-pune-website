@@ -32,6 +32,8 @@ import Portal from "./Components/Portal.jsx";
 import MainPlatform from "./Components/MainPlatform.jsx";
 import MovingCamera from "./Components/MovingCamera.jsx";
 import CustomLoader from "../components/CustomLoader.jsx";
+import Sidebar from "../home/overlay-ui/Sidebar.jsx";
+import PlaySoundButton from "../components-3d/PlaySoundButton.jsx";
 
 function page() {
   const sun = useRef(); 
@@ -107,6 +109,8 @@ function page() {
         </Canvas>
       </KeyboardControls>
       <CustomLoader urlIndex={0}/>
+      <PlaySoundButton />
+      <Sidebar />
     </div>
   );
 }
