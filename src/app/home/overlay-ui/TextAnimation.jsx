@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, use } from "react";
 import { useMLSCStore } from "../../store/MLSCStore";
 
 function TextAnimation({word, className, addStyles}) {
@@ -8,9 +8,17 @@ function TextAnimation({word, className, addStyles}) {
   const [isHovered, setIsHovered] = useState(false);
 
   const sideBarOpen = useMLSCStore((state) => state.sideBarOpen);
+  const playBGM = useMLSCStore((state) => state.playBGM);
   // const [animate, setAnimate] = useState(false);
 
   const [index, setIndex] = useState(0);
+  const [playSFX, setPlaySFX] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+    return () => setIsMounted(false);
+  }, []);
 
   
   useEffect(() => {
@@ -18,12 +26,13 @@ function TextAnimation({word, className, addStyles}) {
     // if(sideBarOpen){
     //   setAnimate(true);
     // }
+
     let intervalId;
 
     if (isHovered) {
- 
       intervalId = setInterval(() => {
         if (currentString === word) {
+          setPlaySFX(false);
           setCurrentLetter("");
           clearInterval(intervalId);
         } else if (currentLetter === word[index]) {
@@ -53,9 +62,11 @@ function TextAnimation({word, className, addStyles}) {
     <div
       onMouseEnter={() => {
         setIsHovered(true);
+        setPlaySFX(true);
       }}
       onMouseLeave={() => {
         setIsHovered(false);
+        setPlaySFX(false);
       }}
       style={addStyles}
       className={className}
@@ -65,6 +76,7 @@ function TextAnimation({word, className, addStyles}) {
           ? word
           : currentString + "" + currentLetter
         : word}
+        {(playBGM && playSFX) && <audio autoPlay src="/audio/sfx/couter-sfx.mp3" />}
     </div>
   );
 }

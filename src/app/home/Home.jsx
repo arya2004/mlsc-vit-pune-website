@@ -16,11 +16,14 @@ import ScrollCamera from "./ScrollCamera";
 import PlaySoundButton from "../components-3d/PlaySoundButton";
 import {MLSCText} from "../components-3d/MLSCText";
 import CustomLoader from "../components/CustomLoader";
+import { useMLSCStore } from "../store/MLSCStore";
 
 function Home() {
   // For Responsiveness:
   // const widthChange = window.innerWidth/1300;
-  const [playBGM, setPlayBGM] = useState(false); // For the background music
+  // const [playBGM, setPlayBGM] = useState(false); // For the background music
+  const playBGM = useMLSCStore((state) => state.playBGM);
+  const setPlayBGM = useMLSCStore((state) => state.setPlayBGM);
 
   const [isMobile, setIsMobile] = useState(false);
   useEffect(() => {

@@ -8,11 +8,16 @@ import {ClosingButton, Cross} from "./ClosingButtons";
 import Option from "./Option";
 
 import { useMLSCStore } from "../../store/MLSCStore";
+import { useRouter } from "next/navigation";
 
 
 function Sidebar() {
   // const [open, setOpen] = useState(false);
   // console.log(open)
+  const router = useRouter();
+
+  const playBGM = useMLSCStore((state) => state.playBGM);
+
   const sideBarOpen = useMLSCStore((state) => state.sideBarOpen);
   const SetSideBarOpen = useMLSCStore((state) => state.setSideBarOpen);
 
@@ -20,18 +25,19 @@ function Sidebar() {
 
   return (
     <div className={cn(sideBarOpen?"sm:w-full lg:w-2/6": "sm:w-0 lg:w-0","absolute h-screen z-10 bg-transparent flex flex-row ease-in-out duration-300")}>
+     {playBGM && sideBarOpen ? <audio src="/audio/sfx/sidebar-open.mp3" autoPlay />: <audio src="/audio/sfx/sidebar-close.mp3" autoPlay />}
      
-      {!sideBarOpen ? (
+      {/* {!sideBarOpen ? ( */}
         <button
           onClick={() => {
             SetSideBarOpen(true);
           }}
-          className="absolute flex items-center justify-center top-6 left-6  w-10 h-10 bg-slate-600 rounded-full"
+          className={cn(sideBarOpen?"opacity-0 pointer-events-none w-0 h-0":"absolute flex items-center justify-center top-6 left-6  w-10 h-10 bg-slate-600 rounded-full")}
         >
           <img src="/icons/compass.png" />
         </button>
-      ) : (
-        <div className={"relative flex items-center lg:w-full sm:w-full left-3 lg:left-10 h-full ease-in-out duration-300 "}>
+      {/* ) : ( */}
+        <div className={cn(sideBarOpen?"opacity-100":"opacity-0 pointer-events-none","relative flex items-center lg:w-full sm:w-full left-3 lg:left-10 h-full ease-in-out duration-300 ")}>
           <div //Shadow 
             className={cn(
               sideBarOpen ? "w-[90%]" : "w-0",
@@ -57,11 +63,11 @@ function Sidebar() {
                 <TextAnimation word='DISCOVER' className="h-full w-1/4 text-[#0078D4] text-xs p-2 pt-8 uppercase ease-in-out duration-300"  />
                 <div className="flex flex-col items-start justify-evenly h-full w-3/4 bg-transparent pl-5">
                   
-                  <Link href='./' ><Option text="HOME" number="01" addStyles={{'width':'7rem'}} /> </Link>
-                  <Link href='./team' ><Option text="TEAM" number="02" addStyles={{'width':'7rem'}} /> </Link>
-                  <Link href='./path-to-about' ><Option text="EVENTS" number="03" addStyles={{'width':'9rem'}} /> </Link>
-                  <Link href='./path-to-about' ><Option onClick={()=>setPositionsInAbout('projects')} text="PROJECTS" number="04" addStyles={{'width':'11.5rem'}} /> </Link>
-                  <Link href='./path-to-about' ><Option onClick={()=>setPositionsInAbout('blogs')} text="BLOG" number="05" addStyles={{'width':'7rem'}} /> </Link>
+                  <Option text="HOME" number="01" addStyles={{'width':'7rem'}} /> 
+                  <Option onClick={()=>router.push('./team')} text="TEAM" number="02" addStyles={{'width':'7rem'}} /> 
+                  <Option onClick={()=>router.push('/path-to-about')} text="EVENTS" number="03" addStyles={{'width':'9rem'}} /> 
+                  <Option onClick={()=>{router.push('/path-to-about'); setPositionsInAbout('projects')}} text="PROJECTS" number="04" addStyles={{'width':'11.5rem'}} /> 
+                  <Option onClick={()=>{router.push('/path-to-about'); setPositionsInAbout('blogs')}} text="BLOG" number="05" addStyles={{'width':'7rem'}} /> 
 
                 </div>
               </div>
@@ -91,7 +97,7 @@ function Sidebar() {
             </div>
           </div>
         </div>
-      )}
+      {/* )} */}
     </div>
   );
 }

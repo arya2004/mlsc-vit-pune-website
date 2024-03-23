@@ -7,6 +7,9 @@ export const useMLSCStore = create((set) => ({
   showMotherBoard: false,
   setShowMotherBoard: (showMotherBoard) => set({ showMotherBoard }),
 
+  playBGM: false,
+  setPlayBGM: (playBGM) => set({ playBGM }),
+
   teleporting: true,
   setTeleporting: (teleporting) => set({ teleporting }),
 
