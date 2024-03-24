@@ -7,34 +7,15 @@ import { MdOutlineSkipPrevious, MdOutlineSkipNext } from "react-icons/md";
 import axios from "axios";
 import Link from "next/link";
 
-function EventCard({ text, position, scale, rotation }) {
-
+function EventCard({ text, position, scale, rotation, eventData }) {
   const [hovered, setHovered] = useState(false);
-  const [index, setIndex] = useState(0);
-   
-  const [eventData, setEventData] = useState([]);
 
-  const getEventData = async () => {
-    try {
-      
-      const event_data = await axios.get('/api/event');
-      
-      setEventData(event_data.data);
-     
-    } catch (err) {
-      console.log("GET req error");
-      // console.log(err);
-      return err;
-    }
-};
+  useEffect(() => {
+    console.log("Hovered: ", hovered);
+  }, [hovered]);
 
-  useEffect(() => { 
-    getEventData();
-  }, []);
-
-    useEffect(() => {
-        console.log("Hovered: ", hovered);
-    }, [hovered]);
+  const date = eventData?.date !== "No Data" ?new Date(eventData?.date):"No Data";
+  console.log("DATE: ", date)
 
   return (
     // <Text position={position} rotation={rotation} >
@@ -46,56 +27,87 @@ function EventCard({ text, position, scale, rotation }) {
       position={position}
       scale={scale}
       rotation={rotation}
-      
     >
-      <div onPointerEnter={(e) => setHovered(true)} onPointerLeave={(e) => setHovered(false)} className="flex items-center text-[3px] w-6 h-4 justify-center bg-event-bg bg-cover bg-center ">
-        {!hovered?
-        (<div className="w-[87%] h-[92%] mt-[1px] flex flex-col justify-start text-[1px] text-[#e0e0e0] p-[1px]">
-          <div className="flex flex-col justify-evenly w-full gap-0 h-[20%] ">
-            <div>Hackspiration</div>
-            <span className="text-[0.8px]">tagline</span>
-          </div>
-          <div className="flex flex-row w-full h-[60%] bg-slate-400">Image</div>
+      <div
+        onPointerEnter={(e) => setHovered(true)}
+        onPointerLeave={(e) => setHovered(false)}
+        className="flex items-center text-[3px] w-6 h-4 justify-center bg-event-bg bg-cover bg-center "
+      >
+        {!hovered ? (
+          <div className="w-[87%] h-[92%] mt-[1px] flex flex-col items-center justify-start text-[1px] text-[#e0e0e0] p-[1px]">
+            <div className="flex flex-col justify-evenly w-full gap-0 h-[20%] ">
+              <div>{eventData?.name}</div>
+              <span className="text-[0.8px]">{eventData?.tagline}</span>
+            </div>
+            <div className="flex flex-row justify-center w-[80%] h-[60%] bg-slate-400">
+              Image
+            </div>
 
-          <div className="flex flex-row justify-evenly w-full h-[25%] text-[0.8px] pt-[1px]">
-            <div className="flex flex-col h-full w-auto justify-evenly">
-              <div>Date:</div>
-              <div className="text-[0.6px]">15th to 20th April, 2024</div>
-            </div>
-            <div className="flex flex-col h-full w-auto justify-evenly">
-              <div>Footfall:</div>
-              <div className="text-[0.6px]">1000</div>
-            </div>
-            <div className="flex flex-col h-full w-auto justify-evenly">
-              <div>Event Span:</div>
-              <div className="text-[0.6px]">5 days</div>
-            </div>
-            <div className="flex flex-col h-full w-auto justify-evenly text-blue-600">
-              <a>LINK</a>
-              <div className="text-[0.6px]"></div>
+            <div className="flex flex-row justify-evenly w-full h-[25%] text-[0.8px] pt-[1px]">
+              <div className="flex flex-col h-full w-auto justify-evenly">
+                <div>Date:</div>
+                <div className="text-[0.6px]">{date!=="No Data"?`${date.getDate()}-${date.getMonth()+1}-${date.getFullYear()}`:"No Data"}</div>
+              </div>
+              <div className="flex flex-col h-full w-auto justify-evenly">
+                <div>Footfall:</div>
+                <div className="text-[0.6px]">{eventData?.footfall}</div>
+              </div>
+              <div className="flex flex-col h-full w-auto justify-evenly">
+                <div>Event Span:</div>
+                <div className="text-[0.6px]">{eventData?.eventSpan}</div>
+              </div>
+              <div className="flex flex-col h-full w-auto justify-evenly text-blue-600">
+                <a>LINK</a>
+                <div className="text-[0.6px]"></div>
+              </div>
             </div>
           </div>
-        </div>):
-            (
-                <div className="w-[87%] h-[92%] mt-[1px] flex flex-col justify-start text-[1px] text-[#f0f0f0] p-[1px]">
-                <div className="flex flex-col justify-evenly w-full gap-0 h-[20%] ">
-                  <div>Hackspiration</div>
-                  <span className="text-[0.8px]">tagline</span>
-                </div>
-                <div className="flex flex-row w-full h-[80%] text-[0.6px] overflow-hidden">
-                    <div className="w-full h-auto"></div>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo odit, voluptatem debitis eos officia quo veritatis voluptatum amet alias esse neque unde dicta iste minus error repudiandae deserunt non dolore soluta in labore itaque numquam nobis aliquid! Consequuntur velit commodi ducimus labore, veritatis molestiae nemo nobis obcaecati saepe esse exercitationem odit eaque quibusdam est officiis, a doloribus omnis at. Eaque beatae dolorem mollitia consectetur exercitationem dicta harum, amet minima iusto non voluptatem quasi sit temporibus facilis dolor totam quae aliquam aliquid soluta voluptates inventore. Iure, quas nisi, eos nihil quod magnam rerum dicta doloremque possimus magni vel. Labore, eaque dolorum.
-                </div>
-              </div>
-            )
-        
-        }
+        ) : (
+          <div className="w-[87%] h-[92%] mt-[1px] flex flex-col justify-start text-[1px] text-[#f0f0f0] p-[1px]">
+            <div className="flex flex-col justify-evenly w-full gap-0 h-[20%] ">
+              <div>{eventData?.title}</div>
+              <span className="text-[0.8px]">{eventData?.tagline}</span>
+            </div>
+            <div className="flex flex-row w-full h-[80%] text-[0.6px] overflow-hidden">
+              <div className="w-full h-auto"></div>
+              {eventData?.description}
+            </div>
+          </div>
+        )}
       </div>
     </Html>
   );
 }
 
 export function EventCards({ position, scale }) {
+  const [eventData, setEvenData] = useState();
+
+  const getEventData = async () => {
+    try {
+      const event_data = await axios.get("/api/event");
+      setEvenData(event_data.data);
+    } catch (e) {
+      console.log("GET blog error", e);
+    }
+  };
+
+  const nonLoadData = {
+    id: "No Data",
+    name: "No Data",
+    tagline: "No Data",
+    date: "No Data",
+    description:
+      "No Data",
+    footfall: "No Data",
+    eventSpan: "No Data",
+    link: "",
+    organisingPeople: "No Data",
+  };
+
+  useEffect(() => {
+    getEventData();
+  }, []);
+
   return (
     <group position={position}>
       <EventCard
@@ -104,6 +116,7 @@ export function EventCards({ position, scale }) {
           -4,
           20 * Math.sin(degToRad(30)),
         ]}
+        eventData={eventData && eventData.length > 0 ? eventData[0] : nonLoadData}
         scale={scale}
         rotation={[0, degToRad(60 + 180), 0]}
       />
@@ -113,6 +126,7 @@ export function EventCards({ position, scale }) {
           -4,
           20 * Math.sin(degToRad(60)),
         ]}
+        eventData={eventData && eventData.length > 1 ? eventData[1] : nonLoadData}
         scale={scale}
         rotation={[0, degToRad(30 + 180), 0]}
       />
@@ -122,6 +136,7 @@ export function EventCards({ position, scale }) {
           -4,
           20 * Math.sin(degToRad(120)),
         ]}
+        eventData={eventData && eventData.length > 2 ? eventData[2] : nonLoadData}
         scale={scale}
         rotation={[0, degToRad(-30 + 180), 0]}
       />
@@ -131,6 +146,7 @@ export function EventCards({ position, scale }) {
           -4,
           20 * Math.sin(degToRad(150)),
         ]}
+        eventData={eventData && eventData.length > 3 ? eventData[3] : nonLoadData}
         scale={scale}
         rotation={[0, degToRad(-60 + 180), 0]}
       />
@@ -140,6 +156,7 @@ export function EventCards({ position, scale }) {
           -4,
           20 * Math.sin(degToRad(210)),
         ]}
+        eventData={eventData && eventData.length > 4 ? eventData[4] : nonLoadData}
         scale={scale}
         rotation={[0, degToRad(60), 0]}
       />
@@ -149,6 +166,7 @@ export function EventCards({ position, scale }) {
           -4,
           20 * Math.sin(degToRad(240)),
         ]}
+        eventData={eventData && eventData.length > 5 ? eventData[5] : nonLoadData}
         scale={scale}
         rotation={[0, degToRad(30), 0]}
       />
@@ -158,6 +176,7 @@ export function EventCards({ position, scale }) {
           -4,
           20 * Math.sin(degToRad(300)),
         ]}
+        eventData={eventData && eventData.length > 6 ? eventData[6] : nonLoadData}
         scale={scale}
         rotation={[0, degToRad(-30), 0]}
       />
@@ -167,6 +186,7 @@ export function EventCards({ position, scale }) {
           -4,
           20 * Math.sin(degToRad(330)),
         ]}
+        eventData={eventData && eventData.length > 7 ? eventData[7] : nonLoadData}
         scale={scale}
         rotation={[0, degToRad(-60), 0]}
       />
@@ -175,32 +195,31 @@ export function EventCards({ position, scale }) {
 }
 
 export function BlogCard({ text, position, scale, rotation }) {
-
   const [blogData, setBlogData] = useState();
   const [index, setIndex] = useState(0);
 
   const handlePrevClick = () => {
-    if(index > 0) setIndex(index - 1);
-  }
+    if (index > 0) setIndex(index - 1);
+  };
   const handleNextClick = () => {
-    if(index < blogData.length - 1) setIndex(index + 1)
-  }
+    if (index < blogData.length - 1) setIndex(index + 1);
+  };
 
   const getBlogData = async () => {
-    try{
-      const blog_data = await axios.get('/api/blog');
+    try {
+      const blog_data = await axios.get("/api/blog");
       setBlogData(blog_data.data);
-    } catch(e) {
+    } catch (e) {
       console.log("GET blog error", e);
     }
-  }
+  };
 
   let data = "Loading...";
-  if(blogData) data = blogData[index];
+  if (blogData) data = blogData[index];
 
-  useEffect(()=>{
+  useEffect(() => {
     getBlogData();
-  }, [])
+  }, []);
 
   console.log("BLOGDATA", blogData);
 
@@ -232,7 +251,7 @@ export function BlogCard({ text, position, scale, rotation }) {
         <div className="w-[97%] h-[97%] flex flex-col justify-start text-[#f0f0f0]">
           <div className="w-full h-[15%] flex flex-row justify-between p-0">
             {/* Serial Number */}
-            <span className="text-[6px]">{index+1}</span>
+            <span className="text-[6px]">{index + 1}</span>
             {/* Date */}
             <div className="w-[50%] flex flex-col text-[3px]">
               <span className="underline underline-offset-1">Author: </span>
@@ -246,7 +265,12 @@ export function BlogCard({ text, position, scale, rotation }) {
 
           <div className="w-full h-[60%] flex flex-row">
             <div className="w-1/2 h-full bg-slate-700">
-             <img src={data?.imageUrl} width={40} className="h-full w-full opacity-60 text-[2px]" alt="poster" />
+              <img
+                src={data?.imageUrl}
+                width={40}
+                className="h-full w-full opacity-60 text-[2px]"
+                alt="poster"
+              />
             </div>
             <div className="w-1/2 h-full flex flex-col justify-start gap-[4px] text-[3px] p-[2px]">
               <div className="flex flex-col">
@@ -257,9 +281,7 @@ export function BlogCard({ text, position, scale, rotation }) {
               <div className="w-full h-[90%]">
                 <span className="underline">Description:</span>
                 <span className="w-full h-full flex">
-                  <p className="h-5 w-full truncate">
-                    {data?.description}
-                  </p>
+                  <p className="h-5 w-full truncate">{data?.description}</p>
                 </span>
               </div>
             </div>
@@ -271,32 +293,31 @@ export function BlogCard({ text, position, scale, rotation }) {
 }
 
 export function ProjectCard({ text, position, scale, rotation }) {
-
   const [projectData, setProjectData] = useState();
   const [index, setIndex] = useState(0);
 
   const handlePrevClick = () => {
-    if(index > 0) setIndex(index - 1);
-  }
+    if (index > 0) setIndex(index - 1);
+  };
   const handleNextClick = () => {
-    if(index < projectData.length - 1) setIndex(index + 1)
-  }
+    if (index < projectData.length - 1) setIndex(index + 1);
+  };
 
   const getProjectData = async () => {
-    try{
-      const project_data = await axios.get('/api/project');
+    try {
+      const project_data = await axios.get("/api/project");
       setProjectData(project_data.data);
-    } catch(e) {
+    } catch (e) {
       console.log("GET blog error", e);
     }
-  }
+  };
 
   let data = "Loading...";
-  if(projectData) data = projectData[index];
+  if (projectData) data = projectData[index];
 
-  useEffect(()=>{
+  useEffect(() => {
     getProjectData();
-  }, [])
+  }, []);
 
   console.log("BLOGDATA", data);
 
@@ -328,7 +349,7 @@ export function ProjectCard({ text, position, scale, rotation }) {
         <div className="w-[97%] h-[97%] flex flex-col justify-start text-[#f0f0f0]">
           <div className="w-full h-[15%] flex flex-row justify-between p-0">
             {/* Serial Number */}
-            <span className="text-[6px]">{index+1}</span>
+            <span className="text-[6px]">{index + 1}</span>
             {/* Date */}
             <div className="w-[50%] flex flex-col text-[3px]">
               <span className="underline underline-offset-1">Maintainer: </span>
@@ -340,20 +361,23 @@ export function ProjectCard({ text, position, scale, rotation }) {
             {data?.title}
           </span>
 
-          <div className="w-full h-[60%] flex flex-row">
-            <div className="w-1/2 h-full bg-slate-700">
-              <img src={data?.imageLink} width={30} className="h-full w-full opacity-60 text-[2px]" alt="poster" />
-            </div>
-            <div className="w-1/2 h-full flex flex-col justify-start gap-[4px] text-[3px] p-[2px]">
+          <div className="w-full h-[70%] flex flex-row">
+            <div className="w-full h-full flex flex-col justify-start gap-[4px] text-[3px] p-[2px]">
               <div className="flex flex-col">
                 <span className="underline">Description:</span>
-                <span className="trucate">{data?.description}</span>
+                <span className="text-ellipsis">{data?.description}</span>{" "}
+                {/* max words 30 */}
               </div>
 
               <div className="w-full flex items-center justify-center h-[90%] cursor-pointer">
-                <Link href={data?.gitUrl} className="p-[2px] bg-[#a0a0a0] rounded-[2px] hover:opacity-55">
-                  Go to project
-                </Link>
+                {data?.gitUrl !== undefined && (
+                  <Link
+                    href={data?.gitUrl}
+                    className="p-[2px] bg-[#a0a0a0] rounded-[2px] hover:opacity-55"
+                  >
+                    Go to project
+                  </Link>
+                )}
               </div>
             </div>
           </div>
@@ -363,10 +387,9 @@ export function ProjectCard({ text, position, scale, rotation }) {
   );
 }
 
-export function Cardlabel({label, position, scale, rotation}){
-
+export function Cardlabel({ label, position, scale, rotation }) {
   return (
-  <Html
+    <Html
       transform
       occlude
       position={position}
@@ -374,8 +397,8 @@ export function Cardlabel({label, position, scale, rotation}){
       rotation={rotation}
     >
       <div className="text-[#f0f0f0] bg-red-500 border-1 border-red-950 opacity-40 w-auto p-1 rounded-md h-auto text-xl text-center">
-      {label}
+        {label}
       </div>
     </Html>
-  )
+  );
 }

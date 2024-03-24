@@ -46,8 +46,6 @@ const page = () => {
   const [showGetInvolved, setShowGetInvolved] = useState(false);
   const [showNavButtons, setShowNavButtons] = useState(false); 
   
-  const regress = useThree((state) => state.performance.regress)
-
   useEffect(() => {
     fetch(
       "https://rawcdn.githack.com/pmndrs/drei-assets/9225a9f1fbd449d9411125c2f419b843d0308c9f/cloud.png:"
