@@ -80,12 +80,12 @@ export function SocialIcons({ data }) {
                   src="/images/svgs/linkedin.svg"
                 />
               </Link>}
-              {data?.linkedinLink && <Link href={data?.email}>
+              {/* {data?.email && <Link target="blank" href={`${data?.email}`}>
                 <img
                   className="p-1 w-9 rounded-[4px] hover:brightness-200 ease-in-out duration-100"
                   src="/images/svgs/mail.svg"
                 />
-              </Link>}
+              </Link>} */}
            </div>
         </div>
       </div>
