@@ -16,6 +16,8 @@ import ScrollCamera from "./ScrollCamera";
 import PlaySoundButton from "../components-3d/PlaySoundButton";
 import {MLSCText} from "../components-3d/MLSCText";
 import CustomLoader from "../components/CustomLoader";
+import { ScrollDown } from "../components/UserDirections"
+
 import { useMLSCStore } from "../store/MLSCStore";
 
 function Home() {
@@ -89,6 +91,7 @@ function Home() {
 
       <PlaySoundButton setPlayBGM={setPlayBGM} playBGM={playBGM} />
       <CustomLoader  urlIndex={1} />
+      <ScrollDown />
     </div>
   );
 }

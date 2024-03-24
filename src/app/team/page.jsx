@@ -12,6 +12,7 @@ import {
   FirstPersonControls,
   PerspectiveCamera,
   PointerLockControls,
+  PositionalAudio,
 } from "@react-three/drei";
 import { Canvas, extend } from "@react-three/fiber";
 import React, { Suspense, useRef, useMemo, useState } from "react";
@@ -34,12 +35,14 @@ import MovingCamera from "./Components/MovingCamera.jsx";
 import CustomLoader from "../components/CustomLoader.jsx";
 import Sidebar from "../home/overlay-ui/Sidebar.jsx";
 import PlaySoundButton from "../components-3d/PlaySoundButton.jsx";
+import { WASDMotion } from "../components/UserDirections.jsx";
 
 function page() {
   const sun = useRef(); 
 
   // const teleporting = useMLSCStore((s) => s.teleporting);
   // const setTeleporting = useMLSCStore((s) => s.setTeleporting);
+  const playBGM = useMLSCStore((s) => s.playBGM);
 
   // setTeleporting(false)
 
@@ -106,10 +109,17 @@ function page() {
           </Suspense>
           <Fillers />
           <Effects inPortal={inPortal} />
+
+          {playBGM ? (
+          <Suspense>
+              <PositionalAudio position={[0, 0, 0]} autoplay loop url='/audio/team-path-bgm.mp3' distance={5} />
+          </Suspense>
+        ) : undefined}
         </Canvas>
       </KeyboardControls>
       <CustomLoader urlIndex={0}/>
       <PlaySoundButton />
+      <WASDMotion />
       <Sidebar />
     </div>
   );

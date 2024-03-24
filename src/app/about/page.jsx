@@ -11,6 +11,7 @@ import {
   PointerLockControls,
   KeyboardControls,
   PerspectiveCamera,
+  PositionalAudio,
 } from "@react-three/drei";
 
 import AboutScene from "./AboutScene";
@@ -29,10 +30,12 @@ import { useMLSCStore } from "../store/MLSCStore";
 import CustomLoader from "../components/CustomLoader";
 import Sidebar from "../home/overlay-ui/Sidebar";
 import PlaySoundButton from "../components-3d/PlaySoundButton";
+import { WASDMotion } from "../components/UserDirections";
 
 export default function About() {
   const aboutYear = useMLSCStore((s) => s.aboutYear);
   const setAboutYear = useMLSCStore((s) => s.setAboutYear);
+  const playBGM = useMLSCStore((s) => s.playBGM);
 
   const positionsInAbout = useMLSCStore((s) => s.positionsInAbout);
   console.log("YEAR ", aboutYear);
@@ -47,52 +50,73 @@ export default function About() {
     projects: [-10, 2, -0.108],
     blogs: [10, 2, -0.108],
     gen: [0, 2, 18],
-  }
+  };
 
   return (
     <div className="overflow-hidden h-screen w-screen">
-    <KeyboardControls
-      map={[
-        { name: "forward", keys: ["ArrowUp", "w", "W"] },
-        { name: "backward", keys: ["ArrowDown", "s", "S"] },
-        { name: "left", keys: ["ArrowLeft", "a", "A"] },
-        { name: "right", keys: ["ArrowRight", "d", "D"] },
-        { name: "jump", keys: ["Space"] },
-      ]}
-    >
-      <Canvas shadows="basic" dpr={[0.1, 10]} performance={{current: 1, min: 0.1, max: 1, debounce: 200,}} >
-        {/* <OrbitControls /> */}
-        <color attach="background" args={["#000"]} />
-        <PerspectiveCamera makeDefault near={0.1} far={1000} lookAt={[0,0,0]} />
+      <KeyboardControls
+        map={[
+          { name: "forward", keys: ["ArrowUp", "w", "W"] },
+          { name: "backward", keys: ["ArrowDown", "s", "S"] },
+          { name: "left", keys: ["ArrowLeft", "a", "A"] },
+          { name: "right", keys: ["ArrowRight", "d", "D"] },
+          { name: "jump", keys: ["Space"] },
+        ]}
+      >
+        <Canvas
+          shadows="basic"
+          dpr={[0.1, 10]}
+          performance={{ current: 1, min: 0.1, max: 1, debounce: 200 }}
+        >
+          {/* <OrbitControls /> */}
+          <color attach="background" args={["#000"]} />
+          <PerspectiveCamera
+            makeDefault
+            near={0.1}
+            far={1000}
+            lookAt={[0, 0, 0]}
+          />
 
-        {/* <Environment preset="night" background /> */}
-        {/* <AboutScene /> */}
-        <Suspense>
-          <PointerLockControls />
-          <Physics>
-            <MovingCamera position={positions[positionsInAbout]} />
+          {/* <Environment preset="night" background /> */}
+          {/* <AboutScene /> */}
+          <Suspense>
+            <PointerLockControls />
+            <Physics>
+              <MovingCamera position={positions[positionsInAbout]} />
 
-            {/* {aboutYear !== "" ? ( */}
+              {/* {aboutYear !== "" ? ( */}
 
-            <Suspense fallback={null}>
-              <RigidBody colliders="trimesh" type="fixed">
-                <AboutScene />
-              </RigidBody>
+              <Suspense fallback={null}>
+                <RigidBody colliders="trimesh" type="fixed">
+                  <AboutScene />
+                </RigidBody>
+              </Suspense>
+
+              {/*  */}
+
+              {/* <AboutDoor rotation={[0, Math.PI/6+degToRad(5), 0]} scale={[0.2, 0.2, 0.2]} position={[-0.2, -2, 0.7]} /> */}
+            </Physics>
+          </Suspense>
+
+          {/* <Background backgroundColors={backgroundColors} /> */}
+          {/* <Fillers /> */}
+          {/* <Effects /> */}
+          {playBGM ? (
+            <Suspense>
+              <PositionalAudio
+                position={[0, 0, 0]}
+                autoplay
+                loop
+                url="/audio/about-bgm.mp3"
+                distance={5}
+              />
             </Suspense>
-
-            {/*  */}
-
-            {/* <AboutDoor rotation={[0, Math.PI/6+degToRad(5), 0]} scale={[0.2, 0.2, 0.2]} position={[-0.2, -2, 0.7]} /> */}
-          </Physics>
-        </Suspense>
-
-        {/* <Background backgroundColors={backgroundColors} /> */}
-        {/* <Fillers /> */}
-        {/* <Effects /> */}
-      </Canvas>
-    </KeyboardControls>
+          ) : undefined}
+        </Canvas>
+      </KeyboardControls>
       <PlaySoundButton />
       <CustomLoader urlIndex={0} />
+      <WASDMotion />
       <Sidebar />
     </div>
   );
