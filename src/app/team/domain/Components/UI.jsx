@@ -2,11 +2,13 @@ import { Html } from "@react-three/drei";
 import { useThree } from "@react-three/fiber";
 import Image from "next/image";
 import Link from "next/link";
+import { useMLSCStore } from "../../../store/MLSCStore";
 
 // TODO: fix the imageLink and social link issue.
 
 export function Position({ data, onClick, scale, position }) {
   const gl = useThree((state) => state.gl);
+
 
   console.log("POS DATA: ", data)
 

@@ -54,7 +54,7 @@ function MovingCamera({ position }) {
       direction
         .subVectors(frontVector, sideVector)
         .normalize()
-        .multiplyScalar(3)
+        .multiplyScalar(4)
         .applyEuler(state.camera.rotation);
 
       // console.log("direction", direction);
@@ -76,24 +76,6 @@ function MovingCamera({ position }) {
       if (jump)
         controls.current?.setLinvel({ x: direction.x, y: 5, z: direction.z });
 
-      /*When clicked on the any button on sidebar, camera will be dragged to the center of the scene and portal will suck it to another location */
-      // if(teleporting) {
-      //   if(Math.floor(Math.sqrt(conCurr?.translation().x**2 + conCurr?.translation().z**2)) < 4)
-      //     conCurr.setLinvel({x: -conCurr?.translation().x, y: 1, z: -conCurr?.translation().z});
-      //   else if(Math.floor(Math.sqrt(conCurr?.translation().x**2 + conCurr?.translation().z**2)) > 0)
-      //     conCurr.setLinvel({x: -conCurr?.translation().x, y: 2, z: -conCurr?.translation().z});
-      // }
-
-      // console.log("Distance", Math.floor(Math.sqrt(conCurr?.translation().x**2 + conCurr?.translation().z**2)));
-
-      /*When the camera reaches near any domain portal, this will drag the camera into the portal */
-      // if(Math.floor(Math.sqrt(conCurr?.translation().x**2 + conCurr?.translation().z**2)) >= 25)
-      //   setTeleporting(true);
-      //   if(Math.floor(Math.sqrt(conCurr?.translation().x**2 + conCurr?.translation().z**2)) >= 25){
-      //     setTeleporting(true);
-      //     const theta = radToDeg(Math.atan2(conCurr?.translation().z, conCurr?.translation().x));
-
-      //   }else setTeleporting(false);
     }
   });
 

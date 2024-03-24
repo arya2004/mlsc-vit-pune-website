@@ -8,17 +8,19 @@ export default function CustomLoader({urlIndex}) {
 
     const { active, progress, errors, item, loaded, total } = useProgress();
     return (
-        <div className={cn(progress < 100?"absolute z-50 left-0 right-0 top-0 bottom-0 h-full w-full flex lg:flex-row md:flex-col items-center justify-evenly bg-cover bg-center bg-black":"overflow-hidden opacity-0 pointer-events-none")} >
+        <div className={cn(progress < 100?"absolute z-50 left-0 right-0 top-0 bottom-0 h-screen w-screen flex lg:flex-row flex-col items-center justify-evenly bg-cover bg-center bg-black":"overflow-hidden opacity-0 pointer-events-none")} >
             
-            <div className="w-1/2">
+            <div className="lg:w-1/2 lg:h-auto w-full flex items-center justify-center h-1/2">
                 <img src={photoURLs[urlIndex]} alt="loader" className="w-[90%]" />
             </div>
-            <div className="flex flex-col items-center justify-center gap-3 text-[#f0f0f0] w-1/2">
-                <div suppressHydrationWarning className="text-sm">Loading... {Math.floor(progress)}%</div>
-                <div  className="h-[1px] bg-[#f0f0f0]" style={{width: `${progress*8}px`}}></div>
+            <div className="flex flex-col items-center justify-center gap-3 text-[#f0f0f0] lg:w-1/2 lg:h-auto w-full h-1/2">
+                <div suppressHydrationWarning className="lg:text-sm text-xs">Loading... {Math.floor(progress)}%</div>
+                <div  className="h-[1px] bg-[#f0f0f046] w-[80%]">
+                    <div className="h-full bg-[#f0f0f0]" style={{width: `${progress}%`}} />
+                </div>
                 
               
-                <div  className="text-xs" suppressHydrationWarning>{item}</div>
+                <div  className="lg:text-xs truncate w-[80%]" suppressHydrationWarning>{item}</div>
                
                 {/* <div>{loaded}</div>
                 <div>{total}</div> */}

@@ -29,7 +29,7 @@ import { useMLSCStore } from "../store/MLSCStore";
 import CustomLoader from "../components/CustomLoader";
 import Sidebar from "../home/overlay-ui/Sidebar";
 import PlaySoundButton from "../components-3d/PlaySoundButton";
-import { WASDMotion } from "../components/UserDirections";
+import { PassThrough, WASDMotion } from "../components/UserDirections";
 
 export default function toTheAbout() {
   const aboutYear = useMLSCStore((s) => s.aboutYear);
@@ -101,7 +101,7 @@ export default function toTheAbout() {
       </KeyboardControls>
       <PlaySoundButton />
       <CustomLoader urlIndex={0} />
-      <WASDMotion />
+      <PassThrough />
       <Sidebar />
     </div>
   );

@@ -58,7 +58,7 @@ function MovingCamera({ position, setsYear }) {
       direction
         .subVectors(frontVector, sideVector)
         .normalize()
-        .multiplyScalar(3)
+        .multiplyScalar(4)
         .applyEuler(state.camera.rotation);
 
       // console.log("direction", direction);
@@ -130,7 +130,7 @@ function MovingCamera({ position, setsYear }) {
         enabledRotations={[false, false, false]}
         canSleep={false}
       >
-        <CapsuleCollider args={[1.5, 0.75]} />
+        <CapsuleCollider args={[1.25, 0.5]} />
         {/* <axesHelper args={[50]} /> */}
       </RigidBody>
     </group>

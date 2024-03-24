@@ -54,7 +54,7 @@ function MovingCamera({teleporting, position, setTeleporting, setInPortal}) {
       direction
         .subVectors(frontVector, sideVector)
         .normalize()
-        .multiplyScalar(3)
+        .multiplyScalar(4)
         .applyEuler(state.camera.rotation);
 
         // console.log("direction", direction);

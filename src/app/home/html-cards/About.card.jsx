@@ -27,7 +27,7 @@ const AboutMesh = ({showAbout}) => {
 
   return (
     <Html as="div" position={[2.5, 1.1, -2.8]} scale={[.1, .1, .1]} rotation={[0, -Math.PI/8, 0]} transform portal={{ current: gl.domElement.parentNode }}>
-      <div className={cn(showAbout?"w-[600px] h-[350px]":"w-0 h-0 opacity-0","flex flex-col gap-1 items-start justify-evenlyp-3 bg-transparent text-xl text-center text-[#00040cbd] stable-shadows ease-in-out duration-200 uppercase")}>
+      <div className={cn(showAbout?"w-[600px] h-[350px]":"w-0 h-0 opacity-0","flex flex-col gap-1 items-start justify-evenlyp-3 bg-transparent text-xl text-center text-[#00040cbd] stable-shadows ease-in-out duration-200 uppercase pointer-events-none")}>
         <div
           className={cn(!glitchOn ? "font-bold" : "font-bold glitch", "underline")}
           data-text="Welcome to Microsoft Learn Student Club VIT, Pune"
