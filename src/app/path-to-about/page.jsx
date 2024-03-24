@@ -10,6 +10,7 @@ import {
   PointMaterialImpl,
   PointerLockControls,
   KeyboardControls,
+  PositionalAudio,
 } from "@react-three/drei";
 
 // import AboutScene from "./AboutScene";
@@ -28,10 +29,12 @@ import { useMLSCStore } from "../store/MLSCStore";
 import CustomLoader from "../components/CustomLoader";
 import Sidebar from "../home/overlay-ui/Sidebar";
 import PlaySoundButton from "../components-3d/PlaySoundButton";
+import { WASDMotion } from "../components/UserDirections";
 
 export default function toTheAbout() {
   const aboutYear = useMLSCStore((s) => s.aboutYear);
   const setAboutYear = useMLSCStore((s) => s.setAboutYear);
+  const playBGM = useMLSCStore((s) => s.playBGM);
 
   console.log("YEAR ", aboutYear);
 
@@ -89,10 +92,16 @@ export default function toTheAbout() {
           <Background backgroundColors={backgroundColors} />
           <Fillers />
           <Effects />
+        {playBGM ? (
+          <Suspense>
+              <PositionalAudio position={[0, 0, 0]} autoplay loop url='/audio/path-to-about.mp3' distance={5} />
+          </Suspense>
+        ) : undefined}
         </Canvas>
       </KeyboardControls>
       <PlaySoundButton />
       <CustomLoader urlIndex={0} />
+      <WASDMotion />
       <Sidebar />
     </div>
   );

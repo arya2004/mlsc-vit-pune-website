@@ -20,6 +20,7 @@ import {
   SpotLight,
   Stars,
   AdaptiveDpr,
+  PositionalAudio,
 } from "@react-three/drei";
 import { MeshStandardMaterial } from "three";
 import { EffectComposer, Bloom } from "@react-three/postprocessing";
@@ -35,10 +36,12 @@ import NavButtons from './NavButtons'
 
 import cn from '../../app/utils/cn'
 import { useMLSCStore } from '../../app/store/MLSCStore'
+import PlaySoundButton from "../components-3d/PlaySoundButton";
 
 const page = () => {
 
   const sidebarOpen = useMLSCStore((state) => state.sidebarOpen);
+  const playBGM = useMLSCStore((state) => state.playBGM);
 
   const [isCloudResourceAvailable, setIsCloudResourceAvailable] = useState(false);
   
@@ -126,9 +129,14 @@ const page = () => {
         </Suspense>
 
         {/* <Box material-color='red' args={[0.1, 0.1, 0.1]}  position={[-3.5, 0.05, -1.65]}  /> */}
-
+        {playBGM ? (
+          <Suspense>
+              <PositionalAudio position={[0, 0, 0]} autoplay loop url='/audio/mother-board-bgm.mp3' distance={5} />
+          </Suspense>
+        ) : undefined}
       </Canvas>
       <NavButtons showNavButtons={showNavButtons} />
+      <PlaySoundButton />
       <Loader />
     </div>
   );
