@@ -117,9 +117,9 @@ function MovingCamera({ position, setsYear }) {
         {teleporting && <TeleportAnim position={portalPos} />}
       </Suspense> */}
       {!showYearCard && <PointerLockControls />}
-      {showYearCard && (
-        <YearCard position={[-16.2, 0, -17]} rotation={[0, degToRad(40), 0]} />
-      )}
+      
+      <YearCard show={showYearCard} position={[-16.2, 0, -17]} rotation={[0, degToRad(40), 0]} />
+      
       <RigidBody
         type="dynamic"
         ref={controls}

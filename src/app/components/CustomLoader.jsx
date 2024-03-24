@@ -8,7 +8,7 @@ export default function CustomLoader({urlIndex}) {
 
     const { active, progress, errors, item, loaded, total } = useProgress();
     return (
-        <div className={cn(progress < 100?"absolute z-50 left-0 right-0 top-0 bottom-0 h-full w-full flex lg:flex-row md:flex-col items-center justify-evenly bg-cover bg-center":"overflow-hidden opacity-0 pointer-events-none")} >
+        <div className={cn(progress < 100?"absolute z-50 left-0 right-0 top-0 bottom-0 h-full w-full flex lg:flex-row md:flex-col items-center justify-evenly bg-cover bg-center bg-black":"overflow-hidden opacity-0 pointer-events-none")} >
             
             <div className="w-1/2">
                 <img src={photoURLs[urlIndex]} alt="loader" className="w-[90%]" />

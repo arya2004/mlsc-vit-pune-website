@@ -2,11 +2,15 @@ import { Html } from "@react-three/drei";
 import { useThree } from "@react-three/fiber";
 import Image from "next/image";
 import Link from "next/link";
+import { useMLSCStore } from "../../../store/MLSCStore";
 
 // TODO: fix the imageLink and social link issue.
 
 export function Position({ data, onClick, scale, position }) {
   const gl = useThree((state) => state.gl);
+
+  const cursorHover = useMLSCStore((state) => state.cursorHover);
+  const setCursorHover = useMLSCStore((state) => state.setCursorHover);
 
   console.log("POS DATA: ", data)
 
@@ -19,7 +23,7 @@ export function Position({ data, onClick, scale, position }) {
       center
       portal={{ current: gl.domElement.parentNode }}
     >
-      <div className="z-0 top-60 left-60 w-[80rem] h-[48rem]  bg-[url('/images/svgs/year-dept.svg')] bg-cover bg-center cursor-pointer">
+      <div className="-z-50 top-60 left-60 w-[80rem] h-[48rem]  bg-[url('/images/svgs/year-dept.svg')] bg-cover bg-center cursor-pointer">
         <div onClick={onClick} className="absolute flex items-center justify-center left-[30rem] top-[16rem]  w-48 h-[15.5rem]">
           {data?.imageLink && (
             <img
@@ -55,10 +59,10 @@ export function SocialIcons({ data }) {
       transform
       portal={{ current: gl.domElement.parentNode }}
     >
-      <div className="w-auto h-auto p-0 z-50 ">
+      <div className="w-auto h-auto p-0 -z-50 cusor-none">
         <img className="" src="/images/svgs/social-icons-bg.svg" />
 
-        <div className="absolute  h-44 w-44 top-24 left-32 cursor-pointer">
+        <div className="absolute  h-44 w-44 top-24 left-32">
           <div className="absolute flex flex-row justify-between h-[23%] w-[85%] ml-4 mt-2 top-1/2 -translate-y-1/2 ">
             {data?.xLink && <Link href={data?.xLink}>
               <img
@@ -107,7 +111,7 @@ export function NameYearDept({ data }) {
       transform
       portal={{ current: gl.domElement.parentNode }}
     >
-      <div className=" w-3/5">
+      <div className=" w-3/5 -z-50 cursor-pointer">
         <div className="font-Wallpoet text-3xl text-white">
           {data?.fullName}
         </div>
@@ -129,7 +133,7 @@ export function PrevNextButtons({handlePrev, handleNext}) {
           position={[-5, -0.75, 0]}
           portal={{ current: gl.domElement.parentNode }}
         >
-            <dir className="flex flex-row z-50 justify-between item-center h-96 w-full text-[#f0f0f0]">
+            <dir className="flex flex-row z-50 justify-between item-center h-96 w-full text-[#f0f0f0] cursor-pointer">
                 <div onClick={handlePrev} className="flex items-center hover:brightness-150 justify-center font-bold bg-[url('/images/svgs/spo-button.svg')] bg-center bg-cover h-48 w-72 text-[1rem]">Previous</div>
 
                 <div onClick={handleNext} className="flex items-center hover:brightness-150 justify-center font-bold bg-[url('/images/svgs/spo-button.svg')] bg-center bg-cover h-48 w-72 text-[1rem]">Next</div>
