@@ -1,7 +1,7 @@
 import React, { useState, useEffect, use } from "react";
-import { useMLSCStore } from "../../store/MLSCStore";
+import { useMLSCStore } from "../../../store/MLSCStore";
 
-function TextAnimation({word, className, addStyles}) {
+function TextAnimation({word, className, addStyles, duration}) {
   const [currentLetter, setCurrentLetter] = useState("@");
   const [currentString, setCurrentString] = useState("");
 
@@ -45,7 +45,7 @@ function TextAnimation({word, className, addStyles}) {
             String.fromCharCode(prevLetter.charCodeAt(0) + 1)
           );
         }
-      }, 1.2); // Adjust the interval as needed
+      }, duration); // Adjust the interval as needed
 
       // setAnimate(false);
     } else {
@@ -76,7 +76,7 @@ function TextAnimation({word, className, addStyles}) {
           ? word
           : currentString + "" + currentLetter
         : word}
-        {(playBGM && playSFX) && <audio autoPlay loop src="/audio/sfx/couter-sfx.mp3" />}
+        {(playBGM && playSFX) && <audio autoPlay src="/audio/sfx/couter-sfx.mp3" />}
     </div>
   );
 }

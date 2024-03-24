@@ -9,6 +9,7 @@ import {
   PerspectiveCamera,
   SpotLight,
   ScrollControls,
+  useProgress,
 } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 
@@ -31,6 +32,7 @@ import axios from "axios";
 
 import * as THREE from "three";
 import { Playball } from "next/font/google/index.js";
+import { ScrollDownRotate } from "../../components/UserDirections.jsx";
 
 const domainMap = {
   core: { name: "Core", text3d: "/models/domain-names/core3dcurvedtext.glb" },
@@ -69,6 +71,8 @@ function Page() {
   const [loading, setLoading] = useState(true);
 
   const camera = useRef();
+
+  const {progress} = useProgress();
 
   const handlePrev = () => {
     if (index > 0) {
@@ -192,23 +196,25 @@ function Page() {
             />
           </ScrollControls>
           
-           {!loading && <Position
+           {!loading && progress === 100 && 
+           <Position
               onClick={handleAvatarClick}
               data={memberData[index]}
               scale={zoom ? 0.2 : 0.35}
               position={zoom ? [3.4, 2, -1] : [5.8, 1.4, -1]}
             />}
         
-          {!zoom && !loading && (
+          {!zoom && progress === 100 && !loading && (
             <SocialIcons data={memberData[index]} />
           )}
-          {!zoom && !loading && (
+          {!zoom && !loading && progress === 100 && (
             <NameYearDept data={memberData[index]} />
           )}
-          <PrevNextButtons handlePrev={handlePrev} handleNext={handleNext} />
+          {progress===100 && <PrevNextButtons handlePrev={handlePrev} handleNext={handleNext} />}
         </Suspense>
       </Canvas>
       <PlaySoundButton />
+      <ScrollDownRotate />
       <CustomLoader urlIndex={1} />
       <Sidebar />
     </div>

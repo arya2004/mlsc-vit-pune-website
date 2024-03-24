@@ -27,7 +27,7 @@ const GetInvolved = ({showGetInvolved}) => {
 
   return (
     <Html as='div' scale={[.06, .06, .06]} position={[-2, 0.7, -2.2]} rotation={[0, degToRad(45), 0]} transform portal={{current: gl.domElement.parentNode}} >
-    <div className={cn(showGetInvolved?"w-[450px] h-auto":"h-0 w-0 opacity-0","align-center flex flex-col items-center justify-evenly p-3 bg-transparent text-center text-[#00040cbd] stable-shadows uppercase ease-in-out duration-300")}>
+    <div className={cn(showGetInvolved?"w-[450px] h-auto":"h-0 w-0 opacity-0","align-center flex flex-col items-center justify-evenly p-3 bg-transparent text-center text-[#00040cbd] stable-shadows uppercase ease-in-out duration-300 pointer-events-none")}>
       <div className={cn(glitchOn ?"glitch font-bold":"font-bold")}>Get Involved:</div>
       <div className="font-semibold flex flex-wrap gap-x-1.5 items-start">
       {textArray.map((word, index) => (

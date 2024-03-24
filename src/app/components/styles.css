@@ -1,0 +1,19 @@
+.cursor {
+    position: fixed;
+    /* filter: brightness(5); */
+    filter: drop-shadow(0 0 0.75rem blue);
+    rotate: 15deg;
+    pointer-events: none;
+    background-image: url('/images/cursor-design-rmbg.png');
+    background-size: cover;
+  }
+
+  @keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+  
+  .animate-blink {
+    animation: blink 1s infinite;
+  }

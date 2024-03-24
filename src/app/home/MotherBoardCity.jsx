@@ -37,6 +37,7 @@ import NavButtons from './NavButtons'
 import cn from '../../app/utils/cn'
 import { useMLSCStore } from '../../app/store/MLSCStore'
 import PlaySoundButton from "../components-3d/PlaySoundButton";
+import CustomLoader from "../components/CustomLoader";
 
 const page = () => {
 
@@ -66,7 +67,7 @@ const page = () => {
   return (
     <div className="overflow-hidden" >
       <Canvas
-        className={cn(sidebarOpen && showNavButtons?"blur-sm":"blur-0","h-screen w-screen")}
+        className={cn(sidebarOpen || showNavButtons?"blur-sm":"blur-0","h-screen w-screen")}
         performance={{ min: 0.1, max: 0.9 }}
         style={{ height: "100vh", width: "100vw" }}
         camera={{ position: [0, 0, 30], near: 0.05, far: 1000, fov: 10 }}
@@ -112,7 +113,7 @@ const page = () => {
         {/* <axesHelper args={[50]} />
         <gridHelper args={[50, 50]} /> */}
 
-        <ScrollControls pages={10} damping={3}>
+        <ScrollControls pages={30} damping={0.5}>
           <ExploreCamera
             setShowAbout={setShowAbout}
             setShowGetInvolved={setShowGetInvolved}
@@ -137,7 +138,7 @@ const page = () => {
       </Canvas>
       <NavButtons showNavButtons={showNavButtons} />
       <PlaySoundButton />
-      <Loader />
+      <CustomLoader urlIndex={0} />
     </div>
   );
 };

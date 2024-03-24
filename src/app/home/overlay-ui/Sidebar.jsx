@@ -63,8 +63,8 @@ function Sidebar() {
                 <TextAnimation word='DISCOVER' className="h-full w-1/4 text-[#0078D4] text-xs p-2 pt-8 uppercase ease-in-out duration-300"  />
                 <div className="flex flex-col items-start justify-evenly h-full w-3/4 bg-transparent pl-5">
                   
-                  <Option text="HOME" number="01" addStyles={{'width':'7rem'}} /> 
-                  <Option onClick={()=>router.push('./team')} text="TEAM" number="02" addStyles={{'width':'7rem'}} /> 
+                  <Option onClick={()=>router.push('/')} text="HOME" number="01" addStyles={{'width':'7rem'}} /> 
+                  <Option onClick={()=>router.push('/team')} text="TEAM" number="02" addStyles={{'width':'7rem'}} /> 
                   <Option onClick={()=>router.push('/path-to-about')} text="EVENTS" number="03" addStyles={{'width':'9rem'}} /> 
                   <Option onClick={()=>{router.push('/path-to-about'); setPositionsInAbout('projects')}} text="PROJECTS" number="04" addStyles={{'width':'11.5rem'}} /> 
                   <Option onClick={()=>{router.push('/path-to-about'); setPositionsInAbout('blogs')}} text="BLOG" number="05" addStyles={{'width':'7rem'}} /> 
