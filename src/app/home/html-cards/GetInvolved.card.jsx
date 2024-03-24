@@ -5,15 +5,16 @@ import { Html, useScroll } from "@react-three/drei";
 import { useThree } from "@react-three/fiber";
 
 import cn from "../../utils/cn";
+import { degToRad } from "three/src/math/MathUtils";
 
-const GetInvolved = () => {
+const GetInvolved = ({showGetInvolved}) => {
 
   const [glitchOn, setGlitchOn] = React.useState(true);
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setGlitchOn(false);
-    }, 3000);
+    }, 15000);
 
     return () => clearTimeout(timer);
   }, []);
@@ -25,10 +26,10 @@ const GetInvolved = () => {
   const textArray = text.split(' ');
 
   return (
-    <Html as='div' scale={[.06, .06, .06]} position={[-2, 0.7, -2.2]} rotation={[0, 0, 0]} transform portal={{current: gl.domElement.parentNode}} >
-    <div className="align-center flex flex-col items-center justify-evenly w-[450px] h-auto p-3 bg-transparent text-center text-[#00040cbd] stable-shadows uppercase">
+    <Html as='div' scale={[.06, .06, .06]} position={[-2, 0.7, -2.2]} rotation={[0, degToRad(45), 0]} transform portal={{current: gl.domElement.parentNode}} >
+    <div className={cn(showGetInvolved?"w-[450px] h-auto":"h-0 w-0 opacity-0","align-center flex flex-col items-center justify-evenly p-3 bg-transparent text-center text-[#00040cbd] stable-shadows uppercase ease-in-out duration-300")}>
       <div className={cn(glitchOn ?"glitch font-bold":"font-bold")}>Get Involved:</div>
-      <div className="font-semibold">
+      <div className="font-semibold flex flex-wrap gap-x-1.5 items-start">
       {textArray.map((word, index) => (
             <span
               key={index}

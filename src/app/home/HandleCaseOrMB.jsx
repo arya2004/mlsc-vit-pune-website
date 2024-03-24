@@ -8,7 +8,7 @@ import Sidebar from "./overlay-ui/Sidebar";
 
 const HandleCaseOrMB = () => {
   const showMotherBoard = useMLSCStore((state) => state.showMotherBoard);
-  console.log(`Show motherboard 2: ${showMotherBoard}`);
+  // console.log(`Show motherboard 2: ${showMotherBoard}`);
   
   return (
     <div className="w-screen h-screen">

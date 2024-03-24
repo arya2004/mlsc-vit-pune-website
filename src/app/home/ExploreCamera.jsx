@@ -5,7 +5,7 @@ import { useScroll, Box } from "@react-three/drei";
 
 import * as THREE from "three";
 
-const ExploreCamera = ({ setShowAbout, setShowGetInvolved }) => {
+const ExploreCamera = ({ setShowAbout, setShowGetInvolved, setShowNavButtons }) => {
   const exploreCamera = useRef();
   const scroll = useScroll();
 
@@ -60,6 +60,7 @@ const ExploreCamera = ({ setShowAbout, setShowGetInvolved }) => {
 
     if(posIndex === 5) {
         exploreCamera.current?.position.lerp(skipPoints[5], delta*2/3);
+        scroll.damping = 10;
     }
     exploreCamera.current?.quaternion?.slerp(targetQuaternion, delta); // Adjust the 2nd parameter to control the speed of the transition
     // exploreCamera.current?.lookAt(state.pointer.x, state.pointer.y, 0);
@@ -73,9 +74,13 @@ const ExploreCamera = ({ setShowAbout, setShowGetInvolved }) => {
       setShowAbout(true);
     } else if (posIndex == 7) {
       setShowGetInvolved(true);
-    } else {
+    } else if(posIndex == 9) {
+      setShowNavButtons(true);
+    }
+     else {
       setShowGetInvolved(false);
       setShowAbout(false);
+      setShowNavButtons(false);
     }
   });
 

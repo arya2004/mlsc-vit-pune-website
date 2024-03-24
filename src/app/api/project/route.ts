@@ -34,7 +34,7 @@ export async function GET(  request: Request,) {
   return NextResponse.json(
     data,
     {
-      status: 304
+      status: 200
     }
   );
   }

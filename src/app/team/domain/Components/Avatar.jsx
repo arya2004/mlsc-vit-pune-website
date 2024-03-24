@@ -5,12 +5,16 @@ import { useGLTF, useAnimations, useFBX } from '@react-three/drei'
 
 
 export function Avatar(props) {
+
+    // console.log("MODEL LINK", props?.avatarURL)
     const group = useRef()
     
-    const { scene } = useGLTF(props.avatarURL);
+    const { scene } = useGLTF(props?.avatarURL);
     const clone = useMemo(() => SkeletonUtils.clone(scene), [scene]);
     // console.log("SCENE", scene);
     const { nodes } = useGraph(clone);
+
+    console.log("NODES", nodes)
 
     const { animations: bBoy_hip_hop } = useFBX('/animations/Bboy Hip Hop Move.fbx');
     const { animations: gangnum_style } = useFBX('/animations/Gangnam Style.fbx');
@@ -32,12 +36,17 @@ export function Avatar(props) {
     standing_pose_1[0].name = "Standing Pose 1";
     standing_pose_2[0].name = "Standing Pose 2";
     
-    const {actions} = useAnimations([bBoy_hip_hop[0], gangnum_style[0], hip_hop[0], house_dancing[0], swing_dancing[0],  standing_pose[0], standing_pose_1[0], standing_pose_2[0]], group);
+    const {actions} = useAnimations([standing_pose_2[0], bBoy_hip_hop[0], gangnum_style[0], hip_hop[0], house_dancing[0], swing_dancing[0],  standing_pose[0], standing_pose_1[0]], group);
 
     useEffect(() => {
         actions['Standing Pose 2'].play();
-    }, [actions]);
+    }, [actions, props.index]);
     
+    useEffect(() => {
+      if(props.index > 1){
+        actions['Standing Pose 2'].play();
+      }
+  }, [props.index]);
     
 
     // const { actions } = useAnimations(animations, group)

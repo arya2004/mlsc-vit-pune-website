@@ -23,7 +23,7 @@ export async function GET(request: NextRequest, response: NextResponse) {
   
 
   try {
-    const cached = await kv.get("teams");
+    const cached = await kv.get("team");
     if (cached) {
 
 

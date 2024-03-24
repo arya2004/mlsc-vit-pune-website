@@ -1,17 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Almendra+Display&family=Atomic+Age&family=Changa&family=Exo&family=Genos:wght@500&family=Kaushan+Script&family=Medula+One&family=Trade+Winds&display=swap');
 
-.container {
+// .container {
     
-  // font-family: 'Almendra Display', serif;
-  // font-family: 'Atomic Age', system-ui;
-  // font-family: 'Changa', sans-serif;
-  // font-family: 'Exo', sans-serif;
-  font-family: 'Genos', sans-serif;
-  // font-family: 'Kaushan Script', cursive;
-  // font-family: 'Medula One', system-ui;
-  // font-family: 'Trade Winds', system-ui;
+//   // font-family: 'Almendra Display', serif;
+//   // font-family: 'Atomic Age', system-ui;
+//   // font-family: 'Changa', sans-serif;
+//   // font-family: 'Exo', sans-serif;
+//   // font-family: 'Genos', sans-serif;
+//   // font-family: 'Kaushan Script', cursive;
+//   // font-family: 'Medula One', system-ui;
+//   // font-family: 'Trade Winds', system-ui;
     
-  }
+//   }
   
   /* .glitch {
     
@@ -131,7 +131,7 @@
   // }
 
 .stable-shadows {
-  text-shadow: -1.5px 0 #009dff, 1.5px 1.5px rgb(174, 18, 174);
+  text-shadow: -1.2px 0 #009dff, 1.2px 1.2px #b561b5;
 }
 
   
@@ -159,7 +159,7 @@
 		// Scoots text slightly to the left for the color offset.
 		left: 2px;
 		// Creates the color 'shadow' that happens on the glitch.
-		text-shadow: -2px 0 rgb(174, 18, 174);
+		text-shadow: -2px 0 #b561b5;
 		/* Creates an initial clip for our glitch. This works in
 		a typical top,right,bottom,left fashion and creates a mask
 		to only show a certain part of the glitch at a time. */
@@ -173,7 +173,7 @@
 	&::after {
 		@include glitchCopy;
 		left: -2px;
-		text-shadow: -2px 0 #00fff9, 2px 2px rgb(174, 18, 174);
+		text-shadow: -2px 0 #00fff9, 2px 2px #b561b5;
 		animation: glitch-anim2 1s infinite linear alternate-reverse;
 	}
 }

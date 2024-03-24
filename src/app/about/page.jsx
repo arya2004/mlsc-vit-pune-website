@@ -10,6 +10,7 @@ import {
   PointMaterialImpl,
   PointerLockControls,
   KeyboardControls,
+  PerspectiveCamera,
 } from "@react-three/drei";
 
 import AboutScene from "./AboutScene";
@@ -25,11 +26,15 @@ import { Suspense, useState, useRef } from "react";
 import MovingCamera from "./MovingCamera";
 
 import { useMLSCStore } from "../store/MLSCStore";
+import CustomLoader from "../components/CustomLoader";
+import Sidebar from "../home/overlay-ui/Sidebar";
+import PlaySoundButton from "../components-3d/PlaySoundButton";
 
 export default function About() {
   const aboutYear = useMLSCStore((s) => s.aboutYear);
   const setAboutYear = useMLSCStore((s) => s.setAboutYear);
 
+  const positionsInAbout = useMLSCStore((s) => s.positionsInAbout);
   console.log("YEAR ", aboutYear);
 
   const backgroundColors = useRef({
@@ -38,7 +43,14 @@ export default function About() {
     colorA: "#001e4e",
   });
 
+  const positions = {
+    projects: [-10, 2, -0.108],
+    blogs: [10, 2, -0.108],
+    gen: [0, 2, 18],
+  }
+
   return (
+    <div className="overflow-hidden h-screen w-screen">
     <KeyboardControls
       map={[
         { name: "forward", keys: ["ArrowUp", "w", "W"] },
@@ -48,16 +60,17 @@ export default function About() {
         { name: "jump", keys: ["Space"] },
       ]}
     >
-      <Canvas shadows="basic" dpr={[0.1, 10]} camera={{ near: 0.1, far: 1000, }} >
+      <Canvas shadows="basic" dpr={[0.1, 10]} performance={{current: 1, min: 0.1, max: 1, debounce: 200,}} >
         {/* <OrbitControls /> */}
         <color attach="background" args={["#000"]} />
+        <PerspectiveCamera makeDefault near={0.1} far={1000} lookAt={[0,0,0]} />
 
         {/* <Environment preset="night" background /> */}
         {/* <AboutScene /> */}
         <Suspense>
           <PointerLockControls />
           <Physics>
-            <MovingCamera position={[0, 2, 18]} />
+            <MovingCamera position={positions[positionsInAbout]} />
 
             {/* {aboutYear !== "" ? ( */}
 
@@ -77,7 +90,10 @@ export default function About() {
         {/* <Fillers /> */}
         {/* <Effects /> */}
       </Canvas>
-      <Loader />
     </KeyboardControls>
+      <PlaySoundButton />
+      <CustomLoader urlIndex={0} />
+      <Sidebar />
+    </div>
   );
 }

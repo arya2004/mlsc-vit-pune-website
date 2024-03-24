@@ -31,6 +31,9 @@ import Fillers from "./Components/Fillers.jsx";
 import Portal from "./Components/Portal.jsx";
 import MainPlatform from "./Components/MainPlatform.jsx";
 import MovingCamera from "./Components/MovingCamera.jsx";
+import CustomLoader from "../components/CustomLoader.jsx";
+import Sidebar from "../home/overlay-ui/Sidebar.jsx";
+import PlaySoundButton from "../components-3d/PlaySoundButton.jsx";
 
 function page() {
   const sun = useRef(); 
@@ -50,7 +53,7 @@ function page() {
   });
 
   return (
-    <div className="w-screen h-screen bg-transparent">
+    <div className="w-screen h-screen bg-transparent overflow-hidden">
       {/* <div onClick={setTeleporting(!teleporting)} className="absolute w-32 h-32 bg-slate-600 rounded-md right-5 bottom-5"></div> */}
       <KeyboardControls
         map={[
@@ -105,7 +108,9 @@ function page() {
           <Effects inPortal={inPortal} />
         </Canvas>
       </KeyboardControls>
-      <Loader />
+      <CustomLoader urlIndex={0}/>
+      <PlaySoundButton />
+      <Sidebar />
     </div>
   );
 }

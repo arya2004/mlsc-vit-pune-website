@@ -1,8 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {AboutBG} from './AboutBG'
 import {EventCards} from './Cards'
+import { useThree } from '@react-three/fiber';
+import { useMLSCStore } from '../store/MLSCStore';
 
 export default function AboutScene() {
+    const sidebarOpen = useMLSCStore((state) => state.sidebarOpen);
+    const regress = useThree((state) => state.performance.regress)
+    useEffect(() => {
+        if(sidebarOpen){
+            regress(true)
+        }else{
+            regress(false)
+        }
+    }, [sidebarOpen])
     return (
         <>
          <ambientLight intensity={0.25} />

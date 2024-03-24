@@ -121,8 +121,8 @@ const ScrollCamera = () => {
         </mesh> */}
 
         {/* <spotLightHelper args={[lights.current.children[0]]} /> */}
-        <directionalLight position={[3, 4, 5]} intensity={8} color='blue' castShadow />
-        <directionalLight position={[-4, 2, -5]} intensity={7} color='purple' castShadow />
+        <directionalLight position={[3, 4, 5]} intensity={12} color='blue' castShadow />
+        <directionalLight position={[-4, 2, -5]} intensity={10} color='purple' castShadow />
         {/* <directionalLight ref={backLight} position={[0, 0, 1]} intensity={5} color='blue' castShadow /> */}
       </group>
 

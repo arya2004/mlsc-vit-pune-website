@@ -7,17 +7,17 @@ import "./cards_style.scss";
 import cn from "../../utils/cn";
 import { useThree } from "@react-three/fiber";
 
-const AboutMesh = () => {
+const AboutMesh = ({showAbout}) => {
 
   const [glitchOn, setGlitchOn] = React.useState(true);
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setGlitchOn(false);
-    }, 3000);
+  // useEffect(() => {
+  //   const timer = setTimeout(() => {
+  //     setGlitchOn(false);
+  //   }, 3000);
 
-    return () => clearTimeout(timer);
-  }, []);
+  //   return () => clearTimeout(timer);
+  // }, []);
 
   const text =
     "Join us on a journey of exploration and innovation at Microsoft Learn Student Club VIT, Pune! As passionate learners and tech enthusiasts, we strive to create a dynamic community that fosters collaboration and skill development. Whether you're a seasoned developer or just starting your tech journey, there's a place for you here.";
@@ -26,15 +26,15 @@ const AboutMesh = () => {
   const {gl} = useThree()
 
   return (
-    <Html as="div" className="bg-transparent w-[550px] h-[350px] sticky" position={[2.5, 1.1, -2.8]} scale={[.1, .1, .1]} rotation={[0, -Math.PI/8, 0]} transform portal={{ current: gl.domElement.parentNode }}>
-      <div className="container align-center flex flex-col items-center justify-evenly w-[550px] h-[350px] p-3 bg-transparent text-2xl text-center text-[#00040cbd] uppercase  stable-shadows">
+    <Html as="div" position={[2.5, 1.1, -2.8]} scale={[.1, .1, .1]} rotation={[0, -Math.PI/8, 0]} transform portal={{ current: gl.domElement.parentNode }}>
+      <div className={cn(showAbout?"w-[600px] h-[350px]":"w-0 h-0 opacity-0","flex flex-col gap-1 items-start justify-evenlyp-3 bg-transparent text-xl text-center text-[#00040cbd] stable-shadows ease-in-out duration-200 uppercase")}>
         <div
-          className={cn(!glitchOn ? "text-" : "text- glitch")}
+          className={cn(!glitchOn ? "font-bold" : "font-bold glitch", "underline")}
           data-text="Welcome to Microsoft Learn Student Club VIT, Pune"
         >
           Welcome to Microsoft Learn Student Club VIT, Pune:
         </div>
-        <div className="font-semibold">
+        <div className="font-semibold flex flex-wrap gap-x-1.5 items-center">
           {textArray.map((word, index) => (
             <span
               key={index}

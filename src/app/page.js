@@ -11,7 +11,7 @@ export default function Page() {
     console.log('Error in cache server hit', error)
   }
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-0">
+    <main className="flex min-h-screen flex-col items-center justify-between p-0 overflow-hidden">
       
       <HandleCaseOrMB />
     </main>

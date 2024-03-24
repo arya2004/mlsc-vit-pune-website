@@ -7,12 +7,19 @@ export const useMLSCStore = create((set) => ({
   showMotherBoard: false,
   setShowMotherBoard: (showMotherBoard) => set({ showMotherBoard }),
 
+  playBGM: false,
+  setPlayBGM: (playBGM) => set({ playBGM }),
+
   teleporting: true,
   setTeleporting: (teleporting) => set({ teleporting }),
 
-  domain: "event",
+  domain: "core",
   setDomain: (domain) => set({ domain }),
 
   aboutYear: "",
   setAboutYear: (aboutYear) => set({ aboutYear }),
+
+  positionsInAbout: 'gen',
+  setPositionsInAbout: (positionsInAbout) => set({ positionsInAbout }),
+
 }));
