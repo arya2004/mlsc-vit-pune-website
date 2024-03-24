@@ -5,12 +5,16 @@ import { useGLTF, useAnimations, useFBX } from '@react-three/drei'
 
 
 export function Avatar(props) {
+
+    // console.log("MODEL LINK", props?.avatarURL)
     const group = useRef()
     
-    const { scene } = useGLTF(props.avatarURL);
+    const { scene } = useGLTF(props?.avatarURL);
     const clone = useMemo(() => SkeletonUtils.clone(scene), [scene]);
     // console.log("SCENE", scene);
     const { nodes } = useGraph(clone);
+
+    console.log("NODES", nodes)
 
     const { animations: bBoy_hip_hop } = useFBX('/animations/Bboy Hip Hop Move.fbx');
     const { animations: gangnum_style } = useFBX('/animations/Gangnam Style.fbx');
@@ -36,13 +40,18 @@ export function Avatar(props) {
 
     useEffect(() => {
         actions['Standing Pose 2'].play();
-    }, [actions]);
+    }, [actions, props.index]);
     
+    useEffect(() => {
+      if(props.index > 1){
+        actions['Standing Pose 2'].play();
+      }
+  }, [props.index]);
     
 
     // const { actions } = useAnimations(animations, group)
     return (
-      <group onClick={props.handleAvatarClick} castShadow ref={group} {...props} dispose={null}>
+      <group castShadow ref={group} {...props} dispose={null}>
         <primitive object={clone}  />
       </group>
     );

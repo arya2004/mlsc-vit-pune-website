@@ -14,6 +14,7 @@ import ComponentLoader from "../../components/ComponentLoader";
 
 
 const domainTo3DText = {
+    "core": "/models/domain-names/core3dcurvedtext.glb",
     "event" : "/models/domain-names/event3dcurvedtext.glb",
     "community" : "/models/domain-names/community3dcurvedtext.glb",
     "partnership" : "/models/domain-names/partnership3dcurvedtext.glb",
@@ -26,7 +27,7 @@ const domainTo3DText = {
 }
 
 
-export default function MemberScene({memberData, index, setIndex, zoom, camera}){
+export default function MemberScene({memberData, index, loading, zoom, camera}){
     
     const domain = useMLSCStore((s) => s.domain);
 
@@ -96,14 +97,16 @@ export default function MemberScene({memberData, index, setIndex, zoom, camera})
         // state.camera.lookAt(0, 0, 0);
     });
 
-
+    let avatarURL = memberData[index]?.modelLink;
+    console.log("MODEL Link", avatarURL)
 
     return (
         <group ref={memberScene}>
-           <Suspense fallback={<ComponentLoader />} >
-            {memberData && memberData.length > 0 && <Avatar index={index} avatarURL={memberData[index]?.modelLink} scale={1.7}  />}
+           <Suspense >
+            {console.log("MEMBERDATA:", memberData)}
+            {!loading && <Avatar index={index} loading={loading} avatarURL={avatarURL} scale={1.7}  />}
            </Suspense>
-           {/* <Text3DModel position={[0, -0.05, 2.7]} rotation={[0, degToRad(40), 0]} scale={0.5} modelURL={domainTo3DText[domain]} /> */}
+           <Text3DModel position={[0, -0.05, 2.7]} rotation={[0, degToRad(40), 0]} scale={0.5} modelURL={domainTo3DText[domain]} />
            <TeamBGScene rotation={[Math.PI/2, 0, 0]} scale={[0.5, 0.5, 0.6]}  />
         </group>
     )

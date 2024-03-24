@@ -8,6 +8,8 @@ import Link from "next/link";
 export function Position({ data, onClick, scale, position }) {
   const gl = useThree((state) => state.gl);
 
+  console.log("POS DATA: ", data)
+
   return (
     <Html
       scale={scale}
@@ -18,14 +20,13 @@ export function Position({ data, onClick, scale, position }) {
       portal={{ current: gl.domElement.parentNode }}
     >
       <div className="z-0 top-60 left-60 w-[80rem] h-[48rem]  bg-[url('/images/svgs/year-dept.svg')] bg-cover bg-center cursor-pointer">
-        <div className="absolute left-[30rem] top-[18rem]">
+        <div onClick={onClick} className="absolute flex items-center justify-center left-[30rem] top-[16rem]  w-48 h-[15.5rem]">
           {data?.imageLink && (
-            <Image
-              onClick={onClick}
-              className="opacity-45"
+            <img
+              
+              className="opacity-55 rounded-[18px] object-center object-fill hover:brightness-150 ease-in-out duration-100"
               src={data?.imageLink}
               width={200}
-              height={280}
               alt="picture"
             />
           )}
@@ -45,7 +46,7 @@ export function SocialIcons({ data }) {
   // console.log("VIEWPORT:", viewPort.width);
   const positionFactor = viewPort.width / 25;
 
-  console.log("DATA:", data);
+  // console.log("DATA:", data);
 
   return (
     <Html
@@ -61,24 +62,31 @@ export function SocialIcons({ data }) {
           <div className="absolute flex flex-row justify-between h-[23%] w-[85%] ml-4 mt-2 top-1/2 -translate-y-1/2 ">
             {data?.xLink && <Link href={data?.xLink}>
               <img
-                className="p-1 rounded-[4px] hover:brightness-200 ease-in-out duration-100"
+                className="p-1 w-9 rounded-[4px] hover:brightness-200 ease-in-out duration-100"
                 src="/images/svgs/x.svg"
               />
             </Link>}
             {data?.githubLink && <Link href={data?.githubLink}>
               <img
-                className="p-1 rounded-[4px] hover:brightness-200 ease-in-out duration-100"
+                className="p-1 w-9 rounded-[4px] hover:brightness-200 ease-in-out duration-100"
                 src="/images/svgs/github.svg"
               />
             </Link>}
-
-            {data?.linkedinLink && <Link href={data?.linkedinLink}>
-              <img
-                className="p-1 rounded-[4px] hover:brightness-200 ease-in-out duration-100"
-                src="/images/svgs/linkedin.svg"
-              />
-            </Link>}
           </div>
+          <div className="absolute flex flex-col justify-between h-[85%] w-[23%] mt-[1.5rem] ml-[0.3rem] left-1/2 -translate-x-1/2 ">
+            {data?.linkedinLink && <Link href={data?.linkedinLink}>
+                <img
+                  className="p-1 w-9 rounded-[4px] hover:brightness-200 ease-in-out duration-100"
+                  src="/images/svgs/linkedin.svg"
+                />
+              </Link>}
+              {data?.linkedinLink && <Link href={data?.email}>
+                <img
+                  className="p-1 w-9 rounded-[4px] hover:brightness-200 ease-in-out duration-100"
+                  src="/images/svgs/mail.svg"
+                />
+              </Link>}
+           </div>
         </div>
       </div>
     </Html>

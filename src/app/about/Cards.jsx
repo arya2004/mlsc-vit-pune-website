@@ -57,7 +57,7 @@ function EventCard({ text, position, scale, rotation, eventData }) {
                 <div className="text-[0.6px]">{eventData?.eventSpan}</div>
               </div>
               <div className="flex flex-col h-full w-auto justify-evenly text-blue-600">
-                <a>LINK</a>
+                <a href={eventData?.link}>LINK</a>
                 <div className="text-[0.6px]"></div>
               </div>
             </div>
@@ -68,10 +68,14 @@ function EventCard({ text, position, scale, rotation, eventData }) {
               <div>{eventData?.title}</div>
               <span className="text-[0.8px]">{eventData?.tagline}</span>
             </div>
-            <div className="flex flex-row w-full h-[80%] text-[0.6px] overflow-hidden">
-              <div className="w-full h-auto"></div>
-              {eventData?.description}
+            <div className="flex flex-row w-full justify-start h-[80%] text-[0.6px] overflow-hidden">
+              <div className="w-full h-auto">{eventData?.description}</div>
+              
             </div>
+            <div className="flex flex-col h-1/6 w-auto justify-right text-blue-600">
+                <a target="blank" href={eventData?.link}>LINK</a>
+                <div className="text-[0.6px]"></div>
+              </div>
           </div>
         )}
       </div>

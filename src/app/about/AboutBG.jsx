@@ -71,7 +71,7 @@ export function AboutBG(props) {
           <mesh name="boards_Blue_Emission_0010_2" geometry={nodes.boards_Blue_Emission_0010_2.geometry} material={materials.metal} />
         </group>
         <group name="boards_Blue_Emission_0011" position={[6.939, 7.188, -0.108]} rotation={[2.298, -1.242, 1.146]} scale={1.294}>
-          <Cardlabel rotation={[0, 3.5, -1.09]} scale={1} position={[-2, 0.8, 0]} label='Blogs' />
+          <Cardlabel rotation={[0, 3.5, -1.09]} scale={1} position={[-2, 1, 0]} label='Blogs' />
           <BlogCard rotation={[-0.06, 3.5, -1.09]} scale={1} />
           <mesh name="boards_Blue_Emission_0011_1" geometry={nodes.boards_Blue_Emission_0011_1.geometry} material={materials.Blue_Emission} />
           <mesh name="boards_Blue_Emission_0011_2" geometry={nodes.boards_Blue_Emission_0011_2.geometry} material={materials.metal} />
@@ -81,7 +81,7 @@ export function AboutBG(props) {
           <mesh name="boards_Blue_Emission_0012_1" geometry={nodes.boards_Blue_Emission_0012_1.geometry} material={materials.metal} />
         </group>
         <group name="boards_Blue_Emission_0003" position={[-6.669, 7.188, -0.108]} rotation={[-0.67, -1.292, 1.311]} scale={1.294}>
-          <Cardlabel rotation={[0, 0.4, -2.06]} scale={1} position={[2, -0.8, 0]} label="Projects" />
+          <Cardlabel rotation={[0, 0.4, -2.06]} scale={1} position={[2, -1, 0]} label="Projects" />
           <ProjectCard rotation={[-0.03, 0.4, -2.06]} scale={1} />
           <mesh name="boards_Blue_Emission_0013" geometry={nodes.boards_Blue_Emission_0013.geometry} material={materials.Blue_Emission} />
           <mesh name="boards_Blue_Emission_0013_1" geometry={nodes.boards_Blue_Emission_0013_1.geometry} material={materials.metal} />
