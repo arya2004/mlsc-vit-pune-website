@@ -400,7 +400,7 @@ export function Cardlabel({ label, position, scale, rotation }) {
       scale={scale}
       rotation={rotation}
     >
-      <div className="text-[#f0f0f0] bg-red-500 border-1 border-red-950 opacity-40 w-auto p-1 rounded-md h-auto text-xl text-center">
+      <div className="text-[#f0f0f0] bg-[url('/images/svgs/spo-button.svg')] bg-center bg-cover border-1 border-red-950 opacity-40 w-auto p-14 rounded-md h-auto text-xl text-center">
         {label}
       </div>
     </Html>
