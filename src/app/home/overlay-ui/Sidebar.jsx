@@ -32,7 +32,7 @@ function Sidebar() {
           onClick={() => {
             SetSideBarOpen(true);
           }}
-          className={cn(sideBarOpen?"opacity-0 pointer-events-none w-0 h-0":"absolute flex items-center justify-center top-6 left-6  w-10 h-10 bg-slate-600 rounded-full")}
+          className={cn(sideBarOpen?"opacity-0 pointer-events-none w-0 h-0":"absolute flex items-center justify-center top-8 left-8 w-14 h-14 bg-slate-600 rounded-full")}
         >
           <img src="/icons/compass.png" />
         </button>

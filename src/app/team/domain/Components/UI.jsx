@@ -3,12 +3,13 @@ import { useThree } from "@react-three/fiber";
 import Image from "next/image";
 import Link from "next/link";
 import { useMLSCStore } from "../../../store/MLSCStore";
+import cn from "../../../utils/cn";
 
 // TODO: fix the imageLink and social link issue.
 
 export function Position({ data, onClick, scale, position }) {
   const gl = useThree((state) => state.gl);
-
+  const sideBarOpen = useMLSCStore((state) => state.sidebarOpen);
 
   console.log("POS DATA: ", data)
 
@@ -21,12 +22,12 @@ export function Position({ data, onClick, scale, position }) {
       center
       portal={{ current: gl.domElement.parentNode }}
     >
-      <div className="-z-50 top-60 left-60 w-[80rem] h-[48rem]  bg-[url('/images/svgs/year-dept.svg')] bg-cover bg-center cursor-pointer">
+      <div className={cn(sideBarOpen?"w-0 h-0 opacity-0 pointer-events-none":"-z-50 top-60 left-60 w-[80rem] h-[48rem]  bg-[url('/images/svgs/year-dept.svg')] bg-cover bg-center cursor-pointer")}>
         <div onClick={onClick} className="absolute flex items-center justify-center left-[30rem] top-[16rem]  w-48 h-[15.5rem]">
           {data?.imageLink && (
             <img
               
-              className="opacity-55 rounded-[18px] object-center object-fill hover:brightness-150 ease-in-out duration-100"
+              className="opacity-55 rounded-[18px] object-center object-crop hover:brightness-150 ease-in-out duration-100"
               src={data?.imageLink}
               width={200}
               alt="picture"
@@ -47,7 +48,7 @@ export function SocialIcons({ data }) {
   const viewPort = useThree((state) => state.viewport);
   // console.log("VIEWPORT:", viewPort.width);
   const positionFactor = viewPort.width / 25;
-
+  const sideBarOpen = useMLSCStore((state) => state.sidebarOpen);
   // console.log("DATA:", data);
 
   return (
@@ -57,26 +58,26 @@ export function SocialIcons({ data }) {
       transform
       portal={{ current: gl.domElement.parentNode }}
     >
-      <div className="w-auto h-auto p-0 -z-50 cusor-none">
+      <div className={cn(sideBarOpen?"w-0 h-0 opacity-0 pointer-events-none":"w-auto h-auto p-0 -z-50 cusor-pointer", "ease-in-out duration-200")}>
         <img className="" src="/images/svgs/social-icons-bg.svg" />
 
         <div className="absolute  h-44 w-44 top-24 left-32">
           <div className="absolute flex flex-row justify-between h-[23%] w-[85%] ml-4 mt-2 top-1/2 -translate-y-1/2 ">
-            {data?.xLink && <Link href={data?.xLink}>
+            {data?.xLink !== "" && <Link target="blank" href={data?.xLink}>
               <img
                 className="p-1 w-9 rounded-[4px] hover:brightness-200 ease-in-out duration-100"
                 src="/images/svgs/x.svg"
               />
             </Link>}
-            {data?.githubLink && <Link href={data?.githubLink}>
+            {data?.githubLink !== "" && <Link target="blank" href={data?.githubLink}>
               <img
                 className="p-1 w-9 rounded-[4px] hover:brightness-200 ease-in-out duration-100"
                 src="/images/svgs/github.svg"
               />
             </Link>}
           </div>
-          <div className="absolute flex flex-col justify-between h-[85%] w-[23%] mt-[1.5rem] ml-[0.3rem] left-1/2 -translate-x-1/2 ">
-            {data?.linkedinLink && <Link href={data?.linkedinLink}>
+          <div className="absolute flex flex-col justify-end h-[85%] w-[23%] mt-[1.5rem] ml-[0.3rem] left-1/2 -translate-x-1/2 ">
+            {data?.linkedinLink !== "" && <Link href={data?.linkedinLink}>
                 <img
                   className="p-1 w-9 rounded-[4px] hover:brightness-200 ease-in-out duration-100"
                   src="/images/svgs/linkedin.svg"
@@ -99,6 +100,8 @@ export function NameYearDept({ data }) {
   const gl = useThree((state) => state.gl);
   const viewPort = useThree((state) => state.viewport);
 
+  const sideBarOpen = useMLSCStore((state) => state.sidebarOpen);
+
   const positionFactor = viewPort.width / 25;
 
   return (
@@ -109,7 +112,7 @@ export function NameYearDept({ data }) {
       transform
       portal={{ current: gl.domElement.parentNode }}
     >
-      <div className=" w-3/5 -z-50 cursor-pointer">
+      <div className={cn(sideBarOpen?"w-0 h-0 pointer-events-none opacity-0":" w-3/5 -z-50 cursor-pointer", "ease-in-out duration-200")}>
         <div className="font-Wallpoet text-3xl text-white">
           {data?.fullName}
         </div>
@@ -124,6 +127,7 @@ export function NameYearDept({ data }) {
 export function PrevNextButtons({handlePrev, handleNext}) {
 
     const gl = useThree((state) => state.gl);
+    const sideBarOpen = useMLSCStore((state) => state.sidebarOpen);
 
     return (
         <Html
@@ -131,7 +135,7 @@ export function PrevNextButtons({handlePrev, handleNext}) {
           position={[-5, -0.75, 0]}
           portal={{ current: gl.domElement.parentNode }}
         >
-            <dir className="flex flex-row z-50 justify-between item-center h-96 w-full text-[#f0f0f0] cursor-pointer">
+            <dir className={cn(sideBarOpen?"w-0 h-0 pointer-events-none opacity-0":"flex flex-row z-50 justify-between item-center h-96 w-full text-[#f0f0f0] cursor-pointer", "ease-in-out duration-200")}>
                 <div onClick={handlePrev} className="flex items-center hover:brightness-150 justify-center font-bold bg-[url('/images/svgs/spo-button.svg')] bg-center bg-cover h-48 w-72 text-[1rem]">Previous</div>
 
                 <div onClick={handleNext} className="flex items-center hover:brightness-150 justify-center font-bold bg-[url('/images/svgs/spo-button.svg')] bg-center bg-cover h-48 w-72 text-[1rem]">Next</div>

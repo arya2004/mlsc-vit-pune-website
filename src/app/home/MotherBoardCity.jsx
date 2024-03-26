@@ -38,6 +38,7 @@ import cn from '../../app/utils/cn'
 import { useMLSCStore } from '../../app/store/MLSCStore'
 import PlaySoundButton from "../components-3d/PlaySoundButton";
 import CustomLoader from "../components/CustomLoader";
+import { ScrollDown } from "../components/UserDirections";
 
 const page = () => {
 
@@ -139,6 +140,7 @@ const page = () => {
       <NavButtons showNavButtons={showNavButtons} />
       <PlaySoundButton />
       <CustomLoader urlIndex={0} />
+      <ScrollDown />
     </div>
   );
 };

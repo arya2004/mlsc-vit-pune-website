@@ -10,6 +10,15 @@ import { useThree } from "@react-three/fiber";
 const AboutMesh = ({showAbout}) => {
 
   const [glitchOn, setGlitchOn] = React.useState(true);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    if (window.innerWidth < 768) {
+      setIsMobile(true);
+    } else {
+      setIsMobile(false);
+    }
+  }, [window.innerWidth]);
 
   // useEffect(() => {
   //   const timer = setTimeout(() => {
@@ -26,8 +35,8 @@ const AboutMesh = ({showAbout}) => {
   const {gl} = useThree()
 
   return (
-    <Html as="div" position={[2.5, 1.1, -2.8]} scale={[.1, .1, .1]} rotation={[0, -Math.PI/8, 0]} transform portal={{ current: gl.domElement.parentNode }}>
-      <div className={cn(showAbout?"w-[600px] h-[350px]":"w-0 h-0 opacity-0","flex flex-col gap-1 items-start justify-evenlyp-3 bg-transparent text-xl text-center text-[#00040cbd] stable-shadows ease-in-out duration-200 uppercase pointer-events-none")}>
+    <Html as="div" position={isMobile?[2.9, 1.2, -2.8]:[2.5, 0.8, -2.8]} scale={[.1, .1, .1]} rotation={[0, -Math.PI/8, 0]} transform portal={{ current: gl.domElement.parentNode }}>
+      <div className={cn(showAbout?"lg:w-[600px] w-[350px] h-[350px]":"w-0 h-0 opacity-0","flex flex-col gap-1 items-start justify-evenlyp-3 bg-transparent text-xl text-center text-[#00040cbd] stable-shadows ease-in-out duration-200 uppercase pointer-events-none")}>
         <div
           className={cn(!glitchOn ? "font-bold" : "font-bold glitch", "underline")}
           data-text="Welcome to Microsoft Learn Student Club VIT, Pune"

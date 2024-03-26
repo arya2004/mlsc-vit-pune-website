@@ -64,6 +64,7 @@ const domainMap = {
 
 function Page() {
   const domain = useMLSCStore((s) => s.domain);
+  const sidebarOpen = useMLSCStore((s) => s.sidebarOpen);
 
   const [memberData, setMemberData] = useState([]);
   const [index, setIndex] = useState(0);
@@ -120,29 +121,7 @@ function Page() {
   }, []);
 
   console.log("MEMBERS:", memberData);
-  // let data = {
-  //   id: 31,
-  //   email: "Loading",
-  //   password: null,
-  //   fullName: "Loading",
-  //   domain: "Loading",
-  //   position: "Loading",
-  //   year: "Loading",
-  //   xLink: "https://twitter.com/",
-  //   linkedinLink: "https://www.linkedin.com/",
-  //   githubLink: "https://github.com/",
-  //   aboutMe: "Loading",
-  //   imageLink:
-  //     "",
-  //   modelLink: "https://models.readyplayer.me/65eab3ab23ee6c00161f2d9a.glb",
-  //   role: "TEAM_MEMBER",
-  // };
-
-  // if(memberData && memberData[index] ){
-
-  // }
-
-
+ 
   return (
     <div className="w-screen h-screen bg-transparent overflow-hidden">
       <Canvas
@@ -196,7 +175,7 @@ function Page() {
             />
           </ScrollControls>
           
-           {!loading && progress === 100 && 
+           {!loading && progress === 100 && !sidebarOpen && 
            <Position
               onClick={handleAvatarClick}
               data={memberData[index]}
@@ -204,13 +183,13 @@ function Page() {
               position={zoom ? [3.4, 2, -1] : [5.8, 1.4, -1]}
             />}
         
-          {!zoom && progress === 100 && !loading && (
+          {!zoom && progress === 100 && !loading && !sidebarOpen &&  (
             <SocialIcons data={memberData[index]} />
           )}
-          {!zoom && !loading && progress === 100 && (
+          {!zoom && !loading && progress === 100 && !sidebarOpen &&  (
             <NameYearDept data={memberData[index]} />
           )}
-          {progress===100 && <PrevNextButtons handlePrev={handlePrev} handleNext={handleNext} />}
+          {progress===100 && !sidebarOpen &&  <PrevNextButtons handlePrev={handlePrev} handleNext={handleNext} />}
         </Suspense>
       </Canvas>
       <PlaySoundButton />
