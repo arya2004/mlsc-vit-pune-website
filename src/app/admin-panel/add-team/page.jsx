@@ -258,7 +258,10 @@ function AddTeamMember() {
                   }
 
                   const file = inputFileRef.current.files[0];
-
+                  if (file.size > 500 * 1024) {
+                    alert('File size should be less than 0.5MB');
+                    return;
+                  }
                   // const response = await fetch(
                   //   `/api/photo/upload?filename=${file.name}`,
                   //   {
