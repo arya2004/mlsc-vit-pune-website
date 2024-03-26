@@ -44,7 +44,7 @@ export function ScrollDownRotate() {
     }, 15000);
 
     return (
-          <div className="absolute top-4 left-1/2 -translate-x-1/2 flex flex-col items-center p-2 px-4 bg-slate-700 bg-opacity-50 rounded-[20px] justify-center">
+          <div className="absolute top-4 left-1/2 -translate-x-1/2 flex flex-col items-center p-2 px-4 bg-slate-700 bg-opacity-65 rounded-[16px] justify-center">
               <div className="text-sm text-[#f0f0f0]">
                   Click on the photo to ZOOM
               </div>
