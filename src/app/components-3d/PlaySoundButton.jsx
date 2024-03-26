@@ -9,8 +9,8 @@ function PlaySoundButton({}) {
   const playBGM = useMLSCStore((state) => state.playBGM);
   const setPlayBGM = useMLSCStore((state) => state.setPlayBGM);
   return(
-    <button onClick={() => setPlayBGM(!playBGM)} className="absolute flex items-center justify-center top-8 right-12 w-12 h-12 border-sky-100 border-2 rounded-full bg-[#143056] cursor-pointer ">
-      {playBGM ? <GiSoundOn className="text-[#f0f0f0] text-2xl" /> : <GiSoundOff className="text-[#f0f0f0] text-2xl" />}
+    <button onClick={() => setPlayBGM(!playBGM)} className="absolute flex items-center justify-center top-8 right-12 w-16 h-16 cursor-pointer ">
+      {playBGM ? <div className="w-full h-full rounded-full opacity-85 bg-cover bg-center bg-[url('/icons/sound-button-on.jpeg')]"  />: <div className="w-full h-full rounded-full opacity-85 bg-cover bg-center bg-[url('/icons/sound-button-off.jpeg')]"  />}
     </button>
   )
 }
