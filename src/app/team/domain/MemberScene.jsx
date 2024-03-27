@@ -39,10 +39,7 @@ export default function MemberScene({memberData, index, loading, zoom, camera}){
 
     scroll.damping = noOfMembers;
 
-    scroll.pages = noOfMembers;
-    console.log("SCROLL: ",scroll.pages);
-
-    
+    scroll.pages = noOfMembers;    
 
     // useEffect(() => {
     //     setIndex(Math.floor(scroll.offset * noOfMembers));
@@ -98,7 +95,6 @@ export default function MemberScene({memberData, index, loading, zoom, camera}){
     });
 
     let avatarURL = memberData[index]?.modelLink;
-    console.log("MODEL Link", avatarURL)
 
     return (
         <group ref={memberScene}>

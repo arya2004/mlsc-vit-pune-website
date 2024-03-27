@@ -14,7 +14,7 @@ export function Avatar(props) {
     // console.log("SCENE", scene);
     const { nodes } = useGraph(clone);
 
-    console.log("NODES", nodes)
+    // console.log("NODES", nodes)
 
     // const { animations: bBoy_hip_hop } = useFBX('/animations/Bboy Hip Hop Move.fbx');
     // const { animations: gangnum_style } = useFBX('/animations/Gangnam Style.fbx');

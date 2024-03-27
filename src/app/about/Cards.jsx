@@ -7,7 +7,7 @@ import { MdOutlineSkipPrevious, MdOutlineSkipNext } from "react-icons/md";
 import axios from "axios";
 import Link from "next/link";
 
-function EventCard({ text, position, scale, rotation, eventData }) {
+function EventCard({ text, position, scale, rotation, eventData, index }) {
   const [hovered, setHovered] = useState(false);
 
   useEffect(() => {
@@ -29,55 +29,50 @@ function EventCard({ text, position, scale, rotation, eventData }) {
       rotation={rotation}
     >
       <div
-        onPointerEnter={(e) => setHovered(true)}
-        onPointerLeave={(e) => setHovered(false)}
-        className="flex items-center text-[3px] w-6 h-4 justify-center bg-event-bg bg-cover bg-center "
+        // onPointerEnter={(e) => setHovered(true)}
+        // onPointerLeave={(e) => setHovered(false)}
+        className="flex items-center text-[3px] w-[21rem] h-56 justify-center bg-event-bg bg-cover bg-center text-[#f0f0f0] p-[1px] cursor-pointer"
       >
-        {!hovered ? (
-          <div className="w-[87%] h-[92%] mt-[1px] flex flex-col items-center justify-start text-[1px] text-[#e0e0e0] p-[1px]">
-            <div className="flex flex-col justify-evenly w-full gap-0 h-[20%] ">
-              <div>{eventData?.name}</div>
-              <span className="text-[0.8px]">{eventData?.tagline}</span>
-            </div>
-            <div className="flex flex-row justify-center w-[80%] h-[60%] bg-slate-400">
-              Image
+        <div className="flex flex-col justify-center items-center w-3/5 h-[95%] ">
+          <div className="flex flex-row items-end justify-end w-full h-[18%] text-sm mt-1.5">
+            {index}
+          </div>
+          <div onPointerEnter={()=>setHovered(true)} onPointerLeave={()=>setHovered(false)} className="flex items-center justify-center ml-[2rem] text-sm w-[80%] h-[80%] bg-slate-500">
+            {hovered?<span>{eventData?.description}</span>:<span>Image</span>}
+          </div>
+        </div>
+
+        <div className="flex flex-col items-center justify-end w-2/5 h-[95%] p-1 mt-[0.3px]">
+          <div className="w-[98%] h-[30%] text-sm">
+            {eventData?.name}
+          </div>
+          <div className="flex flex-col items-start justify-evenly w-[98%] h-[60%] ">
+
+            <div className="w-full h-[40%] flex flex-col">
+              <a href={eventData?.link} className="w-full h-1/2 text-xs text-blue-500">Link</a>
+              <div className="w-full h-1/2 text-[0.5rem]">footfall: {eventData?.footfall}</div>
             </div>
 
-            <div className="flex flex-row justify-evenly w-full h-[25%] text-[0.8px] pt-[1px]">
-              <div className="flex flex-col h-full w-auto justify-evenly">
-                <div>Date:</div>
-                <div className="text-[0.6px]">{date!=="No Data"?`${date.getDate()}-${date.getMonth()+1}-${date.getFullYear()}`:"No Data"}</div>
+            <div className="flex flex-row w-full h-[35%] items-center justify-start gap-2 ">
+
+             {date!=='No Data' && <div className="flex flex-col w-[40%] h-full ">
+                <div className="w-full text-[0.5rem]">Date</div>
+                <div className="text-center flex items-center justify-center w-full p-[3px] bg-[#f0f0f0] text-[#0f0f0f] text-[0.5rem] rounded-[4px]">
+                  <span>{date?.getDate()}-{date?.getMonth()}-{date?.getFullYear()}</span>
+                </div>
+              </div>}
+              <div className="w-[40%] h-full ">
+                <div className="w-full  text-[0.5rem]">Span</div>
+                <div className="text-center flex items-center justify-center w-[95%] p-[3px] bg-[#f0f0f0] text-[#0f0f0f] text-[0.5rem] rounded-[4px]">
+                  <span>{eventData?.eventSpan} Days</span>
+                </div>
               </div>
-              <div className="flex flex-col h-full w-auto justify-evenly">
-                <div>Footfall:</div>
-                <div className="text-[0.6px]">{eventData?.footfall}</div>
-              </div>
-              <div className="flex flex-col h-full w-auto justify-evenly">
-                <div>Event Span:</div>
-                <div className="text-[0.6px]">{eventData?.eventSpan}</div>
-              </div>
-              <div className="flex flex-col h-full w-auto justify-evenly text-blue-600">
-                <a href={eventData?.link}>LINK</a>
-                <div className="text-[0.6px]"></div>
-              </div>
+             
+
             </div>
+            
           </div>
-        ) : (
-          <div className="w-[87%] h-[92%] mt-[1px] flex flex-col justify-start text-[1px] text-[#f0f0f0] p-[1px]">
-            <div className="flex flex-col justify-evenly w-full gap-0 h-[20%] ">
-              <div>{eventData?.title}</div>
-              <span className="text-[0.8px]">{eventData?.tagline}</span>
-            </div>
-            <div className="flex flex-row w-full justify-start h-[80%] text-[0.6px] overflow-hidden">
-              <div className="w-full h-auto">{eventData?.description}</div>
-              
-            </div>
-            <div className="flex flex-col h-1/6 w-auto justify-right text-blue-600">
-                <a target="blank" href={eventData?.link}>LINK</a>
-                <div className="text-[0.6px]"></div>
-              </div>
-          </div>
-        )}
+        </div>
       </div>
     </Html>
   );
@@ -116,16 +111,6 @@ export function EventCards({ position, scale }) {
     <group position={position}>
       <EventCard
         position={[
-          20 * Math.cos(degToRad(30)),
-          -4,
-          20 * Math.sin(degToRad(30)),
-        ]}
-        eventData={eventData && eventData.length > 0 ? eventData[0] : nonLoadData}
-        scale={scale}
-        rotation={[0, degToRad(60 + 180), 0]}
-      />
-      <EventCard
-        position={[
           20 * Math.cos(degToRad(60)),
           -4,
           20 * Math.sin(degToRad(60)),
@@ -133,17 +118,19 @@ export function EventCards({ position, scale }) {
         eventData={eventData && eventData.length > 1 ? eventData[1] : nonLoadData}
         scale={scale}
         rotation={[0, degToRad(30 + 180), 0]}
+        index='02'
       />
-      <EventCard
-        position={[
-          20 * Math.cos(degToRad(120)),
-          -4,
-          20 * Math.sin(degToRad(120)),
-        ]}
-        eventData={eventData && eventData.length > 2 ? eventData[2] : nonLoadData}
-        scale={scale}
-        rotation={[0, degToRad(-30 + 180), 0]}
-      />
+        <EventCard
+          position={[
+            20 * Math.cos(degToRad(30)),
+            -4,
+            20 * Math.sin(degToRad(30)),
+          ]}
+          eventData={eventData && eventData.length > 0 ? eventData[0] : nonLoadData}
+          scale={scale}
+          rotation={[0, degToRad(60 + 180), 0]}
+          index='01'
+        />
       <EventCard
         position={[
           20 * Math.cos(degToRad(150)),
@@ -153,17 +140,19 @@ export function EventCards({ position, scale }) {
         eventData={eventData && eventData.length > 3 ? eventData[3] : nonLoadData}
         scale={scale}
         rotation={[0, degToRad(-60 + 180), 0]}
+        index='04'
       />
-      <EventCard
-        position={[
-          20 * Math.cos(degToRad(210)),
-          -4,
-          20 * Math.sin(degToRad(210)),
-        ]}
-        eventData={eventData && eventData.length > 4 ? eventData[4] : nonLoadData}
-        scale={scale}
-        rotation={[0, degToRad(60), 0]}
-      />
+        <EventCard
+          position={[
+            20 * Math.cos(degToRad(120)),
+            -4,
+            20 * Math.sin(degToRad(120)),
+          ]}
+          eventData={eventData && eventData.length > 2 ? eventData[2] : nonLoadData}
+          scale={scale}
+          rotation={[0, degToRad(-30 + 180), 0]}
+          index='03'
+        />
       <EventCard
         position={[
           20 * Math.cos(degToRad(240)),
@@ -173,17 +162,19 @@ export function EventCards({ position, scale }) {
         eventData={eventData && eventData.length > 5 ? eventData[5] : nonLoadData}
         scale={scale}
         rotation={[0, degToRad(30), 0]}
+        index='06'
       />
-      <EventCard
-        position={[
-          20 * Math.cos(degToRad(300)),
-          -4,
-          20 * Math.sin(degToRad(300)),
-        ]}
-        eventData={eventData && eventData.length > 6 ? eventData[6] : nonLoadData}
-        scale={scale}
-        rotation={[0, degToRad(-30), 0]}
-      />
+        <EventCard
+          position={[
+            20 * Math.cos(degToRad(210)),
+            -4,
+            20 * Math.sin(degToRad(210)),
+          ]}
+          eventData={eventData && eventData.length > 4 ? eventData[4] : nonLoadData}
+          scale={scale}
+          rotation={[0, degToRad(60), 0]}
+          index='05'
+        />
       <EventCard
         position={[
           20 * Math.cos(degToRad(330)),
@@ -193,7 +184,19 @@ export function EventCards({ position, scale }) {
         eventData={eventData && eventData.length > 7 ? eventData[7] : nonLoadData}
         scale={scale}
         rotation={[0, degToRad(-60), 0]}
+        index='08'
       />
+        <EventCard
+          position={[
+            20 * Math.cos(degToRad(300)),
+            -4,
+            20 * Math.sin(degToRad(300)),
+          ]}
+          eventData={eventData && eventData.length > 6 ? eventData[6] : nonLoadData}
+          scale={scale}
+          rotation={[0, degToRad(-30), 0]}
+          index='07'
+        />
     </group>
   );
 }
