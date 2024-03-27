@@ -9,7 +9,7 @@ import * as THREE from "three";
 import RAPIER from "@dimforge/rapier3d-compat";
 // import TeleportAnim from "./TeleportAnim";
 
-import { YearCard } from "./YearCard";
+import { DoorPointingArrow, YearCard } from "./YearCard";
 
 import { useMLSCStore } from "../store/MLSCStore";
 import { useRouter } from "next/navigation";
@@ -118,7 +118,8 @@ function MovingCamera({ position, setsYear }) {
       </Suspense> */}
       {!showYearCard && <PointerLockControls />}
       
-      <YearCard show={showYearCard} position={[-16.2, 0, -17]} rotation={[0, degToRad(40), 0]} />
+      <YearCard show={showYearCard} />
+      <DoorPointingArrow position={[-16.2, 2, -18]} rotation={[0, degToRad(40), 0]} />
       
       <RigidBody
         type="dynamic"

@@ -7,7 +7,7 @@ import { MdOutlineSkipPrevious, MdOutlineSkipNext } from "react-icons/md";
 import axios from "axios";
 import Link from "next/link";
 
-function EventCard({ text, position, scale, rotation, eventData }) {
+function EventCard({ text, position, scale, rotation, eventData, index }) {
   const [hovered, setHovered] = useState(false);
 
   useEffect(() => {
@@ -31,40 +31,40 @@ function EventCard({ text, position, scale, rotation, eventData }) {
       <div
         // onPointerEnter={(e) => setHovered(true)}
         // onPointerLeave={(e) => setHovered(false)}
-        className="flex items-center text-[3px] w-6 h-4 justify-center bg-event-bg bg-cover bg-center text-[#f0f0f0] p-[1px]"
+        className="flex items-center text-[3px] w-[21rem] h-56 justify-center bg-event-bg bg-cover bg-center text-[#f0f0f0] p-[1px] cursor-pointer"
       >
-        <div className="flex flex-col w-3/5 h-[95%]  mt-[0.3px]">
-          <div className="flex flex-row items-center justify-end w-full h-[20%]  text-[2px]">
-            01
+        <div className="flex flex-col justify-center items-center w-3/5 h-[95%] ">
+          <div className="flex flex-row items-end justify-end w-full h-[18%] text-sm mt-1.5">
+            {index}
           </div>
-          <div className="flex items-center justify-center w-full h-[80%]  pl-[1px]">
-            Image
+          <div onPointerEnter={()=>setHovered(true)} onPointerLeave={()=>setHovered(false)} className="flex items-center justify-center ml-[2rem] text-sm w-[80%] h-[80%] bg-slate-500">
+            {hovered?<span>{eventData?.description}</span>:<span>Image</span>}
           </div>
         </div>
 
-        <div className="flex flex-col items-center justify-end w-2/5 h-[95%]  mt-[0.3px]">
-          <div className="w-[98%] h-[30%]  text-[2px]">
-            Title
+        <div className="flex flex-col items-center justify-end w-2/5 h-[95%] p-1 mt-[0.3px]">
+          <div className="w-[98%] h-[30%] text-sm">
+            {eventData?.name}
           </div>
-          <div className="flex flex-col items-start justify-evenly w-[98%] px-[0.5px] h-[60%] ">
+          <div className="flex flex-col items-start justify-evenly w-[98%] h-[60%] ">
 
             <div className="w-full h-[40%] flex flex-col">
-              <div className="w-full h-1/2 text-[.7px]">link</div>
-              <div className="w-full h-1/2 text-[.7px]">footfall: </div>
+              <a href={eventData?.link} className="w-full h-1/2 text-xs text-blue-500">Link</a>
+              <div className="w-full h-1/2 text-[0.5rem]">footfall: {eventData?.footfall}</div>
             </div>
 
-            <div className="flex flex-row w-full h-[35%] items-center justify-between ">
+            <div className="flex flex-row w-full h-[35%] items-center justify-start gap-2 ">
 
-              <div className="flex flex-col w-[40%] h-full ">
-                <div className="w-full h-[50%]  text-[0.6px]">Date</div>
-                <div className="text-center w-full h-[50%] bg-[#f0f0f0] text-[#0f0f0f] text-[0.5px] rounded-[0.5px]">
-                  <span className="mt-[1px]">23-02-2023</span>
+             {date!=='No Data' && <div className="flex flex-col w-[40%] h-full ">
+                <div className="w-full text-[0.5rem]">Date</div>
+                <div className="text-center flex items-center justify-center w-full p-[3px] bg-[#f0f0f0] text-[#0f0f0f] text-[0.5rem] rounded-[4px]">
+                  <span>{date?.getDate()}-{date?.getMonth()}-{date?.getFullYear()}</span>
                 </div>
-              </div>
+              </div>}
               <div className="w-[40%] h-full ">
-                <div className="w-full h-[50%]  text-[0.6px]">Span</div>
-                <div className="text-center w-[95%] h-[50%] bg-[#f0f0f0] text-[#0f0f0f] text-[0.2px] rounded-[0.5px]">
-                  <span>2</span>
+                <div className="w-full  text-[0.5rem]">Span</div>
+                <div className="text-center flex items-center justify-center w-[95%] p-[3px] bg-[#f0f0f0] text-[#0f0f0f] text-[0.5rem] rounded-[4px]">
+                  <span>{eventData?.eventSpan} Days</span>
                 </div>
               </div>
              
@@ -111,16 +111,6 @@ export function EventCards({ position, scale }) {
     <group position={position}>
       <EventCard
         position={[
-          20 * Math.cos(degToRad(30)),
-          -4,
-          20 * Math.sin(degToRad(30)),
-        ]}
-        eventData={eventData && eventData.length > 0 ? eventData[0] : nonLoadData}
-        scale={scale}
-        rotation={[0, degToRad(60 + 180), 0]}
-      />
-      <EventCard
-        position={[
           20 * Math.cos(degToRad(60)),
           -4,
           20 * Math.sin(degToRad(60)),
@@ -128,17 +118,19 @@ export function EventCards({ position, scale }) {
         eventData={eventData && eventData.length > 1 ? eventData[1] : nonLoadData}
         scale={scale}
         rotation={[0, degToRad(30 + 180), 0]}
+        index='02'
       />
-      <EventCard
-        position={[
-          20 * Math.cos(degToRad(120)),
-          -4,
-          20 * Math.sin(degToRad(120)),
-        ]}
-        eventData={eventData && eventData.length > 2 ? eventData[2] : nonLoadData}
-        scale={scale}
-        rotation={[0, degToRad(-30 + 180), 0]}
-      />
+        <EventCard
+          position={[
+            20 * Math.cos(degToRad(30)),
+            -4,
+            20 * Math.sin(degToRad(30)),
+          ]}
+          eventData={eventData && eventData.length > 0 ? eventData[0] : nonLoadData}
+          scale={scale}
+          rotation={[0, degToRad(60 + 180), 0]}
+          index='01'
+        />
       <EventCard
         position={[
           20 * Math.cos(degToRad(150)),
@@ -148,17 +140,19 @@ export function EventCards({ position, scale }) {
         eventData={eventData && eventData.length > 3 ? eventData[3] : nonLoadData}
         scale={scale}
         rotation={[0, degToRad(-60 + 180), 0]}
+        index='04'
       />
-      <EventCard
-        position={[
-          20 * Math.cos(degToRad(210)),
-          -4,
-          20 * Math.sin(degToRad(210)),
-        ]}
-        eventData={eventData && eventData.length > 4 ? eventData[4] : nonLoadData}
-        scale={scale}
-        rotation={[0, degToRad(60), 0]}
-      />
+        <EventCard
+          position={[
+            20 * Math.cos(degToRad(120)),
+            -4,
+            20 * Math.sin(degToRad(120)),
+          ]}
+          eventData={eventData && eventData.length > 2 ? eventData[2] : nonLoadData}
+          scale={scale}
+          rotation={[0, degToRad(-30 + 180), 0]}
+          index='03'
+        />
       <EventCard
         position={[
           20 * Math.cos(degToRad(240)),
@@ -168,17 +162,19 @@ export function EventCards({ position, scale }) {
         eventData={eventData && eventData.length > 5 ? eventData[5] : nonLoadData}
         scale={scale}
         rotation={[0, degToRad(30), 0]}
+        index='06'
       />
-      <EventCard
-        position={[
-          20 * Math.cos(degToRad(300)),
-          -4,
-          20 * Math.sin(degToRad(300)),
-        ]}
-        eventData={eventData && eventData.length > 6 ? eventData[6] : nonLoadData}
-        scale={scale}
-        rotation={[0, degToRad(-30), 0]}
-      />
+        <EventCard
+          position={[
+            20 * Math.cos(degToRad(210)),
+            -4,
+            20 * Math.sin(degToRad(210)),
+          ]}
+          eventData={eventData && eventData.length > 4 ? eventData[4] : nonLoadData}
+          scale={scale}
+          rotation={[0, degToRad(60), 0]}
+          index='05'
+        />
       <EventCard
         position={[
           20 * Math.cos(degToRad(330)),
@@ -188,7 +184,19 @@ export function EventCards({ position, scale }) {
         eventData={eventData && eventData.length > 7 ? eventData[7] : nonLoadData}
         scale={scale}
         rotation={[0, degToRad(-60), 0]}
+        index='08'
       />
+        <EventCard
+          position={[
+            20 * Math.cos(degToRad(300)),
+            -4,
+            20 * Math.sin(degToRad(300)),
+          ]}
+          eventData={eventData && eventData.length > 6 ? eventData[6] : nonLoadData}
+          scale={scale}
+          rotation={[0, degToRad(-30), 0]}
+          index='07'
+        />
     </group>
   );
 }
