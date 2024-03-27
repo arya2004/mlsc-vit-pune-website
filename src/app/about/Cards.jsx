@@ -29,55 +29,50 @@ function EventCard({ text, position, scale, rotation, eventData }) {
       rotation={rotation}
     >
       <div
-        onPointerEnter={(e) => setHovered(true)}
-        onPointerLeave={(e) => setHovered(false)}
-        className="flex items-center text-[3px] w-6 h-4 justify-center bg-event-bg bg-cover bg-center "
+        // onPointerEnter={(e) => setHovered(true)}
+        // onPointerLeave={(e) => setHovered(false)}
+        className="flex items-center text-[3px] w-6 h-4 justify-center bg-event-bg bg-cover bg-center text-[#f0f0f0] p-[1px]"
       >
-        {!hovered ? (
-          <div className="w-[87%] h-[92%] mt-[1px] flex flex-col items-center justify-start text-[1px] text-[#e0e0e0] p-[1px]">
-            <div className="flex flex-col justify-evenly w-full gap-0 h-[20%] ">
-              <div>{eventData?.name}</div>
-              <span className="text-[0.8px]">{eventData?.tagline}</span>
-            </div>
-            <div className="flex flex-row justify-center w-[80%] h-[60%] bg-slate-400">
-              Image
+        <div className="flex flex-col w-3/5 h-[95%]  mt-[0.3px]">
+          <div className="flex flex-row items-center justify-end w-full h-[20%]  text-[2px]">
+            01
+          </div>
+          <div className="flex items-center justify-center w-full h-[80%]  pl-[1px]">
+            Image
+          </div>
+        </div>
+
+        <div className="flex flex-col items-center justify-end w-2/5 h-[95%]  mt-[0.3px]">
+          <div className="w-[98%] h-[30%]  text-[2px]">
+            Title
+          </div>
+          <div className="flex flex-col items-start justify-evenly w-[98%] px-[0.5px] h-[60%] ">
+
+            <div className="w-full h-[40%] flex flex-col">
+              <div className="w-full h-1/2 text-[.7px]">link</div>
+              <div className="w-full h-1/2 text-[.7px]">footfall: </div>
             </div>
 
-            <div className="flex flex-row justify-evenly w-full h-[25%] text-[0.8px] pt-[1px]">
-              <div className="flex flex-col h-full w-auto justify-evenly">
-                <div>Date:</div>
-                <div className="text-[0.6px]">{date!=="No Data"?`${date.getDate()}-${date.getMonth()+1}-${date.getFullYear()}`:"No Data"}</div>
+            <div className="flex flex-row w-full h-[35%] items-center justify-between ">
+
+              <div className="flex flex-col w-[40%] h-full ">
+                <div className="w-full h-[50%]  text-[0.6px]">Date</div>
+                <div className="text-center w-full h-[50%] bg-[#f0f0f0] text-[#0f0f0f] text-[0.5px] rounded-[0.5px]">
+                  <span className="mt-[1px]">23-02-2023</span>
+                </div>
               </div>
-              <div className="flex flex-col h-full w-auto justify-evenly">
-                <div>Footfall:</div>
-                <div className="text-[0.6px]">{eventData?.footfall}</div>
+              <div className="w-[40%] h-full ">
+                <div className="w-full h-[50%]  text-[0.6px]">Span</div>
+                <div className="text-center w-[95%] h-[50%] bg-[#f0f0f0] text-[#0f0f0f] text-[0.2px] rounded-[0.5px]">
+                  <span>2</span>
+                </div>
               </div>
-              <div className="flex flex-col h-full w-auto justify-evenly">
-                <div>Event Span:</div>
-                <div className="text-[0.6px]">{eventData?.eventSpan}</div>
-              </div>
-              <div className="flex flex-col h-full w-auto justify-evenly text-blue-600">
-                <a href={eventData?.link}>LINK</a>
-                <div className="text-[0.6px]"></div>
-              </div>
+             
+
             </div>
+            
           </div>
-        ) : (
-          <div className="w-[87%] h-[92%] mt-[1px] flex flex-col justify-start text-[1px] text-[#f0f0f0] p-[1px]">
-            <div className="flex flex-col justify-evenly w-full gap-0 h-[20%] ">
-              <div>{eventData?.title}</div>
-              <span className="text-[0.8px]">{eventData?.tagline}</span>
-            </div>
-            <div className="flex flex-row w-full justify-start h-[80%] text-[0.6px] overflow-hidden">
-              <div className="w-full h-auto">{eventData?.description}</div>
-              
-            </div>
-            <div className="flex flex-col h-1/6 w-auto justify-right text-blue-600">
-                <a target="blank" href={eventData?.link}>LINK</a>
-                <div className="text-[0.6px]"></div>
-              </div>
-          </div>
-        )}
+        </div>
       </div>
     </Html>
   );
