@@ -120,6 +120,18 @@ function Page() {
     getTeamData();
   }, []);
 
+  if(domain !== 'core'){
+    memberData?.sort((a, b) => {
+      if (a.position === 'Domain lead') {
+        return -1; // 'domain lead' comes before 'coordinator'
+      }
+      if (b.position === 'Domain lead') {
+        return 1; // 'domain lead' comes before 'coordinator'
+      }
+      return 0;
+    })
+  }
+
   console.log("MEMBERS:", memberData);
  
   return (
