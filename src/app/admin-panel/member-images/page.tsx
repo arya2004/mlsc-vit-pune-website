@@ -12,6 +12,8 @@ export default function MemberImagesPage() {
     }, 5000);
   };
 
+  const envUploadPreset = process.env.CLOUDINARY_UPLOAD_PRESET;
+
   return (
     <div style={{color: 'green'}}>
       {uploadSuccess && (
@@ -20,7 +22,7 @@ export default function MemberImagesPage() {
         </div>
       )}
       <CldUploadWidget
-        uploadPreset="hbebpk3m"
+        uploadPreset={envUploadPreset}
         onSuccess={() => handleUploadSuccess()} // Call handleUploadSuccess on successful upload
       >
         {({ open }) => (
