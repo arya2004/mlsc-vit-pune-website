@@ -27,6 +27,7 @@
     "leva": "^0.9.35",
     "next": "^14.0.1",
     "next-auth": "^4.24.5",
+    "next-cloudinary": "^6.3.0",
     "react": "^18",
     "react-dom": "^18",
     "react-icons": "^4.12.0",
